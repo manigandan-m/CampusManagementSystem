@@ -25,8 +25,7 @@ public class UserDao {
         System.out.println("session created");
         Transaction transaction = session.beginTransaction();
         try { 
-        	 System.out.println("fgggggggggggggggggggggggggggggggggggggggggggd");
-            session.save(user);            
+        	session.save(user);            
             transaction.commit();        
         } catch (HibernateException e) {   
             throw new DatabaseException("Entered user is not added. User ID already exits..", e);
@@ -41,8 +40,7 @@ public class UserDao {
         System.out.println("session created");
         Transaction transaction = session.beginTransaction();
         try { 
-        	 System.out.println("fgggggggggggggggggggggggggggggggggggggggggggd");
-            session.save(address);            
+        	session.save(address);            
             transaction.commit();        
         } catch (HibernateException e) {   
             throw new DatabaseException("Entered address is not added. ..", e);
@@ -52,15 +50,15 @@ public class UserDao {
     }
     
     
-    public User findUser(int id) throws DatabaseException {        
+    public User findUser(String username) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
         User user = null; 
         
         try {                           
-            user = (User) session.get(User.class, id);            
+            user = (User) session.get(User.class, username);            
             if (user == null) {
             	
-                throw new DatabaseException("Invalid user Id");
+                throw new DatabaseException("Invalid username");
             }                     
             return user;
         } catch (HibernateException e) { 
@@ -72,12 +70,12 @@ public class UserDao {
     }
 
    
-    public void deleteUser(int id) throws DatabaseException {
+    public void deleteUser(String username) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
-            User user = (User) session.get(User.class, id); 
+            User user = (User) session.get(User.class, username); 
             session.delete(user);
             transaction.commit();            
         } catch (IllegalArgumentException e) {      

@@ -27,6 +27,15 @@ public class Teacher {
     @JoinColumn(name = "user_id")    
     private User user;
 	
+	public Teacher() {
+		
+	}
+	
+	public Teacher(int yearsOfExperience, int monthsOfExperience) {
+		this.yearsOfExperience = yearsOfExperience;
+		this.monthsOfExperience = monthsOfExperience;
+	}
+	
 	public int getTeacherId() {
 		return teacherId;
 	}

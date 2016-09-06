@@ -65,7 +65,7 @@
             <form class = "formUser" action="deleteUser.html" method="GET">
 	            <p>
                 <label id = "label1">User Id:</label>
-	            <input type="text" name="userId" placeholder="Enter userId" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required><br>
+	            <input type="text" name="username" placeholder="Enter username" data-validation="text" data-validation-error-msg ="Please Enter numbers only" required><br>
 	            </p>	
 	            <p>
 	            <input type="submit" name ="delete" value="Delete" />
@@ -85,7 +85,7 @@
             <form class = "formUser" action="searchUser.html" method="GET" >
 	            <p>
                 <label id = "label1">User Id:</label>
-	            <input name="userId" placeholder="Enter userId" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required= "required"/><br>
+	            <input name="username" placeholder="Enter username" data-validation="text" data-validation-error-msg ="Please Enter text only" required= "required"/><br>
 	            </p>	
 	            <p>
 	            <input type="submit" value="Search" />

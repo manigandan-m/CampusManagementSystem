@@ -20,13 +20,13 @@ public class UserService {
     }
     
 
-    public User searchUser(int id) throws DatabaseException {
-        return (userDao.findUser(id));        
+    public User searchUser(String username) throws DatabaseException {
+        return (userDao.findUser(username));        
     }
     
  
-    public void removeUser(int id) throws DatabaseException {
-        userDao.deleteUser(id);  
+    public void removeUser(String username) throws DatabaseException {
+        userDao.deleteUser(username);  
     }
     
     

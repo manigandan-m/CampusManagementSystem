@@ -59,13 +59,13 @@ public class UserController {
 
     
     @RequestMapping(value = "/searchUser", method=RequestMethod.GET)  
-    public ModelAndView searchUser(@RequestParam("userId") int userId) {                
+    public ModelAndView searchUser(@RequestParam("username") String username) {                
         ModelAndView modelView = new ModelAndView();
         
         modelView.setViewName("User");
         modelView.addObject("User", new User());
         try {       	
-        	modelView.addObject("searchUser", userService.searchUser(userId));        	                                          
+        	modelView.addObject("searchUser", userService.searchUser(username));        	                                          
         } catch (DatabaseException e) {
         	
         	modelView.addObject("searchMessage", e.getMessage());             
@@ -89,14 +89,14 @@ public class UserController {
 
     
     @RequestMapping(value = "/deleteUser", method=RequestMethod.GET) 
-    public ModelAndView deleteUser(@RequestParam("userId") int userId) {        
+    public ModelAndView deleteUser(@RequestParam("username") String username) {        
         ModelAndView modelView = new ModelAndView();
     	
     	modelView.setViewName("User");
         modelView.addObject("User", new User());          
         try {                                                           
-            userService.removeUser(userId);
-            modelView.addObject("deleteMessage", "User Id " + userId + " is deleted");                                   
+            userService.removeUser(username);
+            modelView.addObject("deleteMessage", "User Id " + username + " is deleted");                                   
         } catch (DatabaseException e) {
         	
         	modelView.addObject("deleteMessage", e.getMessage());                                    
