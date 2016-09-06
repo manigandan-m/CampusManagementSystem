@@ -11,12 +11,12 @@ public class UserService {
     UserDao userDao = new UserDao();
     
 
-    public void addUser(User user) throws DatabaseException {                 
-            userDao.insertUser(user);                     
+    public int addUser(User user) throws DatabaseException {                 
+            return (userDao.insertUser(user));                     
     }
     
-    public void addAddress(Address address) throws DatabaseException {                 
-        userDao.insertAddress(address);                     
+    public void addAddress(Address address, int userId) throws DatabaseException {                 
+        userDao.insertAddress(address, userId);                     
     }
     
 

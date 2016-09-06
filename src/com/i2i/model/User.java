@@ -9,6 +9,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
+import javax.persistence.GeneratedValue;
+import org.hibernate.annotations.Cascade;
 
 import com.i2i.model.Role;
 import com.i2i.model.Address;
@@ -18,6 +20,7 @@ import com.i2i.model.Address;
 public class User {
 	
 	@Id
+	@GeneratedValue
     @Column(name = "user_id")
 	private int userId;
 	
@@ -46,9 +49,9 @@ public class User {
     @JoinColumn(name = "role_id")    
     private Role role;
 
-	@OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "address_id")    
-    private Address address;
+	@OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "address_id") 
+	private Address address;
 
 	public int getUserId() {
 		return userId;

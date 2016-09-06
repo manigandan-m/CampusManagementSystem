@@ -17,6 +17,7 @@ import com.i2i.model.Address;
 @Controller
 public class UserController {
     UserService userService = new UserService();
+    int userId;
     
     
     @RequestMapping(value = "/User", method=RequestMethod.GET) 
@@ -29,32 +30,27 @@ public class UserController {
     @RequestMapping(value = "/addUser", method=RequestMethod.POST) 
     public ModelAndView addUser(@ModelAttribute("User") User user) {
         String message = null;    
-
+ 
         try {                                                     
-            userService.addUser(user);                                        
+        	userId = userService.addUser(user);                                        
             message = "User is added successfully";            
         }  catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
         } 
         return new ModelAndView("Address","addMessage", message);       
-    }
+    }    
     
-    @RequestMapping(value = "/Address", method=RequestMethod.GET) 
-    public String addAddress(ModelMap model) {
-        model.addAttribute("User", new User());	 
-        return "Address";
-    }   
     @RequestMapping(value = "/addAddress", method=RequestMethod.POST) 
     public ModelAndView addUser(@ModelAttribute("Address") Address address) {
         String message = null;    
 
         try {                                                     
-            userService.addAddress(address);                                        
+            userService.addAddress(address, userId);                                        
             message = "Address is added successfully";            
         }  catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
         } 
-        return new ModelAndView("User","addMessage", message);       
+        return new ModelAndView("Address","addMessage", message);       
     }
 
     

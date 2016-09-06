@@ -24,13 +24,13 @@
                 
                 <form:form class = "formStudent" action="addStudent.html" method="POST" modelAttribute="Student">	                            
 	                
-	                <label id = "label1">User Name:</label>
-	                <form:input path="username" /><br></br>	
+	                <label id = "label1">Date Of Birth:</label>
+	                <form:input path="dateOfBirth" /><br></br>	
 	                
-	                <label id = "label1">Password:</label>
-	                <form:input path="password" /><br></br>	
+	                <label id = "label1">Nationality:</label>
+	                <form:input path="nationality" /><br></br>	
 	                
-	                <label id = "label1">First Name:</label>
+	                <label id = "label1">:</label>
 	                <form:input path="firstName" /><br></br>	
 	                
 	                <label id = "label1">Last Name:</label>

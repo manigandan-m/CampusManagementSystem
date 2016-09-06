@@ -4,13 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 
 import com.i2i.model.User;
-import com.i2i.model.Parent;
 import com.i2i.model.Standard;
 
 @Entity
@@ -28,9 +26,20 @@ public class Student {
 	@Column(name = "dateOfBirth")
 	private String dateOfBirth;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "parent_id")  
-	private Parent parent;
+	@Column(name = "father_first_name")
+	private String fatherFirstName;
+	
+	@Column(name = "father_last_name")
+	private String fatherLastName;
+	
+	@Column(name = "mother_first_name")
+	private String motherFirstName;
+	
+	@Column(name = "mother_last_name")
+	private String motherLastName;
+	
+	@Column(name = "total_income")
+	private long familyIncome;
 	
 	@Column(name = "nationality")
 	private String nationality;
@@ -74,20 +83,44 @@ public class Student {
 		return nationality;
 	}
 	
-	public void setReligion(String religion) {
-		this.religion = religion;
+	public void setFatherFirstName(String fatherFirstName) {
+		this.fatherFirstName = fatherFirstName;
 	}
 	
-	public String getReligion() {
-		return religion;
+	public String getFatherFirstName() {
+		return fatherFirstName;
 	}
 	
-	public void setParent(Parent parent) {
-		this.parent = parent;
+	public void setFatherLastName(String fatherLastName) {
+		this.fatherLastName = fatherLastName;
+	}
+	
+	public String getFatherLastName() {
+		return fatherLastName;
+	}
+	
+	public void setMotherFirstName(String motherFirstName) {
+		this.motherFirstName = motherFirstName;
+	}
+	
+	public String getMotherFirstName() {
+		return motherFirstName;
+	}
+	
+	public void setMotherLastName(String motherLastName) {
+		this.motherLastName = motherLastName;
+	}
+	
+	public String getMotherLastName() {
+		return motherLastName;
+	}
+	
+	public void setFamilyIncome(long familyIncome) {
+		this.familyIncome = familyIncome;
 	}
 
-	public Parent getParent() {
-		return parent;
+	public long getFamilyIncome() {
+		return familyIncome;
 	}
 	
 	public void setStandard(Standard standard) {
@@ -101,10 +134,14 @@ public class Student {
 	public Student () {
 	}	
 	
-	public Student(User user, String dateOfBirth, Parent parent, String nationality, String religion, Standard standard) {	        
+	public Student(User user, String dateOfBirth, String fatherFirstName, String fatherLastName, String motherFirstName, String motherLastName, long familyIncome, String nationality, String religion, Standard standard) {	        
 	    this.user = user;
 		this.dateOfBirth = dateOfBirth;
-	    this.parent = parent;
+	    this.fatherFirstName = fatherFirstName;
+	    this.fatherLastName = fatherLastName; 
+	    this.motherFirstName = motherFirstName;
+	    this.motherLastName = motherLastName; 
+	    this.familyIncome = familyIncome; 
 	    this.nationality = nationality;
 		this.religion = religion;
 		this.standard = standard;

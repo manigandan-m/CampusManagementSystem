@@ -42,10 +42,9 @@
 	                <label id = "label1">Blood Group:</label>
 	                <form:input path="bloodGroup" /><br></br>
 	                
-	                <label id = "label1">Mobile Number:</label>
-	                
-	                <form:input path="mobileNumber" /><br></br>	   
-	                
+	                <label id = "label1">Mobile Number:</label>	                
+	                <form:input path="mobileNumber" /><br></br>	                
+	                              
 	                <input type="submit" value="AddUser" /><br>             
 	             </form:form>    
 	               

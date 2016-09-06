@@ -18,7 +18,6 @@
         <mapping class="com.i2i.model.Address"/>
         <mapping class="com.i2i.model.Student"/>
         <mapping class="com.i2i.model.Subject"/>
-        <mapping class="com.i2i.model.Parent"/>
         <mapping class="com.i2i.model.Teacher"/>
         <mapping class="com.i2i.model.Standard"/>
         <mapping class="com.i2i.model.Period"/>

@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
 import com.i2i.model.User;
+
 import com.i2i.model.Address;
 
 import com.i2i.exception.DatabaseException;
@@ -16,18 +17,18 @@ import com.i2i.connection.HibernateConnection;
 
 public class UserDao {
 	HibernateConnection hibernateConnection = HibernateConnection.createObject();
-    SessionFactory sessionFactory = hibernateConnection.getConnection();     
+    SessionFactory sessionFactory = hibernateConnection.getConnection();    
 
     
-    public void insertUser(User user) throws DatabaseException {
+    public int insertUser(User user) throws DatabaseException {
     	System.out.println("session");
         Session session = sessionFactory.openSession();
         System.out.println("session created");
         Transaction transaction = session.beginTransaction();
-        try { 
-        	 System.out.println("fgggggggggggggggggggggggggggggggggggggggggggd");
-            session.save(user);            
-            transaction.commit();        
+        try {     	
+            int userId = (Integer)session.save(user);           
+            transaction.commit();
+            return userId;
         } catch (HibernateException e) {   
             throw new DatabaseException("Entered user is not added. User ID already exits..", e);
         } finally {
@@ -35,21 +36,48 @@ public class UserDao {
         }                                                                         
     }
     
-    public void insertAddress(Address address) throws DatabaseException {
+   
+    
+    public void insertAddress(Address address, int userId) throws DatabaseException {
     	System.out.println("session");
         Session session = sessionFactory.openSession();
         System.out.println("session created");
         Transaction transaction = session.beginTransaction();
         try { 
-        	 System.out.println("fgggggggggggggggggggggggggggggggggggggggggggd");
-            session.save(address);            
-            transaction.commit();        
-        } catch (HibernateException e) {   
+        	System.out.println(userId);
+        	int addressId = (Integer)session.save(address);        	
+        	transaction.commit();
+        	insertAddressToUser(addressId, userId);                  
+        } catch (HibernateException e) { 
+        	System.out.println(e);
             throw new DatabaseException("Entered address is not added. ..", e);
         } finally {
             session.close();
         }                                                                         
     }
+    
+    public void insertAddressToUser(int addressId, int userId) throws DatabaseException {
+    	System.out.println("session");
+        Session session = sessionFactory.openSession();
+        System.out.println("session created");
+        Transaction transaction = session.beginTransaction();
+        try {       	
+       
+    	Address address = (Address) session.get(Address.class, addressId);
+    	User user = (User) session.get(User.class, userId);
+        user.setAddress(address);
+        session.update(user);            
+        transaction.commit();  
+    } catch (HibernateException e) { 
+    	System.out.println(e);
+        throw new DatabaseException("Entered address is not added to user. ..", e);
+    } finally {
+        session.close();
+    }  
+    }
+    
+    
+    
     
     
     public User findUser(int id) throws DatabaseException {        
