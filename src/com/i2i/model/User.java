@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
-import org.hibernate.annotations.Cascade;
 
 import com.i2i.model.Role;
 import com.i2i.model.Address;
@@ -36,6 +35,9 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 	
+	@Column(name = "date_of_birth")
+	private String dateOfBirth;
+	
 	@Column(name = "gender")
 	private String gender;
 	
@@ -44,6 +46,12 @@ public class User {
 	
 	@Column(name = "mobile_number")
 	private long mobileNumber;
+	
+	@Column(name = "nationality")
+	private String nationality;
+	
+	@Column(name = "religion")
+	private String religion;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "role_id")    
@@ -117,6 +125,30 @@ public class User {
 		this.mobileNumber = mobileNumber;
 	}
 
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}	
+	
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	
+	public String getNationality() {
+		return nationality;
+	}
+	
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+	
+	public String getReligion() {
+		return religion;
+	}
+	
 	public Role getRole() {
 		return role;
 	}
@@ -137,25 +169,32 @@ public class User {
 		
 	}
     
-    public User(String username, String firstName, String lastName, String gender, String bloodGroup, long mobileNumber, Role role, Address address) {
-        this.username = username;        
+    public User(String username, String password, String firstName, String lastName, String dateOfBirth, String gender, String bloodGroup, long mobileNumber, Role role, Address address, String nationality, String religion) {
+        this.username = username;
+        this.password =password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.bloodGroup = bloodGroup;
         this.mobileNumber = mobileNumber;
         this.role = role;
-        this.address = address;        
+        this.address = address; 
+        this.nationality = nationality;
+		this.religion = religion;
     }
     
-    public User(String username, String password, String firstName, String lastName, String gender, String bloodGroup, long mobileNumber) {
+    public User(String username, String password, String firstName, String lastName, String dateOfBirth, String gender, String bloodGroup, long mobileNumber, String nationality, String religion) {
         this.username = username; 
         this.password =password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.bloodGroup = bloodGroup;
         this.mobileNumber = mobileNumber;
+        this.nationality = nationality;
+		this.religion = religion;
         
               
     }

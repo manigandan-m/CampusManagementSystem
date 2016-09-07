@@ -23,9 +23,21 @@ public class Teacher {
 	@Column(name = "months_of_experience")
 	int monthsOfExperience;
 	
+	@Column(name = "qualification")
+	String qualification;
+	
+	@Column(name = "marital_status")
+	String maritalStatus;
+	
+	@Column(name = "date_of_joining")
+	String dateOfJoining;
+	
+	@Column(name = "designation")
+	String designation;
+	
 	@OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")    
-    private User user;
+    private User user;	
 	
 	public int getTeacherId() {
 		return teacherId;
@@ -51,12 +63,58 @@ public class Teacher {
 		this.yearsOfExperience = yearsOfExperience;
 	}
 	
+	public String getQualification() {
+		return qualification;
+	}
+	
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+	
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+	
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+	
 	public User getUser() {
 		return user;
 	}
 	
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public String getDateOfJoining() {
+		return dateOfJoining;
+	}
+	
+	public void setDateOfJoining(String dateOfJoining) {
+		this.dateOfJoining = dateOfJoining;
+		
+	}
+	
+	public String getDesignation() {
+		return designation;
+	}
+	
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	
+    public Teacher() {
+		
+	}
+	
+	public Teacher(int yearsOfExperience, int monthsOfExperience, String qualification, String maritalStatus, String dateOfJoining, String designation) {
+		this.yearsOfExperience = yearsOfExperience;
+		this.monthsOfExperience = monthsOfExperience;
+		this.qualification = qualification;
+		this.maritalStatus = maritalStatus;
+		this.dateOfJoining = dateOfJoining;
+		this.designation = designation;
 	}
 
 }

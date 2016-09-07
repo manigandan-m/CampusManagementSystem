@@ -1,0 +1,70 @@
+mysql> alter table student drop column nationality;
+Query OK, 0 rows affected (0.29 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student drop column religion;
+Query OK, 0 rows affected (0.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student drop column date_of_birth;
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+---------------------------
+mysql> alter table student add column (date_of_admission date);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add column (admission_category varchar(10));
+Query OK, 0 rows affected (0.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+---------------------------------
+mysql> alter table user add column (date_of_birth date);
+Query OK, 28 rows affected (0.29 sec)
+Records: 28  Duplicates: 0  Warnings: 0
+
+mysql> alter table user add column (nationality varchar(10));
+Query OK, 28 rows affected (0.27 sec)
+Records: 28  Duplicates: 0  Warnings: 0
+
+mysql> alter table user add column (religion varchar(10));
+Query OK, 28 rows affected (0.29 sec)
+Records: 28  Duplicates: 0  Warnings: 0
+---------------
+mysql> desc user;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| user_id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| username      | varchar(30) | YES  |     | NULL    |                |
+| password      | varchar(20) | YES  |     | NULL    |                |
+| first_name    | varchar(20) | YES  |     | NULL    |                |
+| last_name     | varchar(20) | YES  |     | NULL    |                |
+| role_id       | int(11)     | YES  | MUL | NULL    |                |
+| gender        | varchar(10) | YES  |     | NULL    |                |
+| address_id    | int(11)     | YES  | MUL | NULL    |                |
+| blood_group   | varchar(10) | YES  |     | NULL    |                |
+| mobile_number | bigint(20)  | YES  |     | NULL    |                |
+| nationality   | varchar(10) | YES  |     | NULL    |                |
+| religion      | varchar(10) | YES  |     | NULL    |                |
+| date_of_birth | date        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+13 rows in set (0.00 sec)
+
+mysql> desc student;
++--------------------+-------------+------+-----+---------+----------------+
+| Field              | Type        | Null | Key | Default | Extra          |
++--------------------+-------------+------+-----+---------+----------------+
+| roll_number        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| user_id            | int(11)     | YES  | MUL | NULL    |                |
+| father_first_name  | varchar(25) | YES  |     | NULL    |                |
+| father_last_name   | varchar(25) | YES  |     | NULL    |                |
+| mother_first_name  | varchar(25) | YES  |     | NULL    |                |
+| mother_last_name   | varchar(25) | YES  |     | NULL    |                |
+| total_income       | bigint(20)  | YES  |     | NULL    |                |
+| standard_id        | int(11)     | YES  | MUL | NULL    |                |
+| date_of_admission  | date        | YES  |     | NULL    |                |
+| admission_category | varchar(10) | YES  |     | NULL    |                |
++--------------------+-------------+------+-----+---------+----------------+
+

@@ -29,14 +29,15 @@ public class UserDao {
             int userId = (Integer)session.save(user);           
             transaction.commit();
             return userId;
-        } catch (HibernateException e) {   
+        } catch (HibernateException e) {
+        	System.out.println(e);
             throw new DatabaseException("Entered user is not added. User ID already exits..", e);
         } finally {
             session.close();
         }                                                                         
     }
     
-   
+    
     
     public void insertAddress(Address address, int userId) throws DatabaseException {
     	System.out.println("session");
@@ -54,7 +55,8 @@ public class UserDao {
         } finally {
             session.close();
         }                                                                         
-    }
+    }   
+    
     
     public void insertAddressToUser(int addressId, int userId) throws DatabaseException {
     	System.out.println("session");
@@ -74,21 +76,20 @@ public class UserDao {
     } finally {
         session.close();
     }  
-    }
+    } 
     
     
     
-    
-    
-    public User findUser(int id) throws DatabaseException {        
+
+    public User findUser(String username) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
         User user = null; 
         
         try {                           
-            user = (User) session.get(User.class, id);            
+            user = (User) session.get(User.class, username);            
             if (user == null) {
             	
-                throw new DatabaseException("Invalid user Id");
+                throw new DatabaseException("Invalid username");
             }                     
             return user;
         } catch (HibernateException e) { 
@@ -98,25 +99,7 @@ public class UserDao {
             session.close();
         }                          
     }
-
    
-    public void deleteUser(int id) throws DatabaseException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-
-        try {
-            User user = (User) session.get(User.class, id); 
-            session.delete(user);
-            transaction.commit();            
-        } catch (IllegalArgumentException e) {      
-        	System.out.println(e);
-            throw new DatabaseException("Entered user is not deleted. Kindly try again with vaild user id", e);
-        } finally {
-            session.close();
-        }                            
-    }   
-    
-    
     public List<User> selectUsers() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         List<User> users = new ArrayList<User>();        
@@ -137,4 +120,3 @@ public class UserDao {
          
 }
      
-

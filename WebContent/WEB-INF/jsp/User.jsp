@@ -34,7 +34,10 @@
 	                <form:input path="firstName" /><br></br>	
 	                
 	                <label id = "label1">Last Name:</label>
-	                <form:input path="lastName" /><br></br>               
+	                <form:input path="lastName" /><br></br>  
+	                
+	                <label id = "label1">Date Of Birth:</label>
+	                <form:input path="dateOfBirth" /><br></br>               
 	                              
                     <label id = "label1">Gender :</label>
 	                <form:input path="gender" /><br></br>        
@@ -43,7 +46,13 @@
 	                <form:input path="bloodGroup" /><br></br>
 	                
 	                <label id = "label1">Mobile Number:</label>	                
-	                <form:input path="mobileNumber" /><br></br>	                
+	                <form:input path="mobileNumber" /><br></br>	 
+	                
+	                <label id = "label1">Nationality:</label>
+	                <form:input path="nationality" /><br></br>
+	                
+	                <label id = "label1">Religion:</label>	                
+	                <form:input path="religion" /><br></br>	                
 	                              
 	                <input type="submit" value="AddUser" /><br>             
 	             </form:form>    
@@ -64,7 +73,7 @@
             <form class = "formUser" action="deleteUser.html" method="GET">
 	            <p>
                 <label id = "label1">User Id:</label>
-	            <input type="text" name="userId" placeholder="Enter userId" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required><br>
+	            <input type="text" name="username" placeholder="Enter username" data-validation="text" data-validation-error-msg ="Please Enter numbers only" required><br>
 	            </p>	
 	            <p>
 	            <input type="submit" name ="delete" value="Delete" />
@@ -84,7 +93,7 @@
             <form class = "formUser" action="searchUser.html" method="GET" >
 	            <p>
                 <label id = "label1">User Id:</label>
-	            <input name="userId" placeholder="Enter userId" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required= "required"/><br>
+	            <input name="username" placeholder="Enter username" data-validation="text" data-validation-error-msg ="Please Enter text only" required= "required"/><br>
 	            </p>	
 	            <p>
 	            <input type="submit" value="Search" />

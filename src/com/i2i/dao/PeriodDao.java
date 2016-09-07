@@ -1,0 +1,68 @@
+package com.i2i.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.i2i.connection.HibernateConnection;
+import com.i2i.exception.DatabaseException;
+import com.i2i.model.Period;
+import com.i2i.model.User;
+
+public class PeriodDao {
+	HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    SessionFactory sessionFactory = hibernateConnection.getConnection();     
+
+    
+    public void insertPeriod(Period period) throws DatabaseException {
+    	System.out.println("session");
+        Session session = sessionFactory.openSession();
+        System.out.println("session created");
+        Transaction transaction = session.beginTransaction();
+        try { 
+        	session.save(period);            
+            transaction.commit();        
+        } catch (HibernateException e) {   
+            throw new DatabaseException("Entered period is not added.", e);
+        } finally {
+            session.close();
+        }                                                                         
+    }
+    
+    public void deletePeriod(int periodId) throws DatabaseException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            Period period = (Period) session.get(User.class, periodId); 
+            session.delete(period);
+            transaction.commit();            
+        } catch (IllegalArgumentException e) {      
+        	System.out.println(e);
+            throw new DatabaseException("Entered user is not deleted. Kindly try again with vaild user id", e);
+        } finally {
+            session.close();
+        }                            
+    }
+    
+    public List<Period> selectPeriods() throws DatabaseException {
+        Session session = sessionFactory.openSession();        
+        List<Period> periods = new ArrayList<Period>();        
+         
+        try {
+        	periods = session.createQuery("FROM Period").list();
+            if (periods.isEmpty()) {
+                throw new DatabaseException("The user list is empty");
+            }            
+            return periods;              
+        } catch (HibernateException e) {            
+            throw new DatabaseException("The users are not viewed. Kindly try again with vaild input data", e);
+        } finally {
+            session.close();
+        }                      
+    }
+}

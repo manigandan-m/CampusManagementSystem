@@ -19,11 +19,11 @@ public class StudentController  {
     StudentService studentService = new StudentService();
     
    
-    @RequestMapping(value = "/StudentInformation", method=RequestMethod.GET) 
+    /*@RequestMapping(value = "/StudentInformation", method=RequestMethod.GET) 
     public String addStudent(ModelMap model) {
         model.addAttribute("Student", new Student());	 
         return "StudentInformation";
-    }       
+    }*/       
     
    
     @RequestMapping(value = "/addStudent", method=RequestMethod.POST) 
@@ -36,7 +36,7 @@ public class StudentController  {
         }  catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
         } 
-        return new ModelAndView("StudentOperations","addMessage", message);       
+        return new ModelAndView("StudentInformation","addMessage", message);       
     }
 
     

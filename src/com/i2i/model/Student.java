@@ -2,6 +2,7 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToOne;
@@ -16,15 +17,13 @@ import com.i2i.model.Standard;
 public class Student {
 	
 	@Id
+	@GeneratedValue
 	@Column(name = "roll_number")
 	private int rollNumber;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")   
-	private User user;
-	
-	@Column(name = "dateOfBirth")
-	private String dateOfBirth;
+	private User user;	
 
 	@Column(name = "father_first_name")
 	private String fatherFirstName;
@@ -39,14 +38,14 @@ public class Student {
 	private String motherLastName;
 	
 	@Column(name = "total_income")
-	private long familyIncome;
+	private long familyIncome;	
 	
-	@Column(name = "nationality")
-	private String nationality;
+	@Column(name = "date_of_admission")
+	private String dateOfAdmission;
 	
-	@Column(name = "religion")
-	private String religion;
-	
+	@Column(name = "admission_category")
+	private String admissionCategory;
+		
 	@OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "standard_id")  
 	private Standard standard;
@@ -66,22 +65,6 @@ public class Student {
 	public User getUser() {
 		return user;
 	}	
-	
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}	
-	
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-	
-	public String getNationality() {
-		return nationality;
-	}
 	
 	public void setFatherFirstName(String fatherFirstName) {
 		this.fatherFirstName = fatherFirstName;
@@ -123,6 +106,22 @@ public class Student {
 		return familyIncome;
 	}
 	
+	public void setDateOfAdmission(String dateOfAdmission) {
+		this.dateOfAdmission = dateOfAdmission;
+	}
+	
+	public String getDateOfAdmission() {
+		return dateOfAdmission;
+	}
+	
+	public void setAdmissionCategory(String admissionCategory) {
+		this.admissionCategory = admissionCategory;
+	}
+	
+	public String getAdmissionCategory() {
+		return admissionCategory;
+	}
+	
 	public void setStandard(Standard standard) {
 		this.standard = standard;
 	}
@@ -134,16 +133,15 @@ public class Student {
 	public Student () {
 	}	
 	
-	public Student(User user, String dateOfBirth, String fatherFirstName, String fatherLastName, String motherFirstName, String motherLastName, long familyIncome, String nationality, String religion, Standard standard) {	        
-	    this.user = user;
-		this.dateOfBirth = dateOfBirth;
+	public Student(User user, String fatherFirstName, String fatherLastName, String motherFirstName, String motherLastName, long familyIncome, String dateOfAdmission, String admissionCategory, Standard standard) {	        
+	    this.user = user;		
 	    this.fatherFirstName = fatherFirstName;
 	    this.fatherLastName = fatherLastName; 
 	    this.motherFirstName = motherFirstName;
 	    this.motherLastName = motherLastName; 
-	    this.familyIncome = familyIncome; 
-	    this.nationality = nationality;
-		this.religion = religion;
+	    this.familyIncome = familyIncome;
+	    this.dateOfAdmission = dateOfAdmission;
+	    this.admissionCategory = admissionCategory;
 		this.standard = standard;
 	}
 	

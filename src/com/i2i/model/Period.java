@@ -4,20 +4,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
 
 @Entity
 @Table(name= "period")
 public class Period {
 	
-	@Id	
+	@Id
+    @GeneratedValue	
     @Column(name = "period_id")
 	private int periodId;
 	
 	@Column(name = "day_of_period")
 	private String dayOfPeriod;
 	
-	@Column(name = "time_of_period")
-	private String timeOfPeriod;
+	@Column(name = "start_time_of_period")
+	private String startTimeOfPeriod;
+	
+	@Column(name = "end_time_of_period")
+	private String endTimeOfPeriod;
 	
 	public Period() {
 	}
@@ -30,23 +35,31 @@ public class Period {
 		this.periodId = periodId;
 	}
 	
-	public String getDay() {
+	public String getDayOfPeriod() {
 		return dayOfPeriod;
 	}
 	
-	public void setDay(String dayOfPeriod) {
+	public void setDayOfPeriod(String dayOfPeriod) {
 		this.dayOfPeriod = dayOfPeriod;
 	}
 	
-	public String getTime() {
-		return timeOfPeriod;
+	public String getStartTimeOfPeriod() {
+		return startTimeOfPeriod;
 	}
 	
-	public void setTime(String timeOfPeriod) {
-		this.timeOfPeriod = timeOfPeriod;
+	public void setStartTimeOfPeriod(String startTimeOfPeriod) {
+		this.startTimeOfPeriod = startTimeOfPeriod;
+	}
+	
+	public String getEndTimeOfPeriod() {
+		return endTimeOfPeriod;
+	}
+	
+	public void setEndTimeOfPeriod(String endTimeOfPeriod) {
+		this.endTimeOfPeriod = endTimeOfPeriod;
 	}
 	
 	public String toString() {
-	    return ("Period ID:" + periodId + "Day:" + dayOfPeriod + "Time:" + timeOfPeriod);	
+	    return ("Period ID:" + periodId + "Day:" + dayOfPeriod + "Start Time:" + startTimeOfPeriod + "End Time:" + endTimeOfPeriod);	
 	}
 }

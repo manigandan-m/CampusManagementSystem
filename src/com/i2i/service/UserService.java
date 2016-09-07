@@ -17,21 +17,14 @@ public class UserService {
     
     public void addAddress(Address address, int userId) throws DatabaseException {                 
         userDao.insertAddress(address, userId);                     
-    }
-    
+    }    
 
-    public User searchUser(int id) throws DatabaseException {
-        return (userDao.findUser(id));        
-    }
-    
- 
-    public void removeUser(int id) throws DatabaseException {
-        userDao.deleteUser(id);  
-    }
-    
+    public User searchUser(String username) throws DatabaseException {
+        return (userDao.findUser(username));        
+    }    
     
     public List<User> getUsers() throws DatabaseException {
         return (userDao.selectUsers());
     }
-
+    
 }

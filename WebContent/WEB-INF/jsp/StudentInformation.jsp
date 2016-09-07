@@ -22,69 +22,29 @@
             <div style="color: #8B0000;border: 2px solid black; border-color: DarkRed;"> 
                 <h2>Add Student</h2>                
                 
-                <form:form class = "formStudent" action="addStudent.html" method="POST" modelAttribute="Student">	                            
+                <form:form class = "formUser" action="addStudent.html" method="POST" modelAttribute="Student">	                            
 	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>	
+	                <label id = "label1">Father First Name:</label>
+	                <form:input path="fatherFirstName" /><br></br>	
 	                
-	                <label id = "label1">Nationality:</label>
-	                <form:input path="nationality" /><br></br>	
+	                <label id = "label1">Father Last Name:</label>
+	                <form:input path="fatherLastName " /><br></br>	
 	                
-	                <label id = "label1">:</label>
-	                <form:input path="firstName" /><br></br>	
+	                <label id = "label1">Mother First Name:</label>
+	                <form:input path="motherFirstName" /><br></br>	
 	                
-	                <label id = "label1">Last Name:</label>
-	                <form:input path="lastName" /><br></br>
+	                <label id = "label1">Mother Last Name:</label>
+	                <form:input path="motherLastName" /><br></br>
 	                
-	                <label id = "label1">Role:</label>
-	                <form:select path = "role">
-                        <form:option value="Student"/>                         
-                    </form:select><br></br>	                
-                    
-	                <label id = "label1">Gender :</label>
-	                <form:input path="gender" /><br></br>
+	                <label id = "label1">Family Income:</label>
+	                <form:input path="familyIncome" /><br></br>
 	                
-	                <label id = "label1">House No:</label>
-	                <form:input path="houseNumber" /><br></br>
+	                <label id = "label1">Date Of Admission:</label>
+	                <form:input path="dateOfAdmission" /><br></br>
 	                
-	                <label id = "label1">StreetName:</label>
-	                <form:input path="streetName" /><br></br>
+	                <label id = "label1">Admission Category:</label>
+	                <form:input path="admissionCategory" /><br></br>        
 	                
-	                <label id = "label1">City:</label>
-	                <form:input path="city" /><br></br>
-	               
-	                <label id = "label1">State:</label>
-	                <form:input path="state" /><br></br>
-	                
-	                <label id = "label1">Country:</label>
-	                <form:input path="country" /><br></br>
-	                
-	                <label id = "label1">PinCode:</label>
-	                <form:input path="pincode" /><br></br>
-	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>
-	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>
-	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>
-	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>
-	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>
-	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>
-	                
-	                <label id = "label1">Nationality:</label>
-	                <form:input path="nationality" /><br></br>
-	                
-	                <label id = "label1">Religion:</label>
-	                <form:input path="religion" /><br></br>
 	                
 	                <input type="submit" value="Add" /><br>	                       
                 </form:form>
@@ -100,7 +60,7 @@
         <div style="color: #00008B;border: 2px solid black; border-color: DarkBlue;">
             <h2>Student Removal</h2>        
                 
-            <form class = "formStudent" action="deleteStudent.html" method="GET">
+            <form class = "formUser" action="deleteStudent.html" method="GET">
 	            <p>
                 <label id = "label1">Student Roll Number:</label>
 	            <input type="text" name="rollNumber" placeholder="Enter rollNumber" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required><br>
@@ -120,7 +80,7 @@
         <div style="color: #006400;border: 2px solid black; border-color: DarkGreen; ">
             <h3>Student Search</h3>        
                 
-            <form class = "formStudent" action="searchStudent.html" method="GET" >
+            <form class = "formUser" action="searchStudent.html" method="GET" >
 	            <p>
                 <label id = "label1">Student Roll Number:</label>
 	            <input name="rollNumber" placeholder="Enter rollNumber" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required= "required"/><br>

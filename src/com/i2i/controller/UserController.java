@@ -38,7 +38,8 @@ public class UserController {
             message = ex.getMessage().toString();                         
         } 
         return new ModelAndView("Address","addMessage", message);       
-    }    
+    } 
+    
     
     @RequestMapping(value = "/addAddress", method=RequestMethod.POST) 
     public ModelAndView addUser(@ModelAttribute("Address") Address address) {
@@ -50,18 +51,18 @@ public class UserController {
         }  catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
         } 
-        return new ModelAndView("Address","addMessage", message);       
-    }
-
+        return new ModelAndView("StudentInformation","addMessage", message);       
+    }  
     
+
     @RequestMapping(value = "/searchUser", method=RequestMethod.GET)  
-    public ModelAndView searchUser(@RequestParam("userId") int userId) {                
+    public ModelAndView searchUser(@RequestParam("username") String username) {                
         ModelAndView modelView = new ModelAndView();
         
         modelView.setViewName("User");
         modelView.addObject("User", new User());
         try {       	
-        	modelView.addObject("searchUser", userService.searchUser(userId));        	                                          
+        	modelView.addObject("searchUser", userService.searchUser(username));        	                                          
         } catch (DatabaseException e) {
         	
         	modelView.addObject("searchMessage", e.getMessage());             
@@ -84,20 +85,6 @@ public class UserController {
     }
 
     
-    @RequestMapping(value = "/deleteUser", method=RequestMethod.GET) 
-    public ModelAndView deleteUser(@RequestParam("userId") int userId) {        
-        ModelAndView modelView = new ModelAndView();
-    	
-    	modelView.setViewName("User");
-        modelView.addObject("User", new User());          
-        try {                                                           
-            userService.removeUser(userId);
-            modelView.addObject("deleteMessage", "User Id " + userId + " is deleted");                                   
-        } catch (DatabaseException e) {
-        	
-        	modelView.addObject("deleteMessage", e.getMessage());                                    
-        } 
-        return modelView;         
-    }
+    
 
 }
