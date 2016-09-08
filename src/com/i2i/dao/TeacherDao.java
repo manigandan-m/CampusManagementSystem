@@ -24,7 +24,7 @@ public class TeacherDao {
 	            session.save(teacher);            
 	            transaction.commit();        
 	        } catch (HibernateException e) {
-	        	System.out.println(e);
+	        	e.printStackTrace();
 	            throw new DatabaseException("Entered teacher is not added. Teacher ID already exits..", e);
 	        } finally {
 	            session.close();

@@ -14,8 +14,8 @@ import com.i2i.model.Standard;
 @Entity
 @Table(name= "subject")
 public class Subject {
-	@Id
-	@Column(name = "code")
+	@Id	
+	@Column(name = "subject_code")
 	private String subjectCode;
 	
 	@Column(name = "subject_name")

@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
@@ -17,12 +21,14 @@ import com.i2i.model.Standard;
 public class Student {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue	
 	@Column(name = "roll_number")
 	private int rollNumber;
 	
+	
 	@OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")   
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private User user;	
 
 	@Column(name = "father_first_name")

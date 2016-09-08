@@ -13,11 +13,7 @@ public class UserService {
 
     public int addUser(User user) throws DatabaseException {                 
             return (userDao.insertUser(user));                     
-    }
-    
-    public void addAddress(Address address, int userId) throws DatabaseException {                 
-        userDao.insertAddress(address, userId);                     
-    }    
+    }     
 
     public User searchUser(String username) throws DatabaseException {
         return (userDao.findUser(username));        
@@ -25,6 +21,10 @@ public class UserService {
     
     public List<User> getUsers() throws DatabaseException {
         return (userDao.selectUsers());
+    }
+    
+    public User searchUser(int id) throws DatabaseException {
+        return (userDao.findUser(id));        
     }
     
 }

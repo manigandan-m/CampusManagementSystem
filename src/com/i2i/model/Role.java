@@ -2,6 +2,7 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,8 +11,10 @@ import javax.persistence.Table;
 public class Role {
 	
 	@Id
+	@GeneratedValue
+	
 	@Column(name = "role_id")
-    private String roleId;
+    private int roleId;
 	
 	@Column(name = "role_name")
     private String roleName;
@@ -19,11 +22,11 @@ public class Role {
 	public Role() {
 	}
 	
-    public String getId() {
+    public int getRoleId() {
 		return roleId;
 	}
 	
-	public void setId(String roleId) {
+	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
 	

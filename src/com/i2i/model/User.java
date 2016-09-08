@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
@@ -53,13 +57,10 @@ public class User {
 	@Column(name = "religion")
 	private String religion;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "role_id")    
-    private Role role;
-
-	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "address_id") 
-	private Address address;
+	@ManyToOne(cascade = CascadeType.PERSIST)	
+    @JoinColumn(name = "role_id")   
+	@LazyCollection(LazyCollectionOption.FALSE)
+    private Role role;	
 
 	public int getUserId() {
 		return userId;
@@ -156,20 +157,13 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+	
 	
 	public User() {
 		
 	}
     
-    public User(String username, String password, String firstName, String lastName, String dateOfBirth, String gender, String bloodGroup, long mobileNumber, Role role, Address address, String nationality, String religion) {
+    /*public User(String username, String password, String firstName, String lastName, String dateOfBirth, String gender, String bloodGroup, long mobileNumber, Role role, String nationality, String religion) {
         this.username = username;
         this.password =password;
         this.firstName = firstName;
@@ -178,8 +172,7 @@ public class User {
         this.gender = gender;
         this.bloodGroup = bloodGroup;
         this.mobileNumber = mobileNumber;
-        this.role = role;
-        this.address = address; 
+        this.role = role;        
         this.nationality = nationality;
 		this.religion = religion;
     }
@@ -197,6 +190,6 @@ public class User {
 		this.religion = religion;
         
               
-    }
+    }*/
 	
 }

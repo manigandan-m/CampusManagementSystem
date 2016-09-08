@@ -2,6 +2,7 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToOne;
@@ -14,17 +15,16 @@ import com.i2i.model.Teacher;
 @Table(name= "standard")
 public class Standard {
 	@Id
+	@GeneratedValue
 	@Column(name = "standard_id")
 	private int standardId;
 	
 	@Column(name = "standard_name")
 	private String standardName;
 	
-	@Column(name = "section_name")
-	private String sectionName;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "coordinator_id")
 	private Teacher classCoordinator;
 
 	public int getStandardId() {
@@ -43,14 +43,7 @@ public class Standard {
 		this.standardName = standardName;
 	}
 	
-	public String getSectionName() {
-		return sectionName;
-	}
-
-	public void setSectionName(String sectionName) {
-		this.sectionName = sectionName;
-	}
-
+	
 	public Teacher getClassCoordinator() {
 		return classCoordinator;
 	}
@@ -61,5 +54,11 @@ public class Standard {
 	
 	public Standard() { 
 	}
+	
+	public Standard(String standardName) { 
+		this.standardName = standardName;
+		
+	}
+	
 
 }

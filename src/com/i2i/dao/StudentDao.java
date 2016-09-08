@@ -7,8 +7,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
+import com.i2i.model.Address;
 import com.i2i.model.Student;
-
+import com.i2i.model.User;
 import com.i2i.exception.DatabaseException;
 import com.i2i.connection.HibernateConnection;
 
@@ -23,13 +24,36 @@ public class StudentDao {
         Transaction transaction = session.beginTransaction();
         try {                          
             session.save(student);            
-            transaction.commit();        
+            transaction.commit(); 
+            
+            //insertUserToStudent(studentId);
         } catch (HibernateException e) {   
+        	e.printStackTrace();
             throw new DatabaseException("Entered student is not added. Student ID already exits..", e);
         } finally {
             session.close();
         }                                                                         
     }
+    
+    public void insertUserToStudent(int studentId, int userId) throws DatabaseException {
+    	
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        
+        try {      	
+       
+    	Student student = (Student) session.get(Student.class, studentId);
+    	User user = (User) session.get(User.class, userId);
+        student.setUser(user);
+        session.update(user);            
+        transaction.commit();  
+    } catch (HibernateException e) { 
+    	System.out.println(e);
+        throw new DatabaseException("Entered student is not added to user. ..", e);
+    } finally {
+        session.close();
+    }  
+    } 
     
     
     public Student findStudent(int id) throws DatabaseException {        

@@ -18,6 +18,7 @@
             <a  href="logout.html">Logout </a>
         </p>        
        
+       
        <div align="center">
             <div style="color: #8B0000;border: 2px solid black; border-color: DarkRed;"> 
                 <h2>Add Student</h2>                
@@ -28,7 +29,7 @@
 	                <form:input path="fatherFirstName" /><br></br>	
 	                
 	                <label id = "label1">Father Last Name:</label>
-	                <form:input path="fatherLastName " /><br></br>	
+	                <form:input path="fatherLastName" /><br></br>	
 	                
 	                <label id = "label1">Mother First Name:</label>
 	                <form:input path="motherFirstName" /><br></br>	
@@ -45,6 +46,7 @@
 	                <label id = "label1">Admission Category:</label>
 	                <form:input path="admissionCategory" /><br></br>        
 	                
+	                <form:input type = "hidden" path = "user.userId" value="${userId}"/>
 	                
 	                <input type="submit" value="Add" /><br>	                       
                 </form:form>

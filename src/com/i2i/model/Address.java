@@ -1,10 +1,16 @@
 package com.i2i.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name= "address")
@@ -33,9 +39,15 @@ public class Address {
 	@Column(name = "pincode")
 	private int pincode;
 	
-	public Address() {
-	}	
-
+	@Column(name = "type")
+	private String type;
+	
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private User user;
+	
 	public int getAddressId() {
 		return addressId;
 	}
@@ -92,13 +104,34 @@ public class Address {
 		this.pincode = pincode;
 	}	
 	
-	public Address(String houseNumber, String streetName, String city, String state, String country, int pincode) {
+	public void setUser(User user) {
+		this.user = user;		
+	}
+	
+	public User getUser() {
+		return user;		
+	}
+	
+	public void setType(String type) {
+		this.type = type;		
+	}
+	
+	public String getType() {
+		return type;		
+	}
+	
+	public Address() {
+	}	
+	
+	public Address(String houseNumber, String streetName, String city, String state, String country, int pincode, String type, User user) {
 		this.houseNumber = houseNumber;
 		this.streetName = streetName;
 		this.city = city;
 		this.state = state;
 		this.country = country;
 		this.pincode = pincode;
+		this.type = type;
+		this.user = user;
 	}
 
 }

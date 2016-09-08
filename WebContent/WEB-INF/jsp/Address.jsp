@@ -26,24 +26,28 @@
 	                <form:form class = "formUser" action="addAddress.html" method="POST" modelAttribute="Address">
 	                
 	                    <label id = "label1">House No:</label>
-	                    <input name="houseNumber" /><br></br>
+	                    <form:input path="houseNumber" /><br></br>
 	                
 	                    <label id = "label1">StreetName:</label>
-	                    <input name="streetName" /><br></br>
+	                    <form:input path="streetName" /><br></br>
 	                
 	                    <label id = "label1">City:</label>
-	                    <input name="city" /><br></br>
+	                    <form:input path="city" /><br></br>
 	               
 	                    <label id = "label1">State:</label>
-	                    <input name="state" /><br></br>
+	                    <form:input path="state"/><br></br>
 	                
 	                   <label id = "label1">Country:</label>
-	                   <input name="country" /><br></br>
+	                   <form:input path="country"/><br></br>
 	                
 	                   <label id = "label1">PinCode:</label>
-	                   <input name="pincode" /><br></br>
-	                
-	                
+	                   <form:input path="pincode"/><br></br>
+	                   
+	                   <label id = "label1">Address Type:</label>
+	                   <form:input path="type"/><br></br>	                
+	                   
+	                   <form:input type = "hidden" path = "user.userId" value="${userId}"/>
+	                   
 	                <input type="submit" value="AddAddress" /><br>	                       
                 </form:form>
                

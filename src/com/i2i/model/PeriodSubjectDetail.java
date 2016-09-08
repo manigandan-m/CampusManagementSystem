@@ -2,6 +2,7 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.ManyToOne;
@@ -18,6 +19,7 @@ import com.i2i.model.Standard;
 public class PeriodSubjectDetail {
 	
 	@Id	
+	@GeneratedValue
     @Column(name = "period_subject_id")
 	private int periodSubjectId;
 	

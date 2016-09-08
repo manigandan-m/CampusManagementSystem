@@ -16,29 +16,9 @@ import com.i2i.model.Student;
 
 @Controller
 public class StudentController  {
-    StudentService studentService = new StudentService();
+    StudentService studentService = new StudentService(); 
     
-   
-    /*@RequestMapping(value = "/StudentInformation", method=RequestMethod.GET) 
-    public String addStudent(ModelMap model) {
-        model.addAttribute("Student", new Student());	 
-        return "StudentInformation";
-    }*/       
     
-   
-    @RequestMapping(value = "/addStudent", method=RequestMethod.POST) 
-    public ModelAndView addStudent(@ModelAttribute("Student") Student student) {
-        String message = null;    
-
-        try {                                                     
-            studentService.addStudent(student);                                        
-            message = "Student is added successfully";            
-        }  catch (DatabaseException ex) {        	
-            message = ex.getMessage().toString();                         
-        } 
-        return new ModelAndView("StudentInformation","addMessage", message);       
-    }
-
     
     @RequestMapping(value = "/searchStudent", method=RequestMethod.GET)  
     public ModelAndView searchStudent(@RequestParam("studentId") int studentId) {                

@@ -35,30 +35,31 @@ public class UserDao {
         } finally {
             session.close();
         }                                                                         
-    }
-    
-    
-    
-    public void insertAddress(Address address, int userId) throws DatabaseException {
-    	System.out.println("session");
-        Session session = sessionFactory.openSession();
-        System.out.println("session created");
-        Transaction transaction = session.beginTransaction();
-        try { 
-        	System.out.println(userId);
-        	int addressId = (Integer)session.save(address);        	
-        	transaction.commit();
-        	insertAddressToUser(addressId, userId);                  
-        } catch (HibernateException e) { 
-        	System.out.println(e);
-            throw new DatabaseException("Entered address is not added. ..", e);
-        } finally {
-            session.close();
-        }                                                                         
     }   
     
     
-    public void insertAddressToUser(int addressId, int userId) throws DatabaseException {
+    
+    
+    public User findUser(int id) throws DatabaseException {        
+        Session session = sessionFactory.openSession();        
+        User user = null; 
+        
+        try {                           
+            user = (User) session.get(User.class, id);            
+            if (user == null) {
+            	
+                throw new DatabaseException("Invalid user Id");
+            }                     
+            return user;
+        } catch (HibernateException e) { 
+        	System.out.println(e);
+            throw new DatabaseException("Entered user is not found. Kindly try again with vaild input data", e);
+        } finally {
+            session.close();
+        }                          
+    }
+    
+    /*public void insertAddressToUser(int addressId, int userId) throws DatabaseException {
     	System.out.println("session");
         Session session = sessionFactory.openSession();
         System.out.println("session created");
@@ -76,7 +77,7 @@ public class UserDao {
     } finally {
         session.close();
     }  
-    } 
+    }*/ 
     
     
     

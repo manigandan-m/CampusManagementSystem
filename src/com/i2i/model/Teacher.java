@@ -2,8 +2,13 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
@@ -14,6 +19,7 @@ import com.i2i.model.User;
 @Table(name= "teacher")
 public class Teacher {
 	@Id
+	@GeneratedValue
     @Column(name = "teacher_id")
 	int teacherId;
 	
@@ -35,8 +41,10 @@ public class Teacher {
 	@Column(name = "designation")
 	String designation;
 	
+	
 	@OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_id")    
+    @JoinColumn(name = "user_id") 
+	@LazyCollection(LazyCollectionOption.FALSE)
     private User user;	
 	
 	public int getTeacherId() {

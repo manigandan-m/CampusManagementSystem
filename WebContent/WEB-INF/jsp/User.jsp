@@ -22,7 +22,7 @@
             <div style="color: #8B0000;border: 2px solid black; border-color: DarkRed;"> 
                 <h2>Add User</h2>                
                 
-                <form:form class = "formUser" action="addUser.html" method="POST" modelAttribute="User">	                            
+                <form:form class = "formUser" action="addUser.html" method="POST" modelAttribute="User" >	                            
 	                
 	                <label id = "label1">User Name:</label>
 	                <form:input path="username" /><br></br>	
@@ -37,7 +37,8 @@
 	                <form:input path="lastName" /><br></br>  
 	                
 	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>               
+	                <form:input path="dateOfBirth" /><br></br>                        
+	                                 
 	                              
                     <label id = "label1">Gender :</label>
 	                <form:input path="gender" /><br></br>        
@@ -52,11 +53,19 @@
 	                <form:input path="nationality" /><br></br>
 	                
 	                <label id = "label1">Religion:</label>	                
-	                <form:input path="religion" /><br></br>	                
+	                <form:input path="religion" /><br></br>               
 	                              
+	                              
+	                <label>Role:</label>
+                    <form:select path="role.roleId">
+                         <option value="0"> -- Select -- </option>
+                        <c:forEach items="${roleList}" var="userRole">
+                        <form:option value="${userRole.roleId}">${userRole.roleName}</form:option>
+                        </c:forEach>
+                    </form:select>
+                                  
 	                <input type="submit" value="AddUser" /><br>             
-	             </form:form>    
-	               
+	             </form:form> 
                
            
                   
@@ -112,9 +121,7 @@
                         <td><c:out value="${searchUser.getGender()}"/></td>            
                         
                         <td><c:out value="${searchUser.getBloodGroup()}"/></td>
-                        <td><c:out value="${searchUser.getMobileNumber()}"/></td>                       
-                      
-                        
+                        <td><c:out value="${searchUser.getMobileNumber()}"/></td>                   
                     </tr>            
                 </table>   
             </c:if>  
@@ -123,8 +130,7 @@
                 <c:out value="${searchMessage}"/>
             </c:if>
             
-            <br>
-            
+            <br>            
         </div>  
     </div>
     
