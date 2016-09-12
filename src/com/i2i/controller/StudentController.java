@@ -86,7 +86,6 @@ public class StudentController  {
     public ModelAndView viewStudent(@RequestParam("rollNumber") int studentId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("SearchStudent");
-       
         try {          
             modelView.addObject("searchStudent", studentService.getStudentById(studentId));                                                     
         } catch (DatabaseException e) {

@@ -51,7 +51,7 @@ public class StandardController {
         } catch (DatabaseException e) {
       	    model.addAttribute("displayMessage", e.getMessage());                                                                  
         } 
-		return "Standard";
+		return "AddStandard";
     }  
 	
 	@RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 

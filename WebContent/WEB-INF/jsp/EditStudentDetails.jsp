@@ -15,6 +15,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container">
+			<!-- freshdesignweb top bar -->
+            <div class="freshdesignweb-top">
+                <a href="home.html">Home</a>
+                <span class="right">
+                    <a href="Logout.html">
+                        <strong>Logout</strong>
+                    </a>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ freshdesignweb top bar -->
+			<header>
+				<h1>Edit Student Details</h1>
+            </header>
+            </div> 
 <c:if test="${null != student}">
 <a  href="editUserById.html?userId=${student.getUser().getUserId()}">Edit User Details</a>
 <a  href="editAddressById.html?addressId=${student.getUser().getAddress().getAddressId()}">Edit Address Details</a>

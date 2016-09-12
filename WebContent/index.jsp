@@ -13,14 +13,6 @@
     <!-- ################################################################################################ -->
     <nav>
       <ul>
-        <li><a href="address.html">Address</a></li>
-        <li><a href="displayTeachers.html">Retrieve All Teachers</a>
-        <li><a href="displayStudents.html">Retrieve All Students</a>
-        <li><a href="Standard.html">Standard</a></li>
-        <li><a href="TeacherInformation.html">TeacherInformation</a></li>
-        <li><a href="SubjectInformation.html">SubjectInformation</a></li>
-        <li><a href="StudentInformation.html">StudentInformation</a></li>
-        <li><a href="User.html">User</a></li>
         <li><a href="Login.html">Login</a></li>
         </ul>
     </nav>

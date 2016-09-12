@@ -13,8 +13,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
 </head>
 <body>
+<div class="container">
+			<!-- freshdesignweb top bar -->
+            <div class="freshdesignweb-top">
+                <a href="home.html">Home</a>
+                <span class="right">
+                    <a href="Logout.html">
+                        <strong>Logout</strong>
+                    </a>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ freshdesignweb top bar -->
+			<header>
+				<h1>Edit Teacher Details</h1>
+            </header>
 <c:if test="${null != teacher}">
 <a  href="editUserById.html?userId=${teacher.getUser().getUserId()}">Edit User Details</a>
 <a  href="editAddressById.html?addressId=${teacher.getUser().getAddress().getAddressId()}">Edit Address Details</a>

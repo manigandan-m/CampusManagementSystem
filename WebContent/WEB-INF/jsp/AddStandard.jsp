@@ -5,26 +5,37 @@
 <html>
     <head>
         <title>Campus Management</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css">                        
+        <meta charset="UTF-8">
+    <title>Fixed table header</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <link href="layout/styles/layout.css" rel="stylesheet" type="text/css"
+	media="all">
+	<link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style3.css">                       
     </head>
 
-    <body style="background-color:powderblue;">
-               
-        <h1 align = "center">Standard</h1>       
-       
-        <p align = "left">
-            
-            <a  href="index.html" style="padding-right:30px;">Goto Main Page</a>
-            <a  href="logout.html">Logout </a>
-            
-        </p>        
-       
-       
-       <div align="center">
-            <div style="color: #8B0000;border: 2px solid black; border-color: DarkRed;"> 
-                <h2>Add Standard</h2>                
+    <body>
+           <div class="container">
+			<!-- freshdesignweb top bar -->
+            <div class="freshdesignweb-top">
+                <a href="addUser.html">New Teacher Joining</a>
+                <span class="right">
+                    <a href="Logout.html">
+                        <strong>Logout</strong>
+                    </a>
+                </span>
+                </div>    
                 
-                <form:form class = "formUser" action="addStandard.html" method="POST" modelAttribute="Standard">             
+       
+       
+       <div class="form">
+            <h2>Add Standard</h2>                
+                
+                <form:form id = "contactform" action="addStandard.html" method="POST" modelAttribute="Standard">             
                     
 	                <label id = "label1">Standard Name:</label>
 	                 <form:select path = "standardName">
@@ -34,18 +45,11 @@
                         <option value="Standard III">Standard III</option>
                         <option value="Standard IV">Standard IV</option>
                         <option value="Standard V">Standard V</option>
-                        <option value="Standard VI">Standard IV</option>
-                        <option value="Standard VII">Standard V</option>
-                        <option value="Standard VIII">Standard IV</option>
-                        <option value="Standard IX">Standard V</option>
-                        <option value="Standard X">Standard IV</option>
-                        <option value="Standard XI">Standard V</option>
-                        <option value="Standard XII">Standard IV</option>                        
                     </form:select>                              
 	                                  
 	                
 	                <br>
-	                <input type="submit" value="Add" /><br>	                       
+	                <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">	                       
                 </form:form>
            
                   
@@ -55,13 +59,10 @@
             </div>
         
             <br/>
-          <div style="color: #006400;border: 2px solid black; border-color: DarkGreen; ">  
-         
-        
-          </div>
-        
+          
+        </div>
        
-    </div>
+    
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>

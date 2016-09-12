@@ -35,15 +35,15 @@ public class LoginController {
                 	session.setAttribute("username", username);
                 	session.setAttribute("role",role);
                 	System.out.println("admin");
-                    return "redirect:index.jsp";
+                    return "home";
                 } else if (role.getRoleName().equals("teacher")) {
                 	session.setAttribute("username", username);
                 	session.setAttribute("role",role);
-                	return "viewTeacher?teacherId";
+                	return "redirect:viewTeacher?teacherId="+user.getTeacher().getTeacherId();
                 } else if (role.getRoleName().equals("student")) {
                 	session.setAttribute("username", username);
                 	session.setAttribute("role",role);
-    	    	    return "redirect:SearchStudent.jsp";
+                	return "redirect:viewStudent?rollNUmber="+user.getStudent().getRollNumber();
     	        }
     	    }
     	} catch (DatabaseException e) {
@@ -52,6 +52,11 @@ public class LoginController {
     	}
     	return null;
     }
+	
+	@RequestMapping("/home")
+	String homePage() {
+		return "redirect:home.jsp";
+	}
 	
 	/**
      * <p>

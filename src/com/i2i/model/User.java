@@ -59,6 +59,12 @@ public class User {
    
     @OneToOne(mappedBy = "user")
     private Address address;
+    
+    @OneToOne(mappedBy = "user")
+    private Teacher teacher;
+    
+    @OneToOne(mappedBy = "user")
+    private Student student;
    
     @ManyToOne(cascade = CascadeType.PERSIST)   
     @JoinColumn(name = "role_id")  
@@ -168,39 +174,24 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+    
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;       
+    }
    
+    public Teacher getTeacher() {
+        return teacher;       
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;       
+    }
+   
+    public Student getStudent() {
+        return student;       
+    }
    
     public User() {
        
     }
-   
-    /*public User(String username, String password, String firstName, String lastName, String dateOfBirth, String gender, String bloodGroup, long mobileNumber, Role role, String nationality, String religion) {
-        this.username = username;
-        this.password =password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.bloodGroup = bloodGroup;
-        this.mobileNumber = mobileNumber;
-        this.role = role;       
-        this.nationality = nationality;
-        this.religion = religion;
-    }
-   
-    public User(String username, String password, String firstName, String lastName, String dateOfBirth, String gender, String bloodGroup, long mobileNumber, String nationality, String religion) {
-        this.username = username;
-        this.password =password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.bloodGroup = bloodGroup;
-        this.mobileNumber = mobileNumber;
-        this.nationality = nationality;
-        this.religion = religion;
-       
-             
-    }*/
-   
 }

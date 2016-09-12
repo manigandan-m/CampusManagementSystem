@@ -22,26 +22,17 @@
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="http://www.freshdesignweb.com" target="_blank">Home</a>
+                <a href="home.html">Home</a>
                 <span class="right">
-                    <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
-                        <strong>Back to the freshdesignweb Article</strong>
+                    <a href="Logout.html">
+                        <strong>Logout</strong>
                     </a>
                 </span>
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>
-				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+				<h1>View Student</h1>
             </header>
-
-<div  class="form">
-       <form:form id="contactform" action="searchStudent.html" method="GET">
-           <p class="contact"><label for="rollNumber" path = "label1">Enter Roll Number To Search</label></p> 
-    	  <input name="rollNumber" placeholder="Roll Number" required="" tabindex="1" type="text"/>
-          <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">
-          </form:form>
-</div>
-
 <section>
 <div  class="tbl-header">
 <table cellpadding="0" cellspacing="0" border="0">
