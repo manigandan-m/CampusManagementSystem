@@ -1,98 +1,87 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Campus Management</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css">                        
-    </head>
+<head>
+<title>Demo Beautiful Registration Form with HTML5 and CSS3</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+</head>
+<body>
+<div class="container">
+			<!-- freshdesignweb top bar -->
+            <div class="freshdesignweb-top">
+                <a href="http://www.freshdesignweb.com" target="_blank">Home</a>
+                <span class="right">
+                    <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
+                        <strong>Back to the freshdesignweb Article</strong>
+                    </a>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ freshdesignweb top bar -->
+			<header>
+				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+            </header>       
+      <div  class="form">
+    		<form:form id="contactform" action="addStudent.html" method="POST" modelAttribute="Student"> 
+    			<p class="contact"><label for="fatherFirstName" path = "label1">Father First Name</label></p> 
+    			<form:input path="fatherFirstName" placeholder="Father First Name" required="" tabindex="1" type="text"/>
 
-    <body style="background-color:powderblue;">
-               
-        <h1 align = "center">Student</h1>       
-       
-        <p align = "left">
-            <a  style="padding-left:10px; padding-right:1050px;" href="displayEmployees.html">Display All Employees</a>
-            <a  href="index.html" style="padding-right:30px;">Goto Main Page</a>
-            <a  href="logout.html">Logout </a>
-        </p>        
-       
-       
-       <div align="center">
-            <div style="color: #8B0000;border: 2px solid black; border-color: DarkRed;"> 
-                <h2>Add Student</h2>                
-                
-                <form:form class = "formUser" action="addStudent.html" method="POST" modelAttribute="Student">	                            
-	                
-	                <label id = "label1">Father First Name:</label>
-	                <form:input path="fatherFirstName" /><br></br>	
-	                
-	                <label id = "label1">Father Last Name:</label>
-	                <form:input path="fatherLastName" /><br></br>	
-	                
-	                <label id = "label1">Mother First Name:</label>
-	                <form:input path="motherFirstName" /><br></br>	
-	                
-	                <label id = "label1">Mother Last Name:</label>
-	                <form:input path="motherLastName" /><br></br>
-	                
-	                <label id = "label1">Family Income:</label>
-	                <form:input path="familyIncome" /><br></br>
-	                
-	                <label id = "label1">Date Of Admission:</label>
-	                <form:input path="dateOfAdmission" /><br></br>
-	                
-	                <label id = "label1">Admission Category:</label>
-	                <form:input path="admissionCategory" /><br></br>        
-	                
-	                <form:input type = "hidden" path = "user.userId" value="${userId}"/>
-	                
-	                <input type="submit" value="Add" /><br>	                       
+                        <p class="contact"><label for="fatherLastName" path = "label1">Father Last Name</label><p> 
+    			<form:input path="fatherLastName" placeholder="Father Last Name" required="" tabindex="1" type="text"/>
+
+                        <p class="contact"><label for="motherFirstName" path = "label1">Mother First Name</label><p> 
+    			<form:input path="motherFirstName" placeholder="Mother First Name" required="" tabindex="1" type="text"/>
+
+                        <p class="contact"><label for="motherLastName" path = "label1">Mother Last Name</label></p> 
+    			<form:input path="motherLastName" placeholder="Mother Last Name" required="" tabindex="1" type="text"/>
+                        
+                        <p class="contact"><label for="familyIncome" path = "label1">Annual Income</label><p> 
+    			<form:input path="familyIncome" placeholder="Annual Income" required="" tabindex="1" type="text"/>  
+    			 
+    			<p class="contact"><label for="dateOfAdmission" path = "label1">Date Of Admission</label></p> 
+    			<form:input path="dateOfAdmission" placeholder="Date Of Admission" required="" tabindex="1" type="text"/>
+
+                        <form:select class="select-style gender" name="admissionCategory" path="admissionCategory">
+                        <option value="select">Admission Category</option>
+                        <option value="General">General</option>
+                        <option value="OBC">OBC</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                        </form:select><br><br> 
+
+                        <form:input type = "hidden" path = "user.userId" value="${userId}"/>
+                        
+                       <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
                 </form:form>
-           
-                  
-                <c:if test="${null != addMessage}">
+   <c:if test="${null != addMessage}">
                     <c:out value="${addMessage}"/>
-                </c:if>
-            </div>
-        
-            <br/>
+                 </c:if> 
+</div>
 
-        <div style="color: #00008B;border: 2px solid black; border-color: DarkBlue;">
-            <h2>Student Removal</h2>        
-                
-            <form class = "formUser" action="deleteStudent.html" method="GET">
-	            <p>
-                <label id = "label1">Student Roll Number:</label>
-	            <input type="text" name="rollNumber" placeholder="Enter rollNumber" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required><br>
-	            </p>	
-	            <p>
-	            <input type="submit" name ="delete" value="Delete" />
-	            </p>        
-            </form>
-            
-            <c:if test="${null != deleteMessage}">
+   <div  class="form">
+       <form:form id="contactform" action="deleteStudent.html" method="GET">
+           <p class="contact"><label for="rollNumber" path = "label1">Enter Roll Number To Delete</label></p> 
+    	  <input name="rollNumber" placeholder="Roll Number" required="" tabindex="1" type="text"/>
+          <input class="buttom" name="submit" id="submit" tabindex="5" value="Delete" type="submit">
+          </form:form>
+    
+          <c:if test="${null != deleteMessage}">
                 <c:out value="${deleteMessage}"/>
             </c:if>
-        </div>
-        
-        <br/>
-        
-        <div style="color: #006400;border: 2px solid black; border-color: DarkGreen; ">
-            <h3>Student Search</h3>        
-                
-            <form class = "formUser" action="searchStudent.html" method="GET" >
-	            <p>
-                <label id = "label1">Student Roll Number:</label>
-	            <input name="rollNumber" placeholder="Enter rollNumber" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required= "required"/><br>
-	            </p>	
-	            <p>
-	            <input type="submit" value="Search" />
-	            </p>        
-            </form>
-            
-            <c:if test="${null != searchStudent}">
+   </div>
+
+   <div  class="form">
+       <form:form id="contactform" action="searchStudent.html" method="GET">
+           <p class="contact"><label for="rollNumber" path = "label1">Enter Roll Number To Search</label></p> 
+    	  <input name="rollNumber" placeholder="Roll Number" required="" tabindex="1" type="text"/>
+          <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">
+          </form:form>
+
+          <c:if test="${null != searchStudent}">
                 <table border = 1>
                             
                     <tr>
@@ -119,24 +108,13 @@
                         
                     </tr>            
                 </table>   
-            </c:if>  
-
-            <c:if test="${null != searchMessage}">
-                <c:out value="${searchMessage}"/>
             </c:if>
-            
-            <br>
-            
-        </div>  
-    </div>
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-    <script>
-        $.validate({
-        lang: 'en'
-        });
-    </script>          
-          
-    </body>
-</html> 
+          <c:if test="${null != searchMessage}">
+                <c:out value="${searchMessage}"/>
+          </c:if>
+   </div>          
+</div>
+
+</body>
+</html>

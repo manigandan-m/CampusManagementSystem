@@ -1,59 +1,40 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%--<c:if test="${sessionScope['id']!=null}" >
-   <c:redirect url="index.jsp"/>
-</c:if>--%>
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Login Employee</title>
-        <style>
-        body {
-            background-color: #00ccff;
-            font-family: serif;
-            font-style: italic;
-        }
-        h2 {
-        color: red;
-        }
-        tr:hover {
-        background-color: #f5f5f5
-        }
-        input[type=text]:{
-             width: 20%
-        }
-        input[type=password] {
-            width: 15%;
-        }
-        input[type=submit] {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 10px;
-            text-decoration: none;
-            margin: 2px 2px;
-            cursor: pointer;
-        }
-        </style>
-    </head>
-     
-    <body>
-        <center>
-        <h2>Login Page</h2>
-        <form action="login.html" method=post>
-            ID:
-            <br>
-            <input type="text" name="username" placeholder="username" required>
-            <br>
-            Password:
-            <br>
-            <input type="password" name="password" placeholder="password" required>
-            <br>
-            <input type="submit" name="login" value="submit">
-        </form>
-        </center>
-        <c:if test="${Message!=null}" >
-            <c:out value="${Message}" />
-        </c:if>
-    </body>
-</html>
+<head>
+<title>Demo Beautiful Registration Form with HTML5 and CSS3</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+</head>
+<body>
+<div class="container">
+			<!-- freshdesignweb top bar -->
+            <div class="freshdesignweb-top">
+                <a href="index.jsp">Home</a>
+                <span class="right">
+                    <a href="Logout.html">
+                        <strong>Logout</strong>
+                    </a>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ freshdesignweb top bar -->
+			<header>
+				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+            </header>       
+      <div  class="form">
+    		<form id="contactform" action = "login.html" method="POST"> 
+    			<p class="contact"><label for="username">Username</label></p> 
+    			<input name="username" placeholder="username" required="" tabindex="1" type="text"> 
+    			 
+    			<p class="contact"><label for="password">Password</label></p> 
+    			<input name="password" placeholder="password" required="" type="text">
 
+                <input class="buttom" name="submit" id="submit" tabindex="5" value="Login" type="submit"> 	 
+   </form> 
+</div>      
+</div>
+
+</body>
+</html> 

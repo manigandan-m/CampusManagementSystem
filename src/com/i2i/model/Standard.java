@@ -11,6 +11,16 @@ import javax.persistence.JoinColumn;
 
 import com.i2i.model.Teacher;
 
+/**
+ * Model class for Standard
+ * Setter and Getter methods for the class variables
+ * Mapping is done by annotation
+ * 
+ * @author Manigandan
+ * 
+ * @created 2015-08-27
+ */
+
 @Entity
 @Table(name= "standard")
 public class Standard {

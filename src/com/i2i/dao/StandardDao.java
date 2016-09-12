@@ -8,21 +8,35 @@ import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
 import com.i2i.model.Standard;
-import com.i2i.model.Student;
-import com.i2i.model.Teacher;
 import com.i2i.exception.DatabaseException;
 import com.i2i.connection.HibernateConnection;
 
+/**
+ * <p>
+ * DataAccessObject(Dao) which is used to perform create, retrieve, retrieve all, delete operations for model Standard
+ * Creates session and transaction objects for each operation 
+ * </p>
+ * 
+ * @author Manigandan
+ * 
+ * @created 2015-08-27
+ */
 
 public class StandardDao {
 	HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();    
 
-    
+    /**
+     * Saves the standard model object to the database by passing it
+     * 
+     * @param standard
+     *     model object of class Standard
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     *     
+     */
     public void insertStandard(Standard standard) throws DatabaseException {
-    	System.out.println("session");
-        Session session = sessionFactory.openSession();
-        System.out.println("session created");
+    	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {     	
             session.save(standard);           
@@ -37,7 +51,15 @@ public class StandardDao {
         }                                                                         
     }   
     
-    public void deleteStandard(int id) throws DatabaseException {
+    /**
+     * Deletes the standard model object by passing standardId 
+     * 
+     * @param standardId
+     *     id of the standard to delete
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public void deleteStandardById(int id) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -52,7 +74,17 @@ public class StandardDao {
         }                            
     }    
     
-    public Standard findStandard(int id) throws DatabaseException {        
+    /**
+     * Retrieves the standard object by passing id of the standard
+     * 
+     * @param id
+     *     id of the standard whose record has to be viewed
+     * @return standard
+     *    object of class Standard
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public Standard findStandardById(int id) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
         Standard standard = null; 
         
@@ -67,9 +99,41 @@ public class StandardDao {
         } finally {
             session.close();
         }                          
-    } 
-   
-    public List<Standard> selectStandards() throws DatabaseException {
+    }
+    
+    /**
+     * Edits the standard details by accessing the database, passing the Standard class object.
+     * 
+     * @param standard
+     *     object of Standard class to edit
+     * @throws DataBaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException, HibernateException
+     */
+    public void editStandard(Standard standard)
+            throws DatabaseException {
+	    Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(standard);
+            transaction.commit();                                                                    
+        } catch (HibernateException e) {
+              throw new DatabaseException("Please check the data you have given..." , e);  
+       } finally {
+             session.close(); 
+       }
+    }
+    
+    /**
+     * Retrieves  the list of standards from the database
+     * 
+     * @return standards
+     *     ArrayList of standards
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public List<Standard> retrieveStandards() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         List<Standard> standards = new ArrayList<Standard>();        
          
@@ -85,7 +149,4 @@ public class StandardDao {
             session.close();
         }                      
     }   
-    
-         
 }
-     

@@ -1,124 +1,47 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Campus Management</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css">                        
-    </head>
+<head>
+<title>Demo Beautiful Registration Form with HTML5 and CSS3</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+</head>
+<body>
+<div class="container">
+			<!-- freshdesignweb top bar -->
+            <div class="freshdesignweb-top">
+                <a href="http://www.freshdesignweb.com" target="_blank">Home</a>
+                <span class="right">
+                    <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
+                        <strong>Back to the freshdesignweb Article</strong>
+                    </a>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ freshdesignweb top bar -->
+			<header>
+				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+            </header>       
+      <div class="form">
+    		<form:form id="contactform" action="addStandard.html" method="POST" modelAttribute="Standard"> 
+    			<p class="contact"><label for="standardName" path = "label1">Standard Name</label></p> 
+    			<form:input path="standardName" placeholder="Standard Name" required="" tabindex="1" type="text"/>
 
-    <body style="background-color:powderblue;">
-               
-        <h1 align = "center">Standard</h1>       
-       
-        <p align = "left">
-            <a  style="padding-left:10px; padding-right:1050px;" href="displayEmployees.html">Display All Employees</a>
-            <a  href="index.html" style="padding-right:30px;">Goto Main Page</a>
-            <a  href="logout.html">Logout </a>
-            <a  style="padding-left:10px; padding-right:1050px;" href="assignClassCoordinator.html">Display All Employees</a>
-        </p>        
-       
-       
-       <div align="center">
-            <div style="color: #8B0000;border: 2px solid black; border-color: DarkRed;"> 
-                <h2>Add Standard</h2>                
-                
-                <form:form class = "formUser" action="addStandard.html" method="POST" modelAttribute="Standard">             
-                    
-	                <label id = "label1">Standard Name:</label>
-	                 <form:select path = "standardName">
-	                    <option value="NONE">--Select--</option>
-                        <option value="Standard I">Standard I</option>
-                        <option value="Standard II">Standard II</option>
-                        <option value="Standard III">Standard III</option>
-                        <option value="Standard IV">Standard IV</option>
-                        <option value="Standard V">Standard V</option>
-                        <option value="Standard VI">Standard IV</option>
-                        <option value="Standard VII">Standard V</option>
-                        <option value="Standard VIII">Standard IV</option>
-                        <option value="Standard IX">Standard V</option>
-                        <option value="Standard X">Standard IV</option>
-                        <option value="Standard XI">Standard V</option>
-                        <option value="Standard XII">Standard IV</option>                        
-                    </form:select> 
-	                
-                                 
-	                                  
-	                
-	                <br>
-	                <input type="submit" value="Add" /><br>	                       
-                </form:form>
-           
-                  
-                <c:if test="${null != addMessage}">
+                        <form:select class="select-style gender" path="classCoordinator.teacherId">
+	                     <option value="select">Class Teacher</option>
+                    	<c:forEach items="${teachers}" var="teacher">
+                        <form:option value="${teacher.teacherId}">${teacher.getUser().getFirstName()}  ${teacher.getUser().getLastName()}</form:option>
+                        </c:forEach>
+                        </form:select><br><br>
+                  <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
+               </form:form>
+   <c:if test="${null != addMessage}">
                     <c:out value="${addMessage}"/>
-                </c:if>
-            </div>
-        
-            <br/>
-
-        <div style="color: #00008B;border: 2px solid black; border-color: DarkBlue;">
-            <h2>Standard Removal</h2>        
-                
-            <form class = "formUser" action="deleteStandard.html" method="GET">
-	            <p>
-                <label id = "label1">Standard Id:</label>
-	            <input type="text" name="standardId" placeholder="Enter standard Id" data-validation="number" data-validation-error-msg ="Please Enter numbers only" required><br>
-	            </p>	
-	            <p>
-	            <input type="submit" name ="delete" value="Delete" />
-	            </p>        
-            </form>
-            
-            <c:if test="${null != deleteMessage}">
-                <c:out value="${deleteMessage}"/>
-            </c:if>
-        </div>
-        
-         <div style="color: #006400;border: 2px solid black; border-color: DarkGreen; ">
-            <h3>User Search</h3>        
-                
-            <form class = "formUser" action="searchStandard.html" method="GET" >
-	            <p>
-                <label id = "label1">User Id:</label>
-	            <input name="standardId" placeholder="Enter standardId" data-validation="text" data-validation-error-msg ="Please Enter text only" required= "required"/><br>
-	            </p>	
-	            <p>
-	            <input type="submit" value="Search" />
-	            </p>        
-            </form>
-            
-            <c:if test="${null != searchStandard}">
-                <table border = 1>
-                            
-                    <tr>
-                        <td><c:out value="${searchStandard.getStandardName()}"/></td>
-                        <td><c:out value="${searchStandard.getSectionName()}"/></td>
-                                         
-                    </tr>            
-                </table>   
-            </c:if>  
-
-            <c:if test="${null != searchMessage}">
-                <c:out value="${searchMessage}"/>
-            </c:if>
-            
-            <br>            
-        </div>  
-        
-        <br/>
-        
-       
-    </div>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-    <script>
-        $.validate({
-        lang: 'en'
-        });
-    </script>          
-          
-    </body>
-</html> 
+                 </c:if> 
+</div>
+</div>
+</body>
+</html>

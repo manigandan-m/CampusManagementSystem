@@ -14,6 +14,16 @@ import com.i2i.model.Teacher;
 import com.i2i.model.Subject;
 import com.i2i.model.Standard;
 
+/**
+ * Model class for PeriodSubjectDetail
+ * Setter and Getter methods for the class variables
+ * Mapping is done by annotation
+ * 
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ */
+
 @Entity
 @Table(name= "period_subject_detail")
 public class PeriodSubjectDetail {

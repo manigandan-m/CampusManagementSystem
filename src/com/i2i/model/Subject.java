@@ -11,6 +11,16 @@ import javax.persistence.JoinColumn;
 import com.i2i.model.Teacher;
 import com.i2i.model.Standard;
 
+/**
+ * Model class for Subject
+ * Setter and Getter methods for the class variables
+ * Mapping is done by annotation
+ * 
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ */
+
 @Entity
 @Table(name= "subject")
 public class Subject {

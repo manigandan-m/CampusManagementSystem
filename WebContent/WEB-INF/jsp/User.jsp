@@ -1,115 +1,100 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Campus Management</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css">                        
-    </head>
+<head>
+<title>Demo Beautiful Registration Form with HTML5 and CSS3</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+</head>
+<body>
+<div class="container">
+			<!-- freshdesignweb top bar -->
+            <div class="freshdesignweb-top">
+                <a href="http://www.freshdesignweb.com" target="_blank">Home</a>
+                <span class="right">
+                    <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
+                        <strong>Back to the freshdesignweb Article</strong>
+                    </a>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ freshdesignweb top bar -->
+			<header>
+				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+            </header>       
+      <div class="form">
+    		<form:form id="contactform" action="addUser.html" method="POST" modelAttribute="User"> 
+    			<p class="contact"><label for="username" path = "label1">Username</label></p> 
+    			<form:input path="username" placeholder="Username" required="" tabindex="1" type="text"/>
 
-    <body style="background-color:powderblue;">
-               
-        <h1 align = "center">User</h1>       
-       
-        <p align = "left">
-            <a  style="padding-left:10px; padding-right:1050px;" href="displayEmployees.html">Display All Employees</a>
-            <a  href="index.html" style="padding-right:30px;">Goto Main Page</a>
-            <a  href="logout.html">Logout </a>
-        </p>        
-       
-       <div align="center">
-            <div style="color: #8B0000;border: 2px solid black; border-color: DarkRed;"> 
-                <h2>Add User</h2>                
+                        <p class="contact"><label for="password" path = "label1">Password</label><p> 
+    			<form:input path="password" placeholder="password" required="" tabindex="1" type="text"/>
+
+                        <p class="contact"><label for="firstName" path = "label1">First Name</label><p> 
+    			<form:input path="firstName" placeholder="FirstName" required="" tabindex="1" type="text"/>
+
+                        <p class="contact"><label for="lastName" path = "label1">Last Name</label></p> 
+    			<form:input path="lastName" placeholder="Last Name" required="" tabindex="1" type="text"/>
+                        
+                        <p class="contact"><label for="dateOfBirth" path = "label1">Date Of Birth</label><p> 
+    			<form:input path="dateOfBirth" placeholder="Date Of Birth" required="" tabindex="1" type="text"/>  
+    			 
+    			<p class="contact"><label for="nationality" path = "label1">Nationality</label></p> 
+    			<form:input path="nationality" placeholder="Nationality" required="" tabindex="1" type="text"/> 
                 
-                <form:form class = "formUser" action="addUser.html" method="POST" modelAttribute="User" >	                            
-	                
-	                <label id = "label1">User Name:</label>
-	                <form:input path="username" /><br></br>	
-	                
-	                <label id = "label1">Password:</label>
-	                <form:input path="password" /><br></br>	
-	                
-	                <label id = "label1">First Name:</label>
-	                <form:input path="firstName" /><br></br>	
-	                
-	                <label id = "label1">Last Name:</label>
-	                <form:input path="lastName" /><br></br>  
-	                
-	                <label id = "label1">Date Of Birth:</label>
-	                <form:input path="dateOfBirth" /><br></br>                        
-	                                 
-	                              
-                    <label id = "label1">Gender :</label>
-	                <form:input path="gender" /><br></br>        
-	                	                
-	                <label id = "label1">Blood Group:</label>
-	                <form:input path="bloodGroup" /><br></br>
-	                
-	                <label id = "label1">Mobile Number:</label>	                
-	                <form:input path="mobileNumber" /><br></br>	 
-	                
-	                <label id = "label1">Nationality:</label>
-	                <form:input path="nationality" /><br></br>
-	                
-	                <label id = "label1">Religion:</label>	                
-	                <form:input path="religion" /><br></br>               
-	                              
-	                              
-	                <label>Role:</label>
-                    <form:select path="role.roleId">
-                         <option value="0"> -- Select -- </option>
-                        <c:forEach items="${roleList}" var="userRole">
+                        <p class="contact"><label for="religion" path = "label1">Religion</label></p> 
+    			<form:input path="religion" placeholder="Religion" required="" tabindex="1" type="text"/>   
+        
+                        <form:select class="select-style gender" name="gender" path="gender">
+                        <option value="select">i am..</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        </form:select><br><br>
+
+                        <form:select class="select-style gender" name="bloodGroup" path="bloodGroup">
+                        <option value="select">Blood Group</option>
+                        <option value="O+">O+</option>
+                        <option value="B+">B+</option>
+                        <option value="A+">A+</option>
+                        </form:select><br><br>
+
+                        <p class="contact"><label for="mobileNumber" path = "label1">Mobile Number</label></p> 
+    			<form:input path="mobileNumber" placeholder="Mobile Nunber" required="" tabindex="1" type="text"/>
+             
+                        <form:select class="select-style gender" path="role.roleId">
+	                     <option value="select"> Role </option>
+                    	<c:forEach items="${roleList}" var="userRole">
                         <form:option value="${userRole.roleId}">${userRole.roleName}</form:option>
                         </c:forEach>
-                    </form:select>
-                                  
-	                <input type="submit" value="AddUser" /><br>             
-	             </form:form> 
-               
-           
-                  
-                <c:if test="${null != addMessage}">
+                        </form:select><br><br>
+            
+            <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
+   </form:form>
+   <c:if test="${null != addMessage}">
                     <c:out value="${addMessage}"/>
-                </c:if>
-            </div>
-        
-            <br/>
+                 </c:if> 
+</div>
+                 <div  class="form">
+                    <form id="contactform" action="deleteUser.html" method="GET">
+                    <p class="contact"><label for="username" path = "label1">Enter the Username to delete</label></p> 
+                    <input placeholder="Username" required="" tabindex="1" type="text"/>
+                    <input class="buttom" name="submit" id="submit" tabindex="5" value="Delete" type="submit">
+                    </form>
+                    <c:if test="${null != deleteMessage}">
+                        <c:out value="${deleteMessage}"/>
+                    </c:if>
+                 </div>
 
-        <div style="color: #00008B;border: 2px solid black; border-color: DarkBlue;">
-            <h2>User Removal</h2>        
-                
-            <form class = "formUser" action="deleteUser.html" method="GET">
-	            <p>
-                <label id = "label1">User Id:</label>
-	            <input type="text" name="username" placeholder="Enter username" data-validation="text" data-validation-error-msg ="Please Enter numbers only" required><br>
-	            </p>	
-	            <p>
-	            <input type="submit" name ="delete" value="Delete" />
-	            </p>        
-            </form>
-            
-            <c:if test="${null != deleteMessage}">
-                <c:out value="${deleteMessage}"/>
-            </c:if>
-        </div>
-        
-        <br/>
-        
-        <div style="color: #006400;border: 2px solid black; border-color: DarkGreen; ">
-            <h3>User Search</h3>        
-                
-            <form class = "formUser" action="searchUser.html" method="GET" >
-	            <p>
-                <label id = "label1">User Id:</label>
-	            <input name="username" placeholder="Enter username" data-validation="text" data-validation-error-msg ="Please Enter text only" required= "required"/><br>
-	            </p>	
-	            <p>
-	            <input type="submit" value="Search" />
-	            </p>        
-            </form>
-            
-            <c:if test="${null != searchUser}">
+                 <div  class="form">
+                    <form id="contactform" action="searchUser.html" method="GET">
+                    <p class="contact"><label for="username" path = "label1">Enter the Username to view</label></p> 
+                    <input name ="username" placeholder="Username" required="" tabindex="1" type="text"/>
+                    <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">
+                    </form>
+                    <c:if test="${null != searchUser}">
                 <table border = 1>
                             
                     <tr>
@@ -130,17 +115,9 @@
                 <c:out value="${searchMessage}"/>
             </c:if>
             
-            <br>            
-        </div>  
-    </div>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-    <script>
-        $.validate({
-        lang: 'en'
-        });
-    </script>          
-          
-    </body>
-</html> 
+            <br>  
+            </div>      
+</div>
+
+</body>
+</html>

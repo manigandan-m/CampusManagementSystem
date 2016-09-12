@@ -15,151 +15,211 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.i2i.exception.DatabaseException;
 import com.i2i.model.Teacher;
+import com.i2i.model.User;
 import com.i2i.service.TeacherService;
+import com.i2i.service.UserService;
 
+/**
+ * Controller to perform add, update, delete, retrieve, retrieve all operations using model class Teacher
+ * by invoking TeacherService class methods.
+ * It is used to set views (JSP Pages) for the methods.
+ * Assigns handlers (methods) to process the requests
+ *   
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ * 
+ */
 @Controller
 public class TeacherController {
 	TeacherService teacherService = new TeacherService();
+	UserService userService = new UserService();
     
-	   
-    @RequestMapping(value = "/TeacherInformation", method=RequestMethod.GET) 
+	/**
+     * Sends the object of Teacher class to the JSP Page where details of the teacher can be entered
+     * @param model
+     *     passes the object of Teacher class by using the addAttribute
+     * @return
+     */   
+    @RequestMapping(value = "/addTeacher", method=RequestMethod.GET) 
     public String addTeacherForm(ModelMap model) {
         model.addAttribute("Teacher", new Teacher());	 
-        return "TeacherInformation";
+        return "AddTeacher";
     }       
     
-   
-    @RequestMapping(value = "/addTeacher", method=RequestMethod.POST) 
+    /**
+     * Gets the teacher details from the JSP Page and passes it as an object of Teacher class.
+     * It gets the userId and invokes the UserService method to get the corresponding user object.
+     * It invokes the TeacherService method and sends the user and teacher object for adding teacher details
+     *  
+     * @param teacher
+     *     object of Teacher class
+     * @return
+     */
+    @RequestMapping(value = "/addTeacher", method=RequestMethod.POST)
     public ModelAndView addTeacher(@ModelAttribute("Teacher") Teacher teacher) {
         String message = null;    
-
-        try {                                                     
-        	teacherService.addTeacher(teacher);                                        
+        try {      
+           int userId = teacher.getUser().getUserId();
+            User user = userService.getUserById(userId);          
+            teacherService.addTeacher(teacher, user);                                       
             message = "Teacher is added successfully";            
-        }  catch (DatabaseException ex) {        	
+        }  catch (DatabaseException ex) {            
             message = ex.getMessage().toString();                         
-        } 
-        return new ModelAndView("TeacherInformation","addMessage", message);       
-    }
-
-    
-    @RequestMapping(value = "/searchTeacher", method=RequestMethod.GET)  
-    public ModelAndView searchTeacher(@RequestParam("teacherId") int teacherId) {                
-        ModelAndView modelView = new ModelAndView();
-        
-        modelView.setViewName("TeacherInformation");
-        modelView.addObject("Teacher", new Teacher());
-        try {       	
-        	modelView.addObject("searchTeacher", teacherService.searchTeacher(teacherId));        	                                          
-        } catch (DatabaseException e) {
-        	
-        	modelView.addObject("searchMessage", e.getMessage());             
         }
-        return modelView; 
+        return new ModelAndView("AddTeacher","addMessage", message);       
     }
 
     
+    /**
+     * Used to view the record of the teacher by passing roll number
+     * It invokes the StudemtService class method and gets the object of Teacher class and passes it to JSP Page
+     * 
+     * @param teacherId
+     *     roll number of the teacher
+     * @return
+     *     JSP Page where the teacher details can be viewed
+     */
+    @RequestMapping(value = "/viewTeacher", method=RequestMethod.GET) 
+    public ModelAndView viewTeacher(@RequestParam("teacherId") int teacherId) {               
+        ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("SearchTeacher");
+       
+        try {          
+            modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));                                                     
+        } catch (DatabaseException e) {
+           
+            modelView.addObject("searchMessage", e.getMessage());            
+        }
+        return modelView;
+    }   
+    
+    /**
+     * It displays all the teachers by invoking the TeacherService class method.
+     * It sends the list of the teachers to the JSP Page by using ModelAndView object
+     *  
+     * @return
+     *     returns the JSP Page where all the teachers are displayed
+     */
     @RequestMapping(value = "/displayTeachers", method=RequestMethod.GET) 
     public ModelAndView displayTeachers() {
     	
         try {                                                                         
             List<Teacher> teachers = teacherService.getTeachers();
 
-            return new ModelAndView("RetrieveAllTeachers","teachers", teachers);                                           
+            return new ModelAndView("RetrieveTeachers","teachers", teachers);                                           
         } catch (DatabaseException e) {
         	
-            return new ModelAndView("RetrieveAllTeachers","displayMessage", e.getMessage());                                                       
+            return new ModelAndView("RetrieveTeachers","displayMessage", e.getMessage());                                                       
         } 
     }
-
     
+    /**
+     * Deletes the teacher record by passing the roll number of the teacher
+     * 
+     * @param teacherId
+     *     roll number of the teacher whose record has to be deleted
+     * @return
+     *     JSP Page where the user is redirected
+     */
     @RequestMapping(value = "/deleteTeacher", method=RequestMethod.GET) 
-    public ModelAndView deleteTeacher(@RequestParam("teacherId") int teacherId) {        
+    public ModelAndView deleteTeacher(@RequestParam("teacherId") int teacherId) {       
         ModelAndView modelView = new ModelAndView();
-    	
-    	modelView.setViewName("TeacherInformation");
-        modelView.addObject("Teacher", new Teacher());          
-        try {                                                           
-            teacherService.removeTeacher(teacherId);
-            modelView.addObject("deleteMessage", "Teacher Id " + teacherId + " is deleted");                                   
+        try {                                                          
+            teacherService.removeTeacherById(teacherId);
         } catch (DatabaseException e) {
-        	
-        	modelView.addObject("deleteMessage", e.getMessage());                                    
-        } 
-        return modelView;         
-    }
-    
-   /*@RequestMapping(value = "/displayTeacher", method=RequestMethod.GET) 
-    public ModelAndView displayTeacher(@RequestParam("teacherId") int teacherId) { 
-                  
-        try {  
-            return new ModelAndView("Teacher","teacher", teacherService.searchTeacher(teacherId));                                 
-        } catch (DatabaseException e) {
-            return new ModelAndView("Teacher","message", e.getMessage());  
-        }           
-    } 
-    
-    
-	@RequestMapping(value = "/loginVerification", method=RequestMethod.POST)
-    public ModelAndView loginVerification(@RequestParam("userId") int userId, @RequestParam("password") String password, HttpSession session) {		
-		ModelAndView model = new ModelAndView();
-		model.setViewName("redirect:index.html");
-		
-        try {                           
-            Teacher teacher = teacherService.searchTeacher(userId); 
-           	             
-            if ((teacher.getPassword()).equals(password)) {
-                session.setAttribute("user", userId);
-                session.setAttribute("role", teacher.getRole());
-                
-	            if (teacher.getRole().equals("admin")) {
-	            	model.setViewName("redirect:index.html");                                  
-                } else {
-                    model.addObject("teacher", teacher);
-                    model.setViewName("Teacher");                                                      
-                }
-           } else {               
-                model.addObject("message", "Either user name or password is wrong");
-                model.setViewName("redirect:login.html");                
-           } 
-        } catch (DatabaseException ex) {
-        	model.addObject("message", ex.getMessage().toString());
-        	model.setViewName("redirect:login.html");                                  
+              modelView.addObject("deleteMessage", e.getMessage());                                   
         }
-        return model;
+        return displayTeachers();        
     }
-	
-	
-	@RequestMapping(value = "/login")  
-    public String getLoginPage() {
-        return "login";                       		
+    
+    /**
+     * Gets the teacherId of the teacher whose details needs to be edited
+     * 
+     * @param teacherId
+     *     id of teacher
+     * @param map
+     *    sends the object of Teacher class whose record has to be edited
+     * @return
+     */
+    @RequestMapping(value="/editTeacherDetails", method=RequestMethod.GET)
+    public String editTeacherDetails(@RequestParam("teacherId") int teacherId, ModelMap map) {
+    	try {
+    		Teacher teacher = teacherService.getTeacherById(teacherId);
+    		map.addAttribute("teacher",teacher);
+    	} catch(DatabaseException e) {
+    		map.addAttribute("Message",e.getMessage().toString());
+    	}
+    	return "EditTeacherDetails";
     }
-	
-	
-	@RequestMapping(value = "/index")  
-    public String getindexPage() {
-        return "index";                       		
+    
+    /**
+     * Edits the details of the teacher using it's id
+     * 
+     * @param id
+     *     id of teacher entered by the user
+     * @param model
+     *     ModelMap object to send the teacher object to the JSP page
+     * @return EditTeacher
+     *     JSP Page where user can make changes to the various attributes of the teacher
+     * @throws ServletException
+     *     when a servlet related problem occurs.
+     * @throws IOException
+     *     if there is failed or interrupted input output operations.
+     */
+    @RequestMapping(value = "/editTeacherById", method = RequestMethod.GET)
+    public String editTeacherForm(@RequestParam("teacherId") String id, ModelMap model) throws ServletException, IOException {
+    	 try {
+    		 model.addAttribute("Teacher", teacherService.getTeacherById(Integer.parseInt(id)));
+             return "EditTeacher";
+    	 } catch (DatabaseException e) {
+    		 model.addAttribute("Message", e.getMessage().toString());
+    		 return "EditTeacher";
+    	 }
     }
-	
-	
-	@RequestMapping(value = "/displayTeacher")  
-    public String getTeacherPage() {
-        return "Teacher";                       		
+    
+    /**
+     * <p>
+     * Edits the teacher details by sending the teacher model object details to the assigned JSP page.
+     * Invokes the TeacherService method to update the changes.
+     * </p>
+     * 
+     * @param teacher
+     *     Object of Teacher class    
+     * @param message
+     *     Status message
+     * @return EditTeacher
+     *     JSP Page for editing teacher details
+     * @throws IOException
+     *     if there is failed or interrupted input output operations.
+     * @throws ServletException
+     *     when a servlet related problem occurs.
+     */
+    @RequestMapping(value = "/editTeacher", method = RequestMethod.POST)
+    public String editTeacher(@ModelAttribute("Teacher") Teacher teacher, ModelMap message) {  
+        try {
+        	teacherService.editTeacher(teacher);      
+            message.addAttribute("Message", "Teacher Edited Successfully");
+            return "EditTeacher";
+    	} catch (DatabaseException e) {
+    		  message.addAttribute("Message", (e.getMessage().toString()));
+    		  return "EditTeacher";
+    	}
     }
-	
-	
-	@RequestMapping(value = "/loginVerification", method=RequestMethod.GET)  
-    public ModelAndView getTeacher(HttpSession session) {		
-		return new ModelAndView("redirect:displayTeacher.html?teacherId="+(Integer)session.getAttribute("user"));                             		
-    }
-	
-	
-	@RequestMapping(value = "/logout")
-    public String logout(HttpSession session) {    	
-    	
-    	if(null != session.getAttribute("user")) {
-    	    session.invalidate();
-    	}    	
-    	return "login";
-    } */
+    
+    /**
+     * Checks if the given input is a number
+     *  
+     * @param value
+     *     the input given by the user
+     * @return
+     */
+    /*private static boolean isNumber(String value) {
+        try {
+            Long.parseLong(value);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }*/
 }

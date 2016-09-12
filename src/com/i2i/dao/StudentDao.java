@@ -7,59 +7,93 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
-import com.i2i.model.Address;
 import com.i2i.model.Student;
 import com.i2i.model.User;
 import com.i2i.exception.DatabaseException;
 import com.i2i.connection.HibernateConnection;
 
+/**
+ * <p>
+ * DataAccessObject(Dao) which is used to perform create, retrieve, retrieve all, delete operations for model Student
+ * It allocates user model object to the student model object by assigning the id of user to the particular student
+ * Creates session and transaction objects for each operation 
+ * </p>
+ * 
+ * @author Manigandan
+ * 
+ * @created 2015-08-27
+ */
 
 public class StudentDao {
 	HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();     
 
-    
-    public void insertStudent(Student student) throws DatabaseException {
+    /**
+     * Saves the student model object to the database by passing it
+     * 
+     * @param student
+     *     model object of class Student
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     *     
+     */
+    public void insertStudent(Student student, User user) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        try {                          
+        try {  
+            student.setUser(user);
             session.save(student);            
-            transaction.commit(); 
+            transaction.commit();
             
-            //insertUserToStudent(studentId);
+            
         } catch (HibernateException e) {   
-        	e.printStackTrace();
+            e.printStackTrace();
             throw new DatabaseException("Entered student is not added. Student ID already exits..", e);
         } finally {
             session.close();
         }                                                                         
     }
     
-    public void insertUserToStudent(int studentId, int userId) throws DatabaseException {
-    	
-        Session session = sessionFactory.openSession();
+    /**
+     * The user model object that is created is assigned to the student model object.
+     * It is done by allocating the userId to the student model object by passing the id of user and id of student
+     * 
+     * @param studentId
+     *     id of the student to which the user id must be assigned
+     * @param userId
+     *     id of the user to be assigned to student model object
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    /*public void insertUserToStudent(int studentId, int userId) throws DatabaseException {
+    	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        
         try {      	
-       
-    	Student student = (Student) session.get(Student.class, studentId);
-    	User user = (User) session.get(User.class, userId);
-        student.setUser(user);
-        session.update(user);            
-        transaction.commit();  
-    } catch (HibernateException e) { 
-    	System.out.println(e);
-        throw new DatabaseException("Entered student is not added to user. ..", e);
-    } finally {
-        session.close();
-    }  
-    } 
+            Student student = (Student) session.get(Student.class, studentId);
+    	    User user = (User) session.get(User.class, userId);
+            student.setUser(user);
+            session.update(user);            
+            transaction.commit();  
+        } catch (HibernateException e) { 
+    	      throw new DatabaseException("Entered student is not added to user. ..", e);
+        } finally {
+              session.close();
+        }  
+    }*/ 
     
-    
-    public Student findStudent(int id) throws DatabaseException {        
+    /**
+     * Retrieves the student object by passing id of the student
+     * 
+     * @param id
+     *     id of the student whose record has to be viewed
+     * @return student
+     *    object of class Student
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public Student findStudentById(int id) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
         Student student = null; 
-        
         try {                           
             student = (Student) session.get(Student.class, id);            
             if (student == null) {
@@ -73,11 +107,17 @@ public class StudentDao {
         }                          
     }
 
-   
-    public void deleteStudent(int id) throws DatabaseException {
+    /**
+     * Deletes the student model object by passing studentId 
+     * 
+     * @param studentId
+     *     id of the student to delete
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public void deleteStudentById(int id) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-
         try {
             Student student = (Student) session.get(Student.class, id); 
             session.delete(student);
@@ -87,13 +127,43 @@ public class StudentDao {
         } finally {
             session.close();
         }                            
-    }   
+    }
     
+    /**
+     * Edits the student details by accessing the database, passing the Student class object.
+     * 
+     * @param student
+     *     object of Student class to edit
+     * @throws DataBaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException, HibernateException
+     */
+    public void editStudent(Student student)
+            throws DatabaseException {
+	    Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(student);
+            transaction.commit();                                                                    
+        } catch (HibernateException e) {
+              throw new DatabaseException("Please check the data you have given..." , e);  
+       } finally {
+             session.close(); 
+       }
+    }
     
-    public List<Student> selectStudents() throws DatabaseException {
+    /**
+     * Retrieves  the list of students from the database
+     * 
+     * @return students
+     *     ArrayList of students
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public List<Student> retrieveStudents() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         List<Student> students = new ArrayList<Student>();        
-         
         try {
             students = session.createQuery("FROM Student").list();
             if (students.isEmpty()) {
@@ -106,7 +176,4 @@ public class StudentDao {
             session.close();
         }                      
     }   
-    
-         
 }
-     

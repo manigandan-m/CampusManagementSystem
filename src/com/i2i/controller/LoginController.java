@@ -3,6 +3,7 @@ package com.i2i.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,33 +17,57 @@ import com.i2i.model.User;
 
 @Controller
 public class LoginController {
-	/*UserService userService = new UserService();
+	UserService userService = new UserService();
 	
 	@RequestMapping("/Login")
 	public String loginPage() {
 		return "Login";
 	}
 	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginCheck(@RequestParam("username") String username, @RequestParam("password") String password) throws  IOException, ServletException {
+    public String loginCheck(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws  IOException, ServletException {
     	try {
-    		System.out.println("come in logincheck");
-    	    User user = userService.searchUser(username);
+    		User user = userService.getUserByUsername(username);
     	    if (password.equals(user.getPassword()) ) {
                 Role role = user.getRole();
                 if(role.getRoleName().equals("admin")) {
-                    return "index.jsp";
+                	session.setAttribute("username", username);
+                	session.setAttribute("role",role);
+                	System.out.println("admin");
+                    return "redirect:index.jsp";
                 } else if (role.getRoleName().equals("teacher")) {
-                	return "redirect:teacher.jsp";
+                	session.setAttribute("username", username);
+                	session.setAttribute("role",role);
+                	return "viewTeacher?teacherId";
                 } else if (role.getRoleName().equals("student")) {
-    	    	      return "redirect:student.jsp";
+                	session.setAttribute("username", username);
+                	session.setAttribute("role",role);
+    	    	    return "redirect:SearchStudent.jsp";
     	        }
-    	    } else {
-    	    	return "redirect:index.jsp";
     	    }
     	} catch (DatabaseException e) {
+    		e.printStackTrace();
     		return "redirect:index.jsp";
     	}
     	return null;
-    }*/
+    }
+	
+	/**
+     * <p>
+     * Invalidates the session object.
+     * Sets the session attribute to null and removes it.
+     * </p>
+     * 
+     * @param session
+     *     HttpSession interface reference
+     * @return Login
+     *     JSP Page for login 
+     */
+    @RequestMapping("/Logout")
+    public String logout(HttpSession session) {
+    	session.setAttribute("username", null);
+	    session.removeAttribute("username");
+	    return "Login";
+    }
 }

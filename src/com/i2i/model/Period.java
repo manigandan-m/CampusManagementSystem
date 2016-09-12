@@ -6,6 +6,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 
+/**
+ * Model class for Period
+ * Setter and Getter methods for the class variables
+ * Mapping is done by annotation
+ * 
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ */
+
 @Entity
 @Table(name= "period")
 public class Period {

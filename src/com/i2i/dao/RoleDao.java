@@ -12,15 +12,32 @@ import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DatabaseException;
 import com.i2i.model.Role;
 
+/**
+ * <p>
+ * DataAccessObject(Dao) which is used to perform create, retrieve, retrieve all, delete operations for model Role
+ * Creates session and transaction objects for each operation 
+ * </p>
+ * 
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ */
+
 public class RoleDao {
 	HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();     
 
-    
+    /**
+     * Saves the role model object to the database by passing it
+     * 
+     * @param role
+     *     model object of class Role
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     *     
+     */
     public void insertRole(Role role) throws DatabaseException {
-    	System.out.println("session");
-        Session session = sessionFactory.openSession();
-        System.out.println("session created");
+    	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try { 
         	session.save(role);            
@@ -31,8 +48,16 @@ public class RoleDao {
             session.close();
         }                                                                         
     }
-
-    public void deleteRole(int roleId) throws DatabaseException {
+    
+    /**
+     * Deletes the role model object by passing roleId 
+     * 
+     * @param roleId
+     *     id of the role to delete
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public void deleteRoleById(int roleId) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -48,7 +73,68 @@ public class RoleDao {
         }                            
     }
     
-    public List<Role> selectRoles() throws DatabaseException {
+    /**
+     * Edits the role details by accessing the database, passing the Role class object.
+     * 
+     * @param role
+     *     object of Role class to edit
+     * @throws DataBaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException, HibernateException
+     */
+    public void editRole(Role role)
+            throws DatabaseException {
+	    Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(role);
+            transaction.commit();                                                                    
+        } catch (HibernateException e) {
+              throw new DatabaseException("Please check the data you have given..." , e);  
+       } finally {
+             session.close(); 
+       }
+    }
+    
+    /**
+     * Retrieves the role object by passing id of the role
+     * 
+     * @param id
+     *     id of the role whose record has to be viewed
+     * @return role
+     *    object of class Role
+     * @throws DataBaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException, HibernateException
+     */
+    public Role findRoleById(int id) throws DatabaseException {
+         Role role = null;
+         Session session = sessionFactory.openSession();
+         Transaction transaction = null;
+         try {
+             transaction = session.beginTransaction();
+             role = (Role)session.get(Role.class, id); 
+             transaction.commit();
+             return role;
+         } catch (HibernateException e) {
+             System.out.println("Exception : " +e);
+             throw new DatabaseException("Check role ID, please enter different id", e);  
+         } finally {
+             session.close();
+             
+         } 
+    }
+    
+    /**
+     * Retrieves  the list of roles from the database
+     * 
+     * @return roles
+     *     ArrayList of roles
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public List<Role> retrieveRoles() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         List<Role> roles = new ArrayList<Role>();        
          
