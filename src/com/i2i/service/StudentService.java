@@ -28,8 +28,8 @@ public class StudentService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    public void addStudent(Student student, User user) throws DatabaseException {                 
-        studentDao.insertStudent(student, user);                     
+    public void addStudent(Student student, User user, Standard standard) throws DatabaseException {                 
+        studentDao.insertStudent(student, user, standard);                     
     }
     
     /**

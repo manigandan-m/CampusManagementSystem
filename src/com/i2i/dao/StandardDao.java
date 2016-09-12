@@ -110,18 +110,23 @@ public class StandardDao {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
-    public void editStandard(Standard standard)
-            throws DatabaseException {
-	    Session session = sessionFactory.openSession();
+    public void updateStandard(Standard standard) throws DatabaseException {
+        Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
+            if (0 == standard.getClassCoordinator().getTeacherId()) 
+            {
+            	standard.setClassCoordinator(null);
+            }
             session.update(standard);
-            transaction.commit();                                                                    
+            
+            transaction.commit();                                                                   
         } catch (HibernateException e) {
-              throw new DatabaseException("Please check the data you have given..." , e);  
+        	e.printStackTrace();
+              throw new DatabaseException("Please check the data you have given..." , e); 
        } finally {
-             session.close(); 
+             session.close();
        }
     }
     

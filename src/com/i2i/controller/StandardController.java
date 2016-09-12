@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.i2i.exception.DatabaseException;
 import com.i2i.model.Standard;
+import com.i2i.model.Teacher;
 import com.i2i.service.StandardService;
 import com.i2i.service.TeacherService;
 
@@ -26,13 +27,12 @@ import com.i2i.service.TeacherService;
  * @created 2015-08-27
  * 
  */
-
 @Controller
 public class StandardController {
 	StandardService standardService = new StandardService();
 	TeacherService teacherService = new TeacherService();
-	
-	/**
+    	
+    /**
 	 * Sends the object of class Standard and the list of teachers by invoking
 	 * the TeacherService method to the JSP Page
 	 * 
@@ -43,19 +43,18 @@ public class StandardController {
 	 */
 	@RequestMapping(value = "/Standard", method=RequestMethod.GET) 
     public String addStandard(ModelMap model) {
-		try {
-            model.addAttribute("Standard", new Standard());	
-            model.addAttribute("teachers",teacherService.getTeachers());
-            return "Standard";
-		}
-		catch (DatabaseException e) {
-			String message = e.getMessage().toString();
-			model.addAttribute("addMessage", message);
-			return "Standard";
-		}
-    }   
-    
-	/**
+	    model.addAttribute("Standard", new Standard());
+	    try {       
+			
+		    List<Standard> standards = standardService.getStandards();
+            model.addAttribute("standards", standardService.getStandards());           
+        } catch (DatabaseException e) {
+      	    model.addAttribute("displayMessage", e.getMessage());                                                                  
+        } 
+		return "Standard";
+    }  
+	
+    /**
 	 * Gets the details of the standard from JSP Page as an object of standard class
 	 * and invokes the StandardService method to add the add the standard details
 	 * 
@@ -63,18 +62,27 @@ public class StandardController {
 	 *     object of Standard class
 	 * @return
 	 */
-    @RequestMapping(value = "/addStandard", method=RequestMethod.POST) 
-    public ModelAndView addStandard(@ModelAttribute("Standard") Standard standard) {
-        String message = null;  
+	@RequestMapping(value = "/addStandard", method=RequestMethod.POST) 
+        public ModelAndView addStandard(@ModelAttribute("Standard") Standard standard) {
+        
+        ModelAndView modelView = new ModelAndView(); 
+        modelView.setViewName("Standard");
+        
+        try {   
+        	try {                                                                         
+                List<Standard> standards = standardService.getStandards();
 
-        try {  
+                modelView.addObject("standards", standardService.getStandards());                                          
+            } catch (DatabaseException e) {
+            	modelView.addObject("displayMessage", e.getMessage());                                                                      
+            }        	
+        	standardService.addStandard(standard);
+        	modelView.addObject("addMessage", "Standard is added successfully");  
         	
-            standardService.addStandard(standard);                                        
-            message = "Standard is added successfully";            
-        }  catch (DatabaseException ex) {        	
-            message = ex.getMessage().toString();                         
+        }  catch (DatabaseException ex) {  
+        	modelView.addObject("addMessage", ex.getMessage().toString());                                    
         } 
-        return new ModelAndView("Standard","addMessage", message);       
+        return modelView;       
     }
 
     /**
@@ -88,14 +96,12 @@ public class StandardController {
     	
         try {                                                                         
             List<Standard> standards = standardService.getStandards();
-
-            return new ModelAndView("DisplayStandards","standards", standards);                                           
-        } catch (DatabaseException e) {
-        	
-            return new ModelAndView("DisplayStandards","displayMessage", e.getMessage());                                                       
+            return new ModelAndView("Standard","standards", standards);                                           
+        } catch (DatabaseException e) {        	
+            return new ModelAndView("Standard","displayMessage", e.getMessage());                                                       
         } 
     }
-
+    
     /**
      * Deletes the standard record by passing the id of the standard
      * 
@@ -137,73 +143,38 @@ public class StandardController {
         modelView.addObject("Standard", new Standard());
         try {       	
         	modelView.addObject("searchStandard", standardService.getStandardById(standardId));        	                                          
-        } catch (DatabaseException e) {
-        	
+        } catch (DatabaseException e) {        	
         	modelView.addObject("searchMessage", e.getMessage());             
         }
         return modelView; 
     }
     
-    /**
-     * Edits the details of the standard using it's id
-     * 
-     * @param id
-     *     id of standard entered by the user
-     * @param model
-     *     ModelMap object to send the standard object to the JSP page
-     * @return EditStandard
-     *     JSP Page where user can make changes to the various attributes of the standard
-     * @throws ServletException
-     *     when a servlet related problem occurs.
-     * @throws IOException
-     *     if there is failed or interrupted input output operations.
-     */
-    /*@RequestMapping(value = "/editStandardById", method = RequestMethod.POST)
-    public String editStandardForm(@RequestParam("id") String id, ModelMap model) throws ServletException, IOException {
-    	 try {
-    		 //checks if the standard id is number
-    		 if (!isNumber(id)) {
-    			 model.addAttribute("Message", "ID must be a number");
-    			 return "EditStandardById";
-    		 }
-             model.addAttribute("Standard", standardService.getStandardById(Integer.parseInt(id)));
-             return "EditStandard";
-    	 } catch (DatabaseException e) {
-    		 model.addAttribute("Message", e.getMessage().toString());
-    		 return "EditStandard";
-    	 }
-    }
+    @RequestMapping(value = "/Coordinator", method=RequestMethod.GET) 
+    public ModelAndView Coordinator(@RequestParam("standardId") int standardId) {        
+        ModelAndView modelView = new ModelAndView();    	  	
+        modelView.setViewName("EditCoordinator"); 
+        try {  
+        	modelView.addObject("teachers", teacherService.getTeachers());
+        	modelView.addObject("Standard", standardService.getStandardById(standardId));            	     	                                          
+        } catch (DatabaseException e) {        	
+           	modelView.addObject("message", e.getMessage());             
+        }
+        return modelView;         
+    }    
     
-    /**
-     * <p>
-     * Edits the standard details by sending the standard model object details to the assigned JSP page.
-     * Invokes the StandardService method to update the changes.
-     * </p>
-     * 
-     * @param standard
-     *     Object of Standard class    
-     * @param message
-     *     Status message
-     * @return EditStandard
-     *     JSP Page for editing standard details
-     * @throws IOException
-     *     if there is failed or interrupted input output operations.
-     * @throws ServletException
-     *     when a servlet related problem occurs.
-     */
-    /*@RequestMapping(value = "/editStandard", method = RequestMethod.POST)
-    public String editStandard(@ModelAttribute("Standard") Standard standard, ModelMap message
-                            ) throws IOException, ServletException {  
-        try {
-        	standardService.editStandard(standard);      
-            message.addAttribute("Message", "Standard Edited Successfully");
-            return "EditStandard";
-    	} catch (DatabaseException e) {
-    		  message.addAttribute("Message", (e.getMessage().toString()));
-    		  return "EditStandard";
-    	}
-    }
-    
+    @RequestMapping(value = "/editCoordinator", method=RequestMethod.POST) 
+    public ModelAndView assignCoordinator(@ModelAttribute("Standard") Standard standard) {        
+        ModelAndView modelView = new ModelAndView();    	  	
+                  
+        modelView.setViewName("EditCoordinator"); 
+        try {  
+            standardService.editStandard(standard);      	                                          
+        } catch (DatabaseException e) {        	
+           	modelView.addObject("message", e.getMessage());             
+        }                                             
+        return modelView;         
+    }  
+
     /**
      * Checks if the given input is a number
      *  
@@ -219,4 +190,6 @@ public class StandardController {
         }
         return true;
     }*/
+        
+   
 }

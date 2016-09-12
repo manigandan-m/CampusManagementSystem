@@ -37,49 +37,24 @@ public class StudentDao {
      *     if there is an error in getting the object like HibernateException
      *     
      */
-    public void insertStudent(Student student, User user) throws DatabaseException {
+    public void insertStudent(Student student, User user, Standard standard) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {  
-            student.setUser(user);
+        	student.setStandard(standard);
+        	student.setUser(user);
             session.save(student);            
-            transaction.commit();
+            transaction.commit(); 
             
             
         } catch (HibernateException e) {   
-            e.printStackTrace();
+        	e.printStackTrace();
             throw new DatabaseException("Entered student is not added. Student ID already exits..", e);
         } finally {
             session.close();
         }                                                                         
-    }
+    }  
     
-    /**
-     * The user model object that is created is assigned to the student model object.
-     * It is done by allocating the userId to the student model object by passing the id of user and id of student
-     * 
-     * @param studentId
-     *     id of the student to which the user id must be assigned
-     * @param userId
-     *     id of the user to be assigned to student model object
-     * @throws DatabaseException
-     *     if there is an error in getting the object like HibernateException
-     */
-    /*public void insertUserToStudent(int studentId, int userId) throws DatabaseException {
-    	Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        try {      	
-            Student student = (Student) session.get(Student.class, studentId);
-    	    User user = (User) session.get(User.class, userId);
-            student.setUser(user);
-            session.update(user);            
-            transaction.commit();  
-        } catch (HibernateException e) { 
-    	      throw new DatabaseException("Entered student is not added to user. ..", e);
-        } finally {
-              session.close();
-        }  
-    }*/ 
     
     /**
      * Retrieves the student object by passing id of the student

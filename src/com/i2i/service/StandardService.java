@@ -67,9 +67,8 @@ public class StandardService {
      *     NumberFormatException
      */
     
-    public void editStandard(Standard standard)
-            throws DatabaseException {
-	    standardDao.editStandard(standard);
+    public void editStandard(Standard standard) throws DatabaseException {
+        standardDao.updateStandard(standard);
     }
     
     /**

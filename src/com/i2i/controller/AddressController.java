@@ -32,7 +32,8 @@ import com.i2i.service.UserService;
 public class AddressController {
     UserService userService = new UserService();
     AddressService addressService = new AddressService();
-   
+    StandardService standardService = new StandardService();
+    
     /**
      * The method gets the address details from the JSP page and passes it as an object of Address class
      * It gets the object of User class by passing the id of user in the UserService class method.
@@ -46,25 +47,31 @@ public class AddressController {
      *     if the role of the user is teacher it returns the JSP Page where user can enter teacher details
      *     if the role of the user is student it returns the JSP Page where user can enter student details
      */
-    @RequestMapping(value ="/addAddress", method=RequestMethod.POST)
-    public String addAddress(@ModelAttribute("Address") Address address, ModelMap map) {          
-        try {           
-           int userId = address.getUser().getUserId();
-            User user = userService.getUserById(userId);
+    @RequestMapping(value = "/addAddress", method=RequestMethod.POST) 
+    public ModelAndView addAddress(@ModelAttribute("Address") Address address) {           
+        ModelAndView modelView = new ModelAndView();
+        
+        try {        	
+            int userId = address.getUser().getUserId();
+            User user = userService.searchUser(userId);
             addressService.addAddress(address, user);
-            map.addAttribute("userId", userId);
-            if((user.getRole().getRoleName()).equals("student")) {
-                map.addAttribute("Student", new Student());
-                return "StudentInformation";
-               
+            modelView.addObject("userId", userId);
+           
+            if(user.getRole().getRoleName().equals("student")) { 
+                modelView.setViewName("StudentInformation");
+                modelView.addObject("Student", new Student());                
+				modelView.addObject("standards", standardService.getStandards());                
             } else if (user.getRole().getRoleName().equals("teacher")){
-                map.addAttribute("Teacher", new Teacher());
-                return "AddTeacher";
-            }      
+            	modelView.setViewName("TeacherInformation");
+            	modelView.addObject("Teacher", new Teacher());
+                
+            }            
         }  catch (DatabaseException ex) {
-            map.addAttribute("message", ex.getMessage().toString());   
-        }
-        return "Address"; 
+        	
+        	modelView.setViewName("Address");
+            modelView.addObject("message", ex.getMessage().toString());                                    
+        } 
+        return modelView;       
     } 
    
     /**

@@ -15,16 +15,6 @@ import javax.persistence.JoinColumn;
 
 import com.i2i.model.User;
 
-/**
- * Model class for Teacher
- * Setter and Getter methods for the class variables
- * Mapping is done by annotation
- * 
- * @author Zeeshan Ali
- * 
- * @created 2015-08-27
- */
-
 @Entity
 @Table(name= "teacher")
 public class Teacher {
@@ -53,9 +43,12 @@ public class Teacher {
 	
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id") 
+        @JoinColumn(name = "user_id") 
 	@LazyCollection(LazyCollectionOption.FALSE)
-    private User user;	
+        private User user;	
+	
+	@OneToOne(mappedBy = "classCoordinator")
+	private Standard standardOfCoordinator;
 	
 	public int getTeacherId() {
 		return teacherId;
@@ -122,6 +115,13 @@ public class Teacher {
 		this.designation = designation;
 	}
 	
+	public Standard getstandardOfCoordinator() {
+		return standardOfCoordinator;
+	}
+	
+	public void setStandardOfCoordinator(Standard standardOfCoordinator) {
+		standardOfCoordinator = standardOfCoordinator;
+	}
     public Teacher() {
 		
 	}

@@ -51,18 +51,21 @@ public class StudentController  {
      *     object of Student class
      * @return
      */
-    @RequestMapping(value = "/addStudent", method=RequestMethod.POST)
+    @RequestMapping(value = "/addStudent", method=RequestMethod.POST) 
     public ModelAndView addStudent(@ModelAttribute("Student") Student student) {
         String message = null;    
-        try {  
-            int userId = student.getUser().getUserId();
-            System.out.println("User ID" +userId);
-            User user = userService.getUserById(userId);
-            studentService.addStudent(student, user);                                        
+
+        try {        	
+        	int userId = student.getUser().getUserId();
+        	int standardId = student.getStandard().getStandardId();
+            User user = userService.searchUser(userId);
+            Standard standard = standardService.searchStandard(standardId);
+        	
+            studentService.addStudent(student, user, standard);                                        
             message = "Student is added successfully";            
-        }  catch (DatabaseException ex) {            
+        }  catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
-        }
+        } 
         return new ModelAndView("StudentInformation","addMessage", message);       
     }
 
