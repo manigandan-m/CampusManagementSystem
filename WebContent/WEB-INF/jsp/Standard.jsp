@@ -14,7 +14,7 @@
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="http://www.freshdesignweb.com" target="_blank">Home</a>
+                <a href="AddStandard.html">Add Standard</a>
                 <span class="right">
                     <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
                         <strong>Back to the freshdesignweb Article</strong>
@@ -24,24 +24,52 @@
             </div><!--/ freshdesignweb top bar -->
 			<header>
 				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
-            </header>       
+            </header>    
+               
       <div class="form">
-    		<form:form id="contactform" action="addStandard.html" method="POST" modelAttribute="Standard"> 
-    			<p class="contact"><label for="standardName" path = "label1">Standard Name</label></p> 
-    			<form:input path="standardName" placeholder="Standard Name" required="" tabindex="1" type="text"/>
+      
+      
+      <c:if test="${null != standards}">
+	    <table border="2">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Standard Name</th>
+                        <th>Coordinator Name</th>                        
+                    </tr>
+                </thead>		
+                <tbody>
+                
+            <c:forEach items="${standards}" var="standard">
+                <tr>
+                    <td><c:out value="${standard.getStandardId()}" /></td>    
+                    <td><c:out value="${standard.getStandardName()}" /></td> 
+                    <c:choose>
+    <c:when test="${null != standard.getClassCoordinator()}">
+       <td><c:out value="${standard.getClassCoordinator().getUser().getFirstName()}  ${standard.getClassCoordinator().getUser().getLastName()}" /></td>       
+    </c:when>
+    <c:otherwise>
+        <td>Not Assigned</td> 
+    </c:otherwise>
+</c:choose>
 
-                        <form:select class="select-style gender" path="classCoordinator.teacherId">
-	                     <option value="select">Class Teacher</option>
-                    	<c:forEach items="${teachers}" var="teacher">
-                        <form:option value="${teacher.teacherId}">${teacher.getUser().getFirstName()}  ${teacher.getUser().getLastName()}</form:option>
-                        </c:forEach>
-                        </form:select><br><br>
-                  <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
-               </form:form>
-   <c:if test="${null != addMessage}">
-                    <c:out value="${addMessage}"/>
-                 </c:if> 
+                                  
+                    
+                    <td><a  href="Coordinator.html?standardId=${standard.getStandardId()}">Assign / Unassign / Change Coordinator</a></td>
+                </tr>
+            </c:forEach>
+              
+        </tbody>
+    </table>
+	  </c:if> 
+	  
+	   <c:if test="${null != displaymesage}">
+              <c:out value="${displayMessage}"/>
+          </c:if> 
+	  
+    		
 </div>
+
 </div>
 </body>
 </html>

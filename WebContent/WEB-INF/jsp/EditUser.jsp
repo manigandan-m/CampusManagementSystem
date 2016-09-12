@@ -70,13 +70,16 @@
 
                         <p class="contact"><label for="mobileNumber" path = "label1">Mobile Number</label></p> 
     			<form:input path="mobileNumber" placeholder="Mobile Nunber" required="" tabindex="1" type="text"/>
+    			
+    			<form:select class="select-style gender" path="role.roleId">
+                <option value="select"> Role </option>
+                <c:forEach items="${roleList}" var="userRole">
+                <option value="${userRole.roleId}">${userRole.roleName}</option>
+                </c:forEach>
+               </form:select><br><br>
              
-                        <form:select class="select-style gender" path="role.roleId">
-	                     <option value="select"> Role </option>
-                    	<c:forEach items="${roleList}" var="userRole">
-                        <form:option value="${userRole.roleId}">${userRole.roleName}</form:option>
-                        </c:forEach>
-                        </form:select><br><br>
+                        
+                        
             <form:input type = "hidden" path = "userId" value="${userId}"/>
             <input class="buttom" name="submit" id="submit" tabindex="5" value="Edit" type="submit"> 	 
    </form:form>

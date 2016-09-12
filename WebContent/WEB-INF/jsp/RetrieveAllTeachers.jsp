@@ -31,32 +31,43 @@
     }
     </style>
     </head>
-    <center>
+    <div align = "center">
         <body>
-            <h3>Employee List Details</h3> 
+            <h3>Teacher List Details</h3> 
+            <c:if test="${null != teachers}">
 	    <table border="2">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>User ID</th>
-                        <th>Years of Experience</th>
-                        <th>Months Of Experience</th>
+                        <th>User Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Designation</th>
+                        <th>Coordinator Standard</th>
                     </tr>
                 </thead>		
                 <tbody>
                 
             <c:forEach items="${teachers}" var="teacher">
                 <tr>
-                    <td><c:out value="${teacher.getTeacherId()}" /></td>
-                    <td><c:out value="${teacher.getUser()}" /></td>
-                    <td><c:out value="${teacher.getYearsOfExperience()}" /></td>
-                    <td><c:out value="${teacher.getMonthsOfExperience()}" /></td>
+                    <td><c:out value="${teacher.getTeacherId()}" /></td>                    
+                    <td><c:out value="${teacher.getUser().getUsername()}" /></td>
+                    <td><c:out value="${teacher.getUser().getFirstName()}" /></td>
+                    <td><c:out value="${teacher.getUser().getLastName()}" /></td>
+                    <td><c:out value="${teacher.getDesignation()}" /></td>
+                    <td><c:out value="${teacher.getstandardOfCoordinator().getStandardName()}" /></td>
+                    <td><a  href="teacherEdit.html">Edit</a></td>
+                    <td><a  href="deleteTeacher.html?teacherId=${teacher.getTeacherId()}">Delete</a></td>
+                     <td><a  href="viewTeacher.html?teacherId=${teacher.getTeacherId()}">View</a></td>
                 </tr>
             </c:forEach>
-            
+              
         </tbody>
     </table>
-	   
+	  </c:if> 
+	   <c:if test="${null != mesage}">
+              <c:out value="${message}"/>
+          </c:if> 
             <br/><br/>
 	    <b>Go to main page </b><a href="EmployeeOperation" style="font-sise:18px"> Click here</a>
 	    <br/><br/>
@@ -69,5 +80,5 @@
             <td>${displayMessage}</td>
         </c:if>
         </body>
-    </center>
+    </div>
 </html>

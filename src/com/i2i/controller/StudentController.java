@@ -9,8 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.i2i.exception.DatabaseException;
+import com.i2i.service.StandardService;
 import com.i2i.service.StudentService;
 import com.i2i.service.UserService;
+import com.i2i.model.Standard;
 import com.i2i.model.Student;
 import com.i2i.model.User;
 
@@ -29,6 +31,7 @@ import com.i2i.model.User;
 public class StudentController  {
     StudentService studentService = new StudentService();
     UserService userService = new UserService();
+    StandardService standardService = new StandardService();
     
     /**
      * Sends the object of Student class to the JSP Page where details of the student can be entered
@@ -58,8 +61,9 @@ public class StudentController  {
         try {        	
         	int userId = student.getUser().getUserId();
         	int standardId = student.getStandard().getStandardId();
-            User user = userService.searchUser(userId);
-            Standard standard = standardService.searchStandard(standardId);
+            User user = userService.getUserById(userId);
+            
+			Standard standard = standardService.getStandardById(standardId);
         	
             studentService.addStudent(student, user, standard);                                        
             message = "Student is added successfully";            

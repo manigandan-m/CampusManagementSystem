@@ -14,6 +14,7 @@ import com.i2i.model.Student;
 import com.i2i.model.Teacher;
 import com.i2i.model.User;
 import com.i2i.service.AddressService;
+import com.i2i.service.StandardService;
 import com.i2i.service.UserService;
 
 /**
@@ -47,13 +48,37 @@ public class AddressController {
      *     if the role of the user is teacher it returns the JSP Page where user can enter teacher details
      *     if the role of the user is student it returns the JSP Page where user can enter student details
      */
-    @RequestMapping(value = "/addAddress", method=RequestMethod.POST) 
+    
+    @RequestMapping(value ="/addAddress", method=RequestMethod.POST)
+    public String addAddress(@ModelAttribute("Address") Address address, ModelMap map) {         
+        try {          
+           int userId = address.getUser().getUserId();
+            User user = userService.getUserById(userId);
+            addressService.addAddress(address, user);
+            map.addAttribute("userId", userId);
+            if((user.getRole().getRoleName()).equals("student")) {
+                map.addAttribute("Student", new Student());
+                map.addAttribute("standards", standardService.getStandards());
+                return "StudentInformation";
+              
+            } else if (user.getRole().getRoleName().equals("teacher")){
+                map.addAttribute("Teacher", new Teacher());
+                
+                return "AddTeacher";
+            }     
+        }  catch (DatabaseException ex) {
+            map.addAttribute("message", ex.getMessage().toString());  
+        }
+        return "Address";
+    }
+    
+    /*@RequestMapping(value = "/addAddress", method=RequestMethod.POST) 
     public ModelAndView addAddress(@ModelAttribute("Address") Address address) {           
         ModelAndView modelView = new ModelAndView();
         
         try {        	
             int userId = address.getUser().getUserId();
-            User user = userService.searchUser(userId);
+            User user = userService.getUserById(userId);
             addressService.addAddress(address, user);
             modelView.addObject("userId", userId);
            
@@ -72,7 +97,7 @@ public class AddressController {
             modelView.addObject("message", ex.getMessage().toString());                                    
         } 
         return modelView;       
-    } 
+    } */
    
     /**
      * It displays all the addresses by invoking the AddressService class method.

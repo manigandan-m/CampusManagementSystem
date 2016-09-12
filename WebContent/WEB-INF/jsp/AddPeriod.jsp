@@ -26,27 +26,27 @@
 	                
 	                <label id = "label1">Day of period</label>
 	                <form:select path = "dayOfPeriod">
-	                    <form:option value="Monday"/>
-                        <form:option value="Tuesday"/>
-                        <form:option value="Wednesday"/>
-                        <form:option value="Thursday"/>
-                        <form:option value="Friday"/>                         
+	                    <option value="Monday"/>
+                        <option value="Tuesday"/>
+                        <option value="Wednesday"/>
+                        <option value="Thursday"/>
+                        <option value="Friday"/>                         
                     </form:select><br></br>		
 	                
 	                <label id = "label1">Start Time of period:</label>
 	                <form:select path = "startTimeOfPeriod">
-                        <form:option value="08:00"/>
-                        <form:option value="09:00"/>
-                        <form:option value="10:00"/>
-                        <form:option value="11:00"/>                         
+                        <option value="08:00"/>
+                        <option value="09:00"/>
+                        <option value="10:00"/>
+                        <option value="11:00"/>                         
                     </form:select><br></br>	                
                     
                     <label id = "label1">End Time of period:</label>
 	                <form:select path = "endTimeOfPeriod">
-                        <form:option value="09:00"/>
-                        <form:option value="10:00"/>
-                        <form:option value="11:00"/>
-                        <form:option value="12:00"/>                         
+                        <option value="09:00"/>
+                        <option value="10:00"/>
+                        <option value="11:00"/>
+                        <option value="12:00"/>                         
                     </form:select><br></br>	 
                     
 	                <input type="submit" value="Add" /><br>	                       

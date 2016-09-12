@@ -43,7 +43,7 @@ public class StandardController {
 	 */
 	@RequestMapping(value = "/Standard", method=RequestMethod.GET) 
     public String addStandard(ModelMap model) {
-	    model.addAttribute("Standard", new Standard());
+	    
 	    try {       
 			
 		    List<Standard> standards = standardService.getStandards();
@@ -54,6 +54,11 @@ public class StandardController {
 		return "Standard";
     }  
 	
+	@RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 
+    public String newStandard(ModelMap model) {
+	    model.addAttribute("Standard", new Standard());	 
+		return "AddStandard";
+    }  
     /**
 	 * Gets the details of the standard from JSP Page as an object of standard class
 	 * and invokes the StandardService method to add the add the standard details
@@ -66,7 +71,7 @@ public class StandardController {
         public ModelAndView addStandard(@ModelAttribute("Standard") Standard standard) {
         
         ModelAndView modelView = new ModelAndView(); 
-        modelView.setViewName("Standard");
+        modelView.setViewName("AddStandard");
         
         try {   
         	try {                                                                         

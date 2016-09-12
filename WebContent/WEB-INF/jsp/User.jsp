@@ -67,7 +67,7 @@
                         <form:select class="select-style gender" path="role.roleId">
 	                     <option value="select"> Role </option>
                     	<c:forEach items="${roleList}" var="userRole">
-                        <form:option value="${userRole.roleId}">${userRole.roleName}</form:option>
+                        <option value="${userRole.roleId}">${userRole.roleName}</option>
                         </c:forEach>
                         </form:select><br><br>
             

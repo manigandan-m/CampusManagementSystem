@@ -36,14 +36,14 @@
                         <form:select class="select-style gender" path="standard.standardId">
 	                     <option value="select">Standard</option>
                     	<c:forEach items="${standards}" var="standard">
-                        <form:option value="${standard.standardId}">${standard.standardName}</form:option>
+                        <option value="${standard.standardId}">${standard.standardName}</option>
                         </c:forEach>
                         </form:select><br><br>
                         
                         <form:select class="select-style gender" path="teacher.teacherId">
 	                     <option value="select">Subject Teacher</option>
                     	<c:forEach items="${teachers}" var="teacher">
-                        <form:option value="${teacher.teacherId}">${teacher.getUser().getFirstName()}  ${teacher.getUser().getLastName()}</form:option>
+                        <option value="${teacher.teacherId}">${teacher.getUser().getFirstName()}  ${teacher.getUser().getLastName()}</option>
                         </c:forEach>
                         </form:select><br><br>
             

@@ -52,7 +52,18 @@
                         <option value="SC">SC</option>
                         <option value="ST">ST</option>
                         </form:select><br><br> 
-
+                        
+                        <label id = "label1">Standard Name:</label>           
+	                
+                    
+                        <form:select path="standard.standardId">
+                        <option value="select">select</option>
+                        
+                        <c:forEach items="${standards}" var="standard">
+                        <option value="${standard.standardId}">${standard.getStandardName()}</option>
+                        </c:forEach>
+                        </form:select><br><br>  
+                        
                         <form:input type = "hidden" path = "user.userId" value="${userId}"/>
                         
                        <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 

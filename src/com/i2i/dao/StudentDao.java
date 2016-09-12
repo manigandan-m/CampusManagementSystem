@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
+import com.i2i.model.Standard;
 import com.i2i.model.Student;
 import com.i2i.model.User;
 import com.i2i.exception.DatabaseException;
@@ -113,8 +114,7 @@ public class StudentDao {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
-    public void editStudent(Student student)
-            throws DatabaseException {
+    public void editStudent(Student student) throws DatabaseException {
 	    Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
