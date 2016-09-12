@@ -88,5 +88,4 @@ public class PeriodSubjectDetail {
 	public Standard getStandard() {
 		return standard;
 	}
-
 }

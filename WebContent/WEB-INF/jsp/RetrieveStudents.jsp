@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<%-- <c:if test="${sessionScope['id']==null}" >
-   <c:redirect url="Login.jsp"/>
+<%-- <c:if test="${sessionScope['username']==null}" >
+   <c:redirect url="Login.html"/>
 </c:if>
 <c:if test="${sessionScope['role']!='admin'}" >
-     <% response.sendRedirect("employeeById?id="+session.getAttribute("id")); %>
-</c:if>--%>
+     <c:redirect url="Logout.html"/>
+</c:if>--%>     
 <!DOCTYPE html>
 <html >
   <head>

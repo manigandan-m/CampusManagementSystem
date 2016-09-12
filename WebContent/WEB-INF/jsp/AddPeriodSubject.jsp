@@ -1,11 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <c:if test="${sessionScope['username']==null}" >
-   <c:redirect url="Login.html"/>
-</c:if>
-<c:if test="${sessionScope['role']!='admin'}" >
-     <c:redirect url="Logout.html"/>
-</c:if>--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,35 +25,27 @@
 			<header>
 				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
             </header>       
-      <div class="form">
-    		<form:form id="contactform" action="addSubject.html" method="POST" modelAttribute="Subject"> 
-    			<p class="contact"><label for="subjectCode" path = "label1">Subject Code</label></p> 
-    			<form:input path="subjectCode" placeholder="Subject Code" required="" tabindex="1" type="text"/>
-
-                        <p class="contact"><label for="subjectName" path = "label1">Subject Name</label><p> 
-    			<form:input path="subjectName" placeholder="Subject Name" required="" tabindex="1" type="text"/>
-
-                        <form:select class="select-style gender" path="standard.standardId">
-	                     <option value="select">Standard</option>
-                    	<c:forEach items="${standards}" var="standard">
-                        <option value="${standard.standardId}">${standard.standardName}</option>
+      <div  class="form">
+          <form:form id="contactform" action="addPeriodSubject.html" method="POST" modelAttribute="PeriodSubjectDetail">
+          <form:select class="select-style gender" path="period.periodId">
+	                     <option value="select"> Role </option>
+                    	<c:forEach items="${periodList}" var="period">
+                        <form:option value="${period.periodId}">${period.dayOfPeriod} ${period.startTimeOfPeriod} ${period.endTimeOfPeriod} </form:option>
                         </c:forEach>
                         </form:select><br><br>
                         
-                        <form:select class="select-style gender" path="teacher.teacherId">
-	                     <option value="select">Subject Teacher</option>
-                    	<c:forEach items="${teachers}" var="teacher">
-                        <option value="${teacher.teacherId}">${teacher.getUser().getFirstName()}  ${teacher.getUser().getLastName()}</option>
+           <form:select class="select-style gender" path="subject.subjectCode">
+	                     <option value="select"> Subject </option>
+                    	<c:forEach items="${subjectList}" var="subject">
+                        <form:option value="${subject.subjectCode}">${subject.subjectName} ${subject.getStandard.getStandardName()} ${subject.getTeacher().getUser().getFirstName()} ${subject.getTeacher().getUser().getLastName()} </form:option>
                         </c:forEach>
                         </form:select><br><br>
-            
-            <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
+         <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
    </form:form>
    <c:if test="${null != addMessage}">
                     <c:out value="${addMessage}"/>
                  </c:if> 
 </div>
 </div>
-
 </body>
-</html>
+</html>             

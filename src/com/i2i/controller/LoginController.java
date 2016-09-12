@@ -68,6 +68,6 @@ public class LoginController {
     public String logout(HttpSession session) {
     	session.setAttribute("username", null);
 	    session.removeAttribute("username");
-	    return "Login";
+	    return "redirect:index.jsp";
     }
 }
