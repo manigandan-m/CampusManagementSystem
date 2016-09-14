@@ -61,6 +61,18 @@ public class AddressService {
     	return addressDao.retrieveAddresses();
     }
     
+    /**
+     * It returns the object of Address class by passing the id of address
+     * Invokes the AddressDao method to get the address object
+     * 
+     * @param addressId
+     *     ID of address passed as argument to get the address object
+     * @return
+     *     object of Address class
+     * @throws DatabaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException
+     */
     public Address getAddressById(int addressId) throws DatabaseException {
         return (addressDao.retrieveAddressById(addressId));        
     }

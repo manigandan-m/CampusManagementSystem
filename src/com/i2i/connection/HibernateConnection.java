@@ -1,6 +1,3 @@
-// Copyright (C) 2016 EmployeeProjectManagement, Inc.
-// All rights reserved
-
 package com.i2i.connection;
 
 import org.hibernate.SessionFactory;
@@ -40,7 +37,6 @@ public class HibernateConnection {
     public static HibernateConnection createObject() {
         if (null == hibernateConnection) {
             hibernateConnection = new HibernateConnection(); 
-            System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
         }
         return hibernateConnection;       
     }
@@ -56,14 +52,11 @@ public class HibernateConnection {
     public SessionFactory getConnection() {
        if (null == sessionFactory) {
            try {
-        	   System.out.println("session factory null");
-               sessionFactory = new AnnotationConfiguration().configure("CampusManagement.cfg.xml").buildSessionFactory();  
-               System.out.println("session factory created");
+        	   sessionFactory = new AnnotationConfiguration().configure("CampusManagement.cfg.xml").buildSessionFactory();  
            } catch (Exception e) {
                System.err.println(e.getMessage());
            }
        } 
-       System.out.println("68877888888888888888888888888888888888888888888888");
        return sessionFactory;       
     }
 } 

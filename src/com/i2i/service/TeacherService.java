@@ -44,7 +44,7 @@ public class TeacherService {
      *     NumberFormatException
      */
     public Teacher getTeacherById(int id) throws DatabaseException {
-        return (teacherDao.findTeacherById(id));        
+    	return (teacherDao.findTeacherById(id));        
     }
     
     /**

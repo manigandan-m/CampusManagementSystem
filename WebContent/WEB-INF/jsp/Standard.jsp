@@ -22,14 +22,14 @@
             <div class="freshdesignweb-top">
                 <a href="AddStandard.html">Add Standard</a>
                 <span class="right">
-                    <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
-                        <strong>Back to the freshdesignweb Article</strong>
+                    <a href="Logout.html">
+                        <strong>Logout</strong>
                     </a>
                 </span>
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>
-				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+				<h1>Standard Details</h1>
             </header>    
                
       <div class="form">

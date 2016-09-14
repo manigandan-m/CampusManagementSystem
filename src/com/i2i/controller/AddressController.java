@@ -52,7 +52,7 @@ public class AddressController {
     @RequestMapping(value ="/addAddress", method=RequestMethod.POST)
     public String addAddress(@ModelAttribute("Address") Address address, ModelMap map) {         
         try {          
-           int userId = address.getUser().getUserId();
+            int userId = address.getUser().getUserId();
             User user = userService.getUserById(userId);
             addressService.addAddress(address, user);
             map.addAttribute("userId", userId);
@@ -60,45 +60,16 @@ public class AddressController {
                 map.addAttribute("Student", new Student());
                 map.addAttribute("standards", standardService.getStandards());
                 return "StudentInformation";
-              
             } else if (user.getRole().getRoleName().equals("teacher")){
-                map.addAttribute("Teacher", new Teacher());
-                
-                return "AddTeacher";
+                  map.addAttribute("Teacher", new Teacher());
+                  return "AddTeacher";
             }     
-        }  catch (DatabaseException ex) {
+        } catch (DatabaseException ex) {
             map.addAttribute("message", ex.getMessage().toString());  
         }
         return "Address";
     }
     
-    /*@RequestMapping(value = "/addAddress", method=RequestMethod.POST) 
-    public ModelAndView addAddress(@ModelAttribute("Address") Address address) {           
-        ModelAndView modelView = new ModelAndView();
-        
-        try {        	
-            int userId = address.getUser().getUserId();
-            User user = userService.getUserById(userId);
-            addressService.addAddress(address, user);
-            modelView.addObject("userId", userId);
-           
-            if(user.getRole().getRoleName().equals("student")) { 
-                modelView.setViewName("StudentInformation");
-                modelView.addObject("Student", new Student());                
-				modelView.addObject("standards", standardService.getStandards());                
-            } else if (user.getRole().getRoleName().equals("teacher")){
-            	modelView.setViewName("TeacherInformation");
-            	modelView.addObject("Teacher", new Teacher());
-                
-            }            
-        }  catch (DatabaseException ex) {
-        	
-        	modelView.setViewName("Address");
-            modelView.addObject("message", ex.getMessage().toString());                                    
-        } 
-        return modelView;       
-    } */
-   
     /**
      * It displays all the addresses by invoking the AddressService class method.
      * It sends the list of the address to the JSP Page by using ModelAndView object
@@ -111,7 +82,7 @@ public class AddressController {
     	try {                                                                         
             return new ModelAndView("DisplayAddresses","addresses", addressService.getAddresses());                                           
         } catch (DatabaseException e) {
-              return new ModelAndView("DisplayAddresses","displayMessage", e.getMessage());                                                       
+            return new ModelAndView("DisplayAddresses","displayMessage", e.getMessage());                                                       
         } 
     }
     
@@ -164,18 +135,8 @@ public class AddressController {
             message.addAttribute("Message", "Address Edited Successfully");
             return "EditAddress";
     	} catch (DatabaseException e) {
-    		  message.addAttribute("Message", (e.getMessage().toString()));
-    		  return "EditAddress";
+    		message.addAttribute("Message", (e.getMessage().toString()));
+    		return "EditAddress";
     	}
     }
-    
-    /*
-    private static boolean isNumber(String value) {
-        try {
-            Long.parseLong(value);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }*/
 }

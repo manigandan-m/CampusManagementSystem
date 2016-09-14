@@ -20,20 +20,19 @@
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="home.html">Home</a>
+                <a href="http://www.freshdesignweb.com" target="_blank">Home</a>
                 <span class="right">
-                    <a href="Logout.html">
-                        <strong>Logout</strong>
+                    <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
+                        <strong>Back to the freshdesignweb Article</strong>
                     </a>
                 </span>
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>
-				<h1>Edit Student</h1>
+				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
             </header>       
       <div  class="form">
-            <c:if test="${student != null}">
-    		<form:form id="contactform" action="editStudent.html" method="POST" modelAttribute="Student"> 
+    		<form:form id="contactform" action="addStudent.html" method="POST" modelAttribute="Student"> 
     			<p class="contact"><label for="fatherFirstName" path = "label1">Father First Name</label></p> 
     			<form:input path="fatherFirstName" placeholder="Father First Name" required="" tabindex="1" type="text"/>
 
@@ -59,16 +58,27 @@
                         <option value="SC">SC</option>
                         <option value="ST">ST</option>
                         </form:select><br><br> 
-                        <form:input type = "hidden" path = "studentId" value="${studentId}"/>
+                        
+                        <label id = "label1">Standard Name:</label>           
+	                
+                    
+                        <form:select path="standard.standardId">
+                        <option value="select">select</option>
+                        
+                        <c:forEach items="${standards}" var="standard">
+                        <option value="${standard.standardId}">${standard.getStandardName()}</option>
+                        </c:forEach>
+                        </form:select><br><br>  
+                        
                         <form:input type = "hidden" path = "user.userId" value="${userId}"/>
                         
-                       <input class="buttom" name="submit" id="submit" tabindex="5" value="Edit" type="submit"> 	 
+                       <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
                 </form:form>
-                </c:if>
-   <c:if test="${null != Message}">
-                    <c:out value="${Message}"/>
+   <c:if test="${null != addMessage}">
+                    <c:out value="${addMessage}"/>
                  </c:if> 
 </div>
 </div>
+
 </body>
 </html>

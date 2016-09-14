@@ -21,7 +21,7 @@
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>
-				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+				<h1>Login</h1>
             </header>       
       <div  class="form">
     		<form id="contactform" action = "login.html" method="POST"> 

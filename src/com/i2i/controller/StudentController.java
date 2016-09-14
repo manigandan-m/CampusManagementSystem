@@ -34,18 +34,6 @@ public class StudentController  {
     StandardService standardService = new StandardService();
     
     /**
-     * Sends the object of Student class to the JSP Page where details of the student can be entered
-     * @param model
-     *     passes the object of Student class by using the addAttribute
-     * @return
-     */
-    @RequestMapping(value = "/StudentInformation", method=RequestMethod.GET) 
-    public String addTeacherForm(ModelMap model) {
-        model.addAttribute("Student", new Student());	 
-        return "StudentInformation";
-    }
-    
-    /**
      * Gets the student details from the JSP Page and passes it as an object of Student class.
      * It gets the userId and invokes the UserService method to get the corresponding user object.
      * It invokes the StudentService method and sends the user and student object for adding student details
@@ -57,20 +45,15 @@ public class StudentController  {
     @RequestMapping(value = "/addStudent", method=RequestMethod.POST) 
     public ModelAndView addStudent(@ModelAttribute("Student") Student student) {
         String message = null;    
-
         try {        	
-        	int userId = student.getUser().getUserId();
-        	int standardId = student.getStandard().getStandardId();
-            User user = userService.getUserById(userId);
-            
-			Standard standard = standardService.getStandardById(standardId);
-        	
-            studentService.addStudent(student, user, standard);                                        
+            User user = userService.getUserById(student.getUser().getUserId());
+            Standard standard = standardService.getStandardById(student.getStandard().getStandardId());
+        	studentService.addStudent(student, user, standard);                                        
             message = "Student is added successfully";            
-        }  catch (DatabaseException ex) {        	
+        } catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
         } 
-        return new ModelAndView("StudentInformation","addMessage", message);       
+        return new ModelAndView("AddStudent","addMessage", message);       
     }
 
     /**
@@ -86,11 +69,10 @@ public class StudentController  {
     public ModelAndView viewStudent(@RequestParam("rollNumber") int studentId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("SearchStudent");
-       
         try {          
             modelView.addObject("searchStudent", studentService.getStudentById(studentId));                                                     
         } catch (DatabaseException e) {
-              modelView.addObject("searchMessage", e.getMessage());            
+            modelView.addObject("searchMessage", e.getMessage());            
         }
         return modelView;
     }
@@ -107,8 +89,7 @@ public class StudentController  {
     	try {                                                                         
             return new ModelAndView("RetrieveStudents","students", studentService.getStudents());                                           
         } catch (DatabaseException e) {
-        	
-            return new ModelAndView("RetrieveStudents","displayMessage", e.getMessage());                                                       
+              return new ModelAndView("RetrieveStudents","displayMessage", e.getMessage());                                                       
         } 
     }
 
@@ -123,12 +104,9 @@ public class StudentController  {
     @RequestMapping(value = "/deleteStudent", method=RequestMethod.GET)
     public ModelAndView deleteStudent(@RequestParam("rollNumber") int studentId) {       
         ModelAndView modelView = new ModelAndView();
-                 
         try {                                                          
             studentService.removeStudentById(studentId);
-                                         
         } catch (DatabaseException e) {
-           
             modelView.addObject("deleteMessage", e.getMessage());                                   
         }
         return displayStudents();        
@@ -149,7 +127,7 @@ public class StudentController  {
     	try {
     		Student student = studentService.getStudentById(studentId);
     		map.addAttribute("student",student);
-    	} catch(DatabaseException e) {
+    	} catch (DatabaseException e) {
     		map.addAttribute("Message",e.getMessage().toString());
     	}
     	return "EditStudentDetails";
@@ -172,7 +150,6 @@ public class StudentController  {
     @RequestMapping(value = "/editStudentById", method = RequestMethod.POST)
     public String editStudentForm(@RequestParam("rollNumber") int rollNumber, ModelMap model) {
     	 try {
-    		 //checks if the student id is number
     		 model.addAttribute("Student", studentService.getStudentById(rollNumber));
              return "EditStudent";
     	 } catch (DatabaseException e) {
@@ -205,18 +182,8 @@ public class StudentController  {
             message.addAttribute("Message", "Student Edited Successfully");
             return "EditStudent";
     	} catch (DatabaseException e) {
-    		  message.addAttribute("Message", (e.getMessage().toString()));
-    		  return "EditStudent";
+    		message.addAttribute("Message", (e.getMessage().toString()));
+    		return "EditStudent";
     	}
     }
-    
-    /*
-    private static boolean isNumber(String value) {
-        try {
-            Long.parseLong(value);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }*/
 }
