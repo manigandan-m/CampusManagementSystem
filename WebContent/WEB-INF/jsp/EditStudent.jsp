@@ -1,11 +1,11 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <c:if test="${sessionScope['username']==null}" >
+<c:if test="${sessionScope['username']==null}" >
    <c:redirect url="Login.html"/>
 </c:if>
 <c:if test="${sessionScope['role']!='admin'}" >
      <c:redirect url="Logout.html"/>
-</c:if>--%>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
