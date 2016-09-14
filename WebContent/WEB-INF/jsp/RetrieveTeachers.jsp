@@ -74,11 +74,11 @@
         </c:if>
 
 <div  class="form">
-       <form:form id="contactform" action="searchTeacher.html" method="GET">
+       <form id="contactform" action="viewTeacher.html" method="GET">
            <p class="contact"><label for="teacherId" path = "label1">Enter Teacher ID To Search</label></p> 
     	  <input name="teacherId" placeholder="Teacher ID" required="" tabindex="1" type="text"/>
           <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">
-          </form:form>
+          </form>
 </div>
 <!-- follow me template -->
 

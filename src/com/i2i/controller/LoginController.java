@@ -78,7 +78,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/home")
 	String homePage() {
-		return "redirect:home.jsp";
+		return "home";
 	}
 	
 	/**

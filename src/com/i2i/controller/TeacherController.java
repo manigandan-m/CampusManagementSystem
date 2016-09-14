@@ -35,18 +35,6 @@ public class TeacherController {
 	UserService userService = new UserService();
     
 	/**
-     * Sends the object of Teacher class to the JSP Page where details of the teacher can be entered
-     * @param model
-     *     passes the object of Teacher class by using the addAttribute
-     * @return
-     */   
-    @RequestMapping(value = "/addTeacher", method=RequestMethod.GET) 
-    public String addTeacherForm(ModelMap model) {
-        model.addAttribute("Teacher", new Teacher());	 
-        return "AddTeacher";
-    }       
-    
-    /**
      * Gets the teacher details from the JSP Page and passes it as an object of Teacher class.
      * It gets the userId and invokes the UserService method to get the corresponding user object.
      * It invokes the TeacherService method and sends the user and teacher object for adding teacher details
@@ -82,13 +70,13 @@ public class TeacherController {
     public ModelAndView viewTeacher(@RequestParam("teacherId") int teacherId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("SearchTeacher");
-        try {          
-            modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));                                                     
+        try {
+        	modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));                                                     
         } catch (DatabaseException e) {
             modelView.addObject("searchMessage", e.getMessage());            
         }
         return modelView;
-    }   
+    }
     
     /**
      * It displays all the teachers by invoking the TeacherService class method.

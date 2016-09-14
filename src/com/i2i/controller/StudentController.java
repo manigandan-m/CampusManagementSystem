@@ -34,18 +34,6 @@ public class StudentController  {
     StandardService standardService = new StandardService();
     
     /**
-     * Sends the object of Student class to the JSP Page where details of the student can be entered
-     * @param model
-     *     passes the object of Student class by using the addAttribute
-     * @return
-     */
-    @RequestMapping(value = "/StudentInformation", method=RequestMethod.GET) 
-    public String addTeacherForm(ModelMap model) {
-        model.addAttribute("Student", new Student());	 
-        return "StudentInformation";
-    }
-    
-    /**
      * Gets the student details from the JSP Page and passes it as an object of Student class.
      * It gets the userId and invokes the UserService method to get the corresponding user object.
      * It invokes the StudentService method and sends the user and student object for adding student details
@@ -65,7 +53,7 @@ public class StudentController  {
         } catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
         } 
-        return new ModelAndView("StudentInformation","addMessage", message);       
+        return new ModelAndView("AddStudent","addMessage", message);       
     }
 
     /**

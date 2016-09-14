@@ -64,14 +64,14 @@ public class TeacherDao {
 	public Teacher findTeacherById(int id) throws DatabaseException {        
 	    Session session = sessionFactory.openSession();        
 	    Teacher teacher = null; 
-	    try {                           
-	        teacher = (Teacher) session.get(Teacher.class, id);            
+	    try {
+	    	teacher = (Teacher) session.get(Teacher.class, id);            
 	        if (teacher == null) {
 	            throw new DatabaseException("Invalid student Id");
-	        }                     
+	        } 
 	        return teacher;
-	    } catch (HibernateException e) {                        
-	            throw new DatabaseException("Entered teacher is not found. Kindly try again with vaild input data", e);
+	    } catch (HibernateException e) { 
+	    	    throw new DatabaseException("Entered teacher is not found. Kindly try again with vaild input data", e);
 	    } finally {
 	          session.close();
 	    }                          

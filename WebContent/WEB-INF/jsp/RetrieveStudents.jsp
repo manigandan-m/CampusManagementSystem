@@ -70,11 +70,11 @@
 </div>
 </section>
 <div  class="form">
-       <form:form id="contactform" action="searchStudent.html" method="GET">
-           <p class="contact"><label for="studentId" path = "label1">Enter Student ID To Search</label></p> 
-    	  <input name="studentId" placeholder="Student ID" required="" tabindex="1" type="text"/>
+       <form id="contactform" action="viewStudent.html" method="GET">
+           <p class="contact"><label for="rollNumber" path = "label1">Enter Student ID To Search</label></p> 
+    	  <input name="rollNumber" placeholder="Student ID" required="" tabindex="1" type="text"/>
           <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">
-          </form:form>
+          </form>
 </div>
  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
