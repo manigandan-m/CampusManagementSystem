@@ -3,7 +3,9 @@ package com.i2i.service;
 import java.util.List;
 
 import com.i2i.dao.SubjectDao;
+import com.i2i.model.Standard;
 import com.i2i.model.Subject;
+import com.i2i.model.Teacher;
 import com.i2i.exception.DatabaseException;
 /**
  * <p>
@@ -16,6 +18,7 @@ import com.i2i.exception.DatabaseException;
  */
 public class SubjectService {
 	SubjectDao subjectDao = new SubjectDao();
+	TeacherService teacherService = new TeacherService();
     
 	 /**
      * Calls the SubjectDao class method to add the subject to the database by passing the Subject class object
@@ -85,5 +88,18 @@ public class SubjectService {
      */
     public List<Subject> getSubjects() throws DatabaseException {
         return (subjectDao.retrieveSubjects());
+    }
+    
+    public void allotTeacher(Subject subject) throws DatabaseException {
+    	Teacher teacher = null;
+    	
+    	Subject allocateSubject = getSubjectBySubjectCode(subject.getSubjectCode());
+    	int teacherId = subject.getTeacher().getTeacherId();
+    	System.out.println(teacherId);
+    	if (0 != teacherId) 
+        {
+        	teacher = teacherService.getTeacherById(teacherId);        	
+        }
+        subjectDao.updateSubjectByTeacher(allocateSubject, teacher);
     }
 }

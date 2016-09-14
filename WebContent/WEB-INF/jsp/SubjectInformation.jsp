@@ -16,11 +16,11 @@
     <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
 </head>
-<body>
+   <body>
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="http://www.freshdesignweb.com" target="_blank">Home</a>
+                
                 <span class="right">
                     <a href="http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.html">
                         <strong>Back to the freshdesignweb Article</strong>
@@ -30,36 +30,44 @@
             </div><!--/ freshdesignweb top bar -->
 			<header>
 				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
-            </header>       
+            </header>    
+               
       <div class="form">
-    		<form:form id="contactform" action="addSubject.html" method="POST" modelAttribute="Subject"> 
-    			<p class="contact"><label for="subjectCode" path = "label1">Subject Code</label></p> 
-    			<form:input path="subjectCode" placeholder="Subject Code" required="" tabindex="1" type="text"/>
-
-                        <p class="contact"><label for="subjectName" path = "label1">Subject Name</label><p> 
-    			<form:input path="subjectName" placeholder="Subject Name" required="" tabindex="1" type="text"/>
-
-                        <form:select class="select-style gender" path="standard.standardId">
-	                     <option value="select">Standard</option>
-                    	<c:forEach items="${standards}" var="standard">
-                        <option value="${standard.standardId}">${standard.standardName}</option>
-                        </c:forEach>
-                        </form:select><br><br>
-                        
-                        <form:select class="select-style gender" path="teacher.teacherId">
-	                     <option value="select">Subject Teacher</option>
-                    	<c:forEach items="${teachers}" var="teacher">
-                        <option value="${teacher.teacherId}">${teacher.getUser().getFirstName()}  ${teacher.getUser().getLastName()}</option>
-                        </c:forEach>
-                        </form:select><br><br>
-            
-            <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
-   </form:form>
-   <c:if test="${null != addMessage}">
-                    <c:out value="${addMessage}"/>
-                 </c:if> 
+      
+      
+      <c:if test="${null != subjects}">
+	    <table border="2">
+                <thead>
+                    <tr>
+                        <th>ID</th>                        
+                        <th>Subject Code</th>
+                        <th>Subject Name</th>                                              
+                        <th>Standard Name</th>                        
+                    </tr>
+                </thead>		
+                <tbody>
+                
+            <c:forEach items="${subjects}" var="subject">
+                <tr>
+                    <td><c:out value="${subject.getSubjectCode()}" /></td>    
+                    <td><c:out value="${subject.getSubjectName()}" /></td> 
+                    <td><c:out value="${subject.getStandard().getStandardName()}" /></td>  
+                    
+                    <td><a  href="editTeacher.html?subjectId=${subject.getSubjectCode()}">Allocate / Deallocate / Change Teacher</a></td>
+                </tr>
+            </c:forEach>
+              
+        </tbody>
+    </table>
+	  </c:if> 
+	  
+	   <c:if test="${null != displaymesage}">
+              <c:out value="${displayMessage}"/>
+          </c:if> 
+	  
+    		
 </div>
-</div>
 
+</div>
 </body>
 </html>

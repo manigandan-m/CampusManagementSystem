@@ -42,7 +42,16 @@
                         <option value="Standard XI">Standard V</option>
                         <option value="Standard XII">Standard IV</option>                        
                     </form:select>                              
-	                                  
+	                     
+	                   <c:forEach items="${Standard.subjects}" var="subject" varStatus="status">
+	                   <p><label> Enter Subject Code :</label>
+	                         <form:input path="subjects[${status.index}].subjectCode" placeholder="Enter Subject Code" required="" tabindex="1" type="text"/>
+	                      <label> Enter Subject Name:</label>   
+	                         <form:input path="subjects[${status.index}].subjectName" placeholder="Enter Subject Name" required="" tabindex="1" type="text"/>
+	                   </p>          
+	                     </c:forEach>
+ 	            
+    			       
 	                
 	                <br>
 	                <input type="submit" value="Add" /><br>	                       

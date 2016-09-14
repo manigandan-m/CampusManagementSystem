@@ -8,7 +8,9 @@ import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
 import com.i2i.exception.DatabaseException;
+import com.i2i.model.Standard;
 import com.i2i.model.Subject;
+import com.i2i.model.Teacher;
 import com.i2i.connection.HibernateConnection;
 
 /**
@@ -147,6 +149,23 @@ public class SubjectDao {
         } finally {
             session.close();
         }                      
+    }
+    
+    
+    public void updateSubjectByTeacher(Subject subject, Teacher teacher) throws DatabaseException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            subject.setTeacher(teacher);            
+            session.update(subject);            
+            transaction.commit();                                                                   
+        } catch (HibernateException e) {
+        	e.printStackTrace();
+              throw new DatabaseException("Please check the data you have given..." , e); 
+       } finally {
+             session.close();
+       }
     }
 
 }

@@ -41,6 +41,16 @@
                     <tr>
                         <th>ID</th>
                         <th>Standard Name</th>
+                        <th>Subject 1 Code</th>
+                        <th>Subject 1 Name</th>
+                        <th>Subject 2 Code</th>
+                        <th>Subject 2 Name</th>
+                        <th>Subject 3 Code</th>
+                        <th>Subject 3 Name</th>
+                        <th>Subject 4 Code</th>
+                        <th>Subject 4 Name</th>
+                        <th>Subject 5 Code</th>
+                        <th>Subject 5 Name</th>                        
                         <th>Coordinator Name</th>                        
                     </tr>
                 </thead>		
@@ -50,9 +60,13 @@
                 <tr>
                     <td><c:out value="${standard.getStandardId()}" /></td>    
                     <td><c:out value="${standard.getStandardName()}" /></td> 
+                    <c:forEach items="${standard.getSubjects()}" var="subject">
+                        <td><c:out value="${subject.getSubjectCode()}" /></td>
+                        <td><c:out value="${subject.getSubjectName()}" /></td>  
+                    </c:forEach>
                     <c:choose>
     <c:when test="${null != standard.getClassCoordinator()}">
-       <td><c:out value="${standard.getClassCoordinator().getUser().getFirstName()}  ${standard.getClassCoordinator().getUser().getLastName()}" /></td>       
+       <td><c:out value="${standard.getClassCoordinator().getUser().getFirstName()} ${standard.getClassCoordinator().getUser().getLastName()}" /></td>       
     </c:when>
     <c:otherwise>
         <td>Not Assigned</td> 

@@ -15,6 +15,7 @@ import com.i2i.model.Standard;
 import com.i2i.model.Teacher;
 import com.i2i.service.StandardService;
 import com.i2i.service.TeacherService;
+import com.i2i.model.Subject;
 
 /**
  * Controller to perform add, update, delete, retrieve, retrieve all operations using model class Standard
@@ -46,7 +47,9 @@ public class StandardController {
 	    
 	    try {       
 			
-		    List<Standard> standards = standardService.getStandards();
+		    //List<Standard> standards = standardService.getStandards();
+		    //Standard standard = standards.get(0);
+		    //System.out.println(standard.getStandardName());
             model.addAttribute("standards", standardService.getStandards());           
         } catch (DatabaseException e) {
       	    model.addAttribute("displayMessage", e.getMessage());                                                                  
@@ -56,7 +59,13 @@ public class StandardController {
 	
 	@RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 
     public String newStandard(ModelMap model) {
-	    model.addAttribute("Standard", new Standard());	 
+	    Standard standard = new Standard();
+	    standard.addSubject(new Subject());
+	    standard.addSubject(new Subject());
+	    standard.addSubject(new Subject());
+	    standard.addSubject(new Subject());
+	    standard.addSubject(new Subject());
+	    model.addAttribute("Standard", standard);
 		return "AddStandard";
     }  
     /**
@@ -72,7 +81,7 @@ public class StandardController {
         
         ModelAndView modelView = new ModelAndView(); 
         modelView.setViewName("AddStandard");
-        
+
         try {   
         	try {                                                                         
                 List<Standard> standards = standardService.getStandards();

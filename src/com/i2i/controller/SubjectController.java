@@ -12,6 +12,7 @@ import com.i2i.exception.DatabaseException;
 import com.i2i.service.StandardService;
 import com.i2i.service.SubjectService;
 import com.i2i.service.TeacherService;
+import com.i2i.model.Standard;
 import com.i2i.model.Subject;
 
 /**
@@ -40,12 +41,9 @@ public class SubjectController {
 	 *     JSP Page where user can add the subject details
 	 */
     @RequestMapping(value = "/SubjectInformation", method=RequestMethod.GET) 
-    public String addSubject(ModelMap model) {
-    	String message = null;
-        model.addAttribute("Subject", new Subject());
-        try {
-        model.addAttribute("standardList", standardService.getStandards());
-        model.addAttribute("teacherList", teacherService.getTeachers());
+    public String Subjects(ModelMap model) {
+    	try {
+        model.addAttribute("subjects", subjectService.getSubjects());        
         } catch (DatabaseException e) {
         }
         return "SubjectInformation";
@@ -136,6 +134,33 @@ public class SubjectController {
         } 
         return modelView;         
     }
+    
+    @RequestMapping(value = "/editTeacher", method=RequestMethod.GET) 
+    public ModelAndView Coordinator(@RequestParam("subjectId") String subjectId) {        
+        ModelAndView modelView = new ModelAndView();    	  	
+        modelView.setViewName("AllocateTeacher"); 
+        try {  
+        	modelView.addObject("teachers", teacherService.getTeachers());
+        	modelView.addObject("Subject", subjectService.getSubjectBySubjectCode(subjectId));            	     	                                          
+        } catch (DatabaseException e) {        	
+           	modelView.addObject("message", e.getMessage());             
+        }
+        return modelView;         
+    }    
+    
+    @RequestMapping(value = "/allocateTeacher", method=RequestMethod.POST) 
+    public ModelAndView assignTeacher(@ModelAttribute("Subject") Subject subject) {        
+        ModelAndView modelView = new ModelAndView();    	  	
+                  
+        modelView.setViewName("AllocateTeacher"); 
+        
+        try {  
+            subjectService.allotTeacher(subject);      	                                          
+        } catch (DatabaseException e) {        	
+           	modelView.addObject("message", e.getMessage());             
+        }                                             
+        return modelView;         
+    }  
     
     /**
      * Edits the details of the employee using it's subjectCode

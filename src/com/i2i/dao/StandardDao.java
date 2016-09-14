@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
 import com.i2i.model.Standard;
+import com.i2i.model.Subject;
 import com.i2i.exception.DatabaseException;
 import com.i2i.connection.HibernateConnection;
 
@@ -39,7 +40,15 @@ public class StandardDao {
     	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {     	
-            session.save(standard);           
+        	standard.getSubjects().get(0).setStandard(standard);
+            standard.getSubjects().get(1).setStandard(standard);
+            standard.getSubjects().get(2).setStandard(standard);
+            standard.getSubjects().get(3).setStandard(standard);
+            standard.getSubjects().get(4).setStandard(standard);
+            session.save(standard);
+            
+            //int standardId = (Integer)session.save(standard); 
+            
             transaction.commit();
             
         } catch (HibernateException e) {

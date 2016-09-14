@@ -43,9 +43,9 @@ public class Teacher {
 	
 	
 	@OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "user_id") 
+    @JoinColumn(name = "user_id") 
 	@LazyCollection(LazyCollectionOption.FALSE)
-        private User user;	
+    private User user;	
 	
 	@OneToOne(mappedBy = "classCoordinator")
 	private Standard standardOfCoordinator;
