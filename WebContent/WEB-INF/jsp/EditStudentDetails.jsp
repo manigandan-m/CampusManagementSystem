@@ -7,12 +7,30 @@
 </c:if>
 <c:if test="${sessionScope['role']!='admin'}" >
      <c:redirect url="Logout.html"/>
-</c:if>--%>    
+</c:if>--%>        
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+ a:link, a:visited {
+    background-color:#6ef10e;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: red;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+<%-- <link rel="stylesheet" type="text/css" href="css/style3.css" media="all" />--%>
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
 </head>
 <body>
 <div class="container">
@@ -27,14 +45,14 @@
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>
-				<h1>Edit Student Details</h1>
+				<h1>Edit Teacher Details</h1>
             </header>
-            </div> 
 <c:if test="${null != student}">
+<center>
 <a  href="editUserById.html?userId=${student.getUser().getUserId()}">Edit User Details</a>
 <a  href="editAddressById.html?addressId=${student.getUser().getAddress().getAddressId()}">Edit Address Details</a>
 <a  href="editStudent.html?rollNumber=${student.getRollNumber()}">Edit Student Details</a>
-</c:if>
+</center></c:if>
 <c:if test="${null != Message}">
                 <c:out value="${Message}"/>
             </c:if>
