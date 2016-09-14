@@ -19,12 +19,33 @@ import com.i2i.model.User;
 public class LoginController {
 	UserService userService = new UserService();
 	
+	/**
+	 * Returns the login page where user can enter it's login credentials to login 
+	 * @return
+	 */
 	@RequestMapping("/Login")
 	public String loginPage() {
 		return "Login";
 	}
 	
-	
+	/**
+	 * Checks if the user logging in exists and redirects it to another page based on it's role
+	 * 
+	 * @param username
+	 *     username of the user
+	 * @param password
+	 *     password of the user
+	 * @param session
+	 *     HttpSession object
+	 * @return
+	 *     returns home JSP page if the user is an admin
+	 *     returns the teacher JSP page if the user is a teacher
+	 *     returns the student JSP page if the user is a student
+	 * @throws IOException
+	 *     if there is failed or interrupted input output operations.
+	 * @throws ServletException
+	 *     when a servlet related problem occurs.
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginCheck(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws  IOException, ServletException {
     	try {
@@ -34,8 +55,7 @@ public class LoginController {
                 if(role.getRoleName().equals("admin")) {
                 	session.setAttribute("username", username);
                 	session.setAttribute("role",role);
-                	System.out.println("admin");
-                    return "home";
+                	return "home";
                 } else if (role.getRoleName().equals("teacher")) {
                 	session.setAttribute("username", username);
                 	session.setAttribute("role",role);
@@ -47,12 +67,15 @@ public class LoginController {
     	        }
     	    }
     	} catch (DatabaseException e) {
-    		e.printStackTrace();
     		return "redirect:index.jsp";
     	}
     	return null;
     }
 	
+	/**
+	 * Returns to the home JSP Page
+	 * @return
+	 */
 	@RequestMapping("/home")
 	String homePage() {
 		return "redirect:home.jsp";

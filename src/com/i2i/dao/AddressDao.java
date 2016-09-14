@@ -42,10 +42,7 @@ public class AddressDao {
             address.setUser(user);
             session.save(address);           
             transaction.commit();
-           
-                           
         } catch (HibernateException e) {
-            System.out.println(e);
             throw new DatabaseException("Entered address is not added. ..", e);
         } finally {
             session.close();
@@ -93,7 +90,7 @@ public class AddressDao {
             session.update(address);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-              throw new DatabaseException("Please check the data you have given..." , e);  
+            throw new DatabaseException("Please check the data you have given..." , e);  
        } finally {
              session.close(); 
        }
@@ -120,7 +117,6 @@ public class AddressDao {
              transaction.commit();
              return address;
          } catch (HibernateException e) {
-             System.out.println("Exception : " +e);
              throw new DatabaseException("Check address ID, please enter different id", e);  
          } finally {
              session.close();

@@ -1,7 +1,6 @@
 package com.i2i.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 
@@ -60,11 +59,10 @@ public class TeacherController {
     public ModelAndView addTeacher(@ModelAttribute("Teacher") Teacher teacher) {
         String message = null;    
         try {      
-           int userId = teacher.getUser().getUserId();
-            User user = userService.getUserById(userId);          
+            User user = userService.getUserById(teacher.getUser().getUserId());          
             teacherService.addTeacher(teacher, user);                                       
             message = "Teacher is added successfully";            
-        }  catch (DatabaseException ex) {            
+        } catch (DatabaseException ex) {            
             message = ex.getMessage().toString();                         
         }
         return new ModelAndView("AddTeacher","addMessage", message);       
@@ -84,11 +82,9 @@ public class TeacherController {
     public ModelAndView viewTeacher(@RequestParam("teacherId") int teacherId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("SearchTeacher");
-       
         try {          
             modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));                                                     
         } catch (DatabaseException e) {
-           
             modelView.addObject("searchMessage", e.getMessage());            
         }
         return modelView;
@@ -105,12 +101,9 @@ public class TeacherController {
     public ModelAndView displayTeachers() {
     	
         try {                                                                         
-            List<Teacher> teachers = teacherService.getTeachers();
-
-            return new ModelAndView("RetrieveTeachers","teachers", teachers);                                           
+            return new ModelAndView("RetrieveTeachers","teachers", teacherService.getTeachers());                                           
         } catch (DatabaseException e) {
-        	
-            return new ModelAndView("RetrieveTeachers","displayMessage", e.getMessage());                                                       
+        	return new ModelAndView("RetrieveTeachers","displayMessage", e.getMessage());                                                       
         } 
     }
     
@@ -128,7 +121,7 @@ public class TeacherController {
         try {                                                          
             teacherService.removeTeacherById(teacherId);
         } catch (DatabaseException e) {
-              modelView.addObject("deleteMessage", e.getMessage());                                   
+            modelView.addObject("deleteMessage", e.getMessage());                                   
         }
         return displayTeachers();        
     }
@@ -202,24 +195,8 @@ public class TeacherController {
             message.addAttribute("Message", "Teacher Edited Successfully");
             return "EditTeacher";
     	} catch (DatabaseException e) {
-    		  message.addAttribute("Message", (e.getMessage().toString()));
-    		  return "EditTeacher";
+    		message.addAttribute("Message", (e.getMessage().toString()));
+    		return "EditTeacher";
     	}
     }
-    
-    /**
-     * Checks if the given input is a number
-     *  
-     * @param value
-     *     the input given by the user
-     * @return
-     */
-    /*private static boolean isNumber(String value) {
-        try {
-            Long.parseLong(value);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }*/
 }

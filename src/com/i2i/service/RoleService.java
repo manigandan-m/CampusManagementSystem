@@ -70,8 +70,7 @@ public class RoleService {
      *     NumberFormatException
      */
     
-    public void editRole(Role role)
-            throws DatabaseException {
+    public void editRole(Role role) throws DatabaseException {
 	    roleDao.editRole(role);
     }
     
@@ -85,9 +84,6 @@ public class RoleService {
      *     NumberFormatException
      */
     public List<Role> getRoles() throws DatabaseException {
-    	for(Role role : roleDao.retrieveRoles()) {
-    		System.out.println(role);
-    	}
-        return (roleDao.retrieveRoles());
+    	return (roleDao.retrieveRoles());
     }
 }

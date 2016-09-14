@@ -66,8 +66,7 @@ public class RoleDao {
             session.delete(role);
             transaction.commit();            
         } catch (IllegalArgumentException e) {      
-        	System.out.println(e);
-            throw new DatabaseException("Entered role is not deleted. Kindly try again with vaild user id", e);
+        	throw new DatabaseException("Entered role is not deleted. Kindly try again with vaild user id", e);
         } finally {
             session.close();
         }                            
@@ -118,7 +117,6 @@ public class RoleDao {
              transaction.commit();
              return role;
          } catch (HibernateException e) {
-             System.out.println("Exception : " +e);
              throw new DatabaseException("Check role ID, please enter different id", e);  
          } finally {
              session.close();
@@ -137,13 +135,10 @@ public class RoleDao {
     public List<Role> retrieveRoles() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         List<Role> roles = new ArrayList<Role>();        
-         
         try {
-        	System.out.println("In roledao");
         	roles = session.createQuery("FROM Role").list();
             if (roles.isEmpty()) {
-            	System.out.println("List is empty");
-                throw new DatabaseException("The role list is empty");
+            	throw new DatabaseException("The role list is empty");
             }            
             return roles;              
         } catch (HibernateException e) {            

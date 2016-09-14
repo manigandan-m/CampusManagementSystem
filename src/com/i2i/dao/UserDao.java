@@ -35,16 +35,13 @@ public class UserDao {
      *     
      */
     public int insertUser(User user) throws DatabaseException {
-        System.out.println("session");
         Session session = sessionFactory.openSession();
-        System.out.println("session created");
         Transaction transaction = session.beginTransaction();
         try {         
             int userId = (Integer)session.save(user);           
             transaction.commit();
             return userId;
         } catch (HibernateException e) {
-            System.out.println(e);
             throw new DatabaseException("Entered user is not added. User ID already exits..", e);
         } finally {
             session.close();
@@ -70,9 +67,7 @@ public class UserDao {
             }                     
             return users.get(0);
         } catch (HibernateException e) { 
-        	System.out.println(e);
-        	e.printStackTrace();
-            throw new DatabaseException("Entered user is not found. Kindly try again with vaild input data", e);
+        	throw new DatabaseException("Entered user is not found. Kindly try again with vaild input data", e);
         } finally {
             session.close();
         }                          
@@ -95,12 +90,10 @@ public class UserDao {
         try {                          
             user = (User) session.get(User.class, id);           
             if (user == null) {
-               
-                throw new DatabaseException("Invalid user Id");
+               throw new DatabaseException("Invalid user Id");
             }                    
             return user;
         } catch (HibernateException e) {
-            System.out.println(e);
             throw new DatabaseException("Entered user is not found. Kindly try again with vaild input data", e);
         } finally {
             session.close();
@@ -125,34 +118,13 @@ public class UserDao {
             session.update(user);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-        	System.out.println(e);
-              throw new DatabaseException("Please check the data you have given..." , e);  
+        	throw new DatabaseException("Please check the data you have given..." , e);  
        } finally {
              session.close(); 
        }
     }
     
-    /*public void insertAddressToUser(int addressId, int userId) throws DatabaseException {
-    	System.out.println("session");
-        Session session = sessionFactory.openSession();
-        System.out.println("session created");
-        Transaction transaction = session.beginTransaction();
-        try {       	
-       
-    	Address address = (Address) session.get(Address.class, addressId);
-    	User user = (User) session.get(User.class, userId);
-        user.setAddress(address);
-        session.update(user);            
-        transaction.commit();  
-    } catch (HibernateException e) { 
-    	System.out.println(e);
-        throw new DatabaseException("Entered address is not added to user. ..", e);
-    } finally {
-        session.close();
-    }  
-    }*/ 
-    
-   /**
+    /**
     * Retrieves  the list of users from the database
     *  
     * @return users

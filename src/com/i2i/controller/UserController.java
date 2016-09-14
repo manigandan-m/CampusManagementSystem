@@ -44,11 +44,10 @@ public class UserController {
     @RequestMapping(value = "/User", method=RequestMethod.GET) 
     public String addUser(ModelMap model) {
     	try { 
-        model.addAttribute("User", new User());	
-        model.addAttribute("roleList", roleService.getRoles());
-    	}  catch (DatabaseException ex) { 
-        	
-        	model.addAttribute("message", ex.getMessage().toString());                                    
+            model.addAttribute("User", new User());	
+            model.addAttribute("roleList", roleService.getRoles());
+    	} catch (DatabaseException ex) { 
+            model.addAttribute("message", ex.getMessage().toString());                                    
         } 
         return "User";
     }       
@@ -66,9 +65,8 @@ public class UserController {
     public ModelAndView addUser(@ModelAttribute("User") User user) {      
         ModelAndView modelView = new ModelAndView();        
         try {                                                     
-            int userId = userService.addUser(user);                      
             modelView.addObject("Address", new Address());
-            modelView.addObject("userId", userId);           
+            modelView.addObject("userId", userService.addUser(user));           
             modelView.setViewName("Address");         
         }  catch (DatabaseException ex) {
             modelView.setViewName("User");
@@ -88,14 +86,12 @@ public class UserController {
     @RequestMapping(value = "/searchUser", method=RequestMethod.GET)  
     public ModelAndView viewUser(@RequestParam("username") String username) {                
         ModelAndView modelView = new ModelAndView();
-        
         modelView.setViewName("User");
         modelView.addObject("User", new User());
         try {       	
-        	modelView.addObject("searchUser", userService.getUserByUsername(username));        	                                          
+            modelView.addObject("searchUser", userService.getUserByUsername(username));        	                                          
         } catch (DatabaseException e) {
-        	
-        	modelView.addObject("searchMessage", e.getMessage());             
+            modelView.addObject("searchMessage", e.getMessage());             
         }
         return modelView; 
     } 
@@ -111,14 +107,12 @@ public class UserController {
     @RequestMapping(value = "/searchUserById", method=RequestMethod.GET)  
     public ModelAndView viewUserById(@RequestParam("userId") int userId) {                
         ModelAndView modelView = new ModelAndView();
-        
         modelView.setViewName("User");
         modelView.addObject("User", new User());
         try {       	
-        	modelView.addObject("searchUser", userService.getUserById(userId));        	                                          
+            modelView.addObject("searchUser", userService.getUserById(userId));        	                                          
         } catch (DatabaseException e) {
-        	
-        	modelView.addObject("searchMessage", e.getMessage());             
+            modelView.addObject("searchMessage", e.getMessage());             
         }
         return modelView; 
     } 
@@ -137,12 +131,11 @@ public class UserController {
     @RequestMapping(value = "/editUserById", method = RequestMethod.GET)
     public String editUserForm(@RequestParam("userId") int id, ModelMap model) {
     	 try {
-    		 //checks if the user id is number
-    		 model.addAttribute("User", userService.getUserById(id));
+    	     model.addAttribute("User", userService.getUserById(id));
     		 model.addAttribute("roleList", roleService.getRoles());
              return "EditUser";
     	 } catch (DatabaseException e) {
-    		 model.addAttribute("Message", e.getMessage().toString());
+    	     model.addAttribute("Message", e.getMessage().toString());
     		 return "EditUser";
     	 }
     }
@@ -173,8 +166,8 @@ public class UserController {
             message.addAttribute("Message", "User Edited Successfully");
             return "EditUser";
     	} catch (DatabaseException e) {
-    		  message.addAttribute("Message", (e.getMessage().toString()));
-    		  return "EditUser";
+    	    message.addAttribute("Message", (e.getMessage().toString()));
+    		return "EditUser";
     	}
     }
     
@@ -189,7 +182,6 @@ public class UserController {
     	try {                                                                         
             return new ModelAndView("DisplayUsers","users", userService.getUsers());                                           
         } catch (DatabaseException e) {
-        	
             return new ModelAndView("DisplayUsers","displayMessage", e.getMessage());                                                       
         } 
     }

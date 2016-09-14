@@ -46,11 +46,8 @@ public class StudentDao {
         	student.setUser(user);
             session.save(student);            
             transaction.commit(); 
-            
-            
         } catch (HibernateException e) {   
-        	e.printStackTrace();
-            throw new DatabaseException("Entered student is not added. Student ID already exits..", e);
+        	throw new DatabaseException("Entered student is not added. Student ID already exits..", e);
         } finally {
             session.close();
         }                                                                         
