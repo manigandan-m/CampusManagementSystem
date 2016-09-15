@@ -1,7 +1,5 @@
 package com.i2i.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,6 +50,13 @@ public class StandardController {
 		return "RetrieveStandards";
     }  
 	
+	/**
+	 * Returns to the JSP Page with a list of subjects using standard model class method
+	 * 
+	 * @param model
+	 *     to add the the object of class Standard to the JSP Page using addAtribute method
+	 * @return
+	 */
 	@RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 
     public String newStandard(ModelMap model) {
 	    Standard standard = new Standard();
@@ -155,6 +160,18 @@ public class StandardController {
         return modelView; 
     }
     
+    /**
+     * <p>
+     * JSP Page where admin can assign a class teacher for a standard 
+     * Sends the list of teachers by invoking the class TeacherService method and the standard class object 
+     * to which class teacher should be assigned
+     * </p>
+     *  
+     * @param standardId
+     *     ID of standard
+     * @return
+     *     JSP Page where admin can assign the class coordinator to a class
+     */
     @RequestMapping(value = "/Coordinator", method=RequestMethod.GET) 
     public ModelAndView Coordinator(@RequestParam("standardId") int standardId) {        
         ModelAndView modelView = new ModelAndView();    	  	
@@ -168,6 +185,12 @@ public class StandardController {
         return modelView;         
     }    
     
+    /**
+     * Assigns a class coordinator to a standard by invoking the StandardService class method and passing the Standard class object 
+     * @param standard
+     *     object of class Standard
+     * @return
+     */
     @RequestMapping(value = "/editCoordinator", method=RequestMethod.POST) 
     public ModelAndView assignCoordinator(@ModelAttribute("Standard") Standard standard) {        
         ModelAndView modelView = new ModelAndView();    	  	

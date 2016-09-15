@@ -89,6 +89,20 @@ public class SubjectService {
         return (subjectDao.retrieveSubjects());
     }
     
+    /**
+     * <p>
+     * Used to allot teacher to a subject by passing the subject object
+     * Checks if the teacher object by invoking the TeacherService method by passing the teacherId
+     * Invokes the SubjectDao method to allot the teacher to the subject by passing the
+     *  objects of Subject class and Teacher class
+     *  </p>
+     *  
+     * @param subject
+     *     object of class Subject to which the teacher should be assigned
+     * @throws DatabaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException
+     */
     public void allotTeacher(Subject subject) throws DatabaseException {
     	Teacher teacher = null;
     	Subject allocateSubject = getSubjectBySubjectCode(subject.getSubjectCode());

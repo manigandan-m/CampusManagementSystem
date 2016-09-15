@@ -36,9 +36,11 @@ public class AddressController {
     StandardService standardService = new StandardService();
     
     /**
+     * <p>
      * The method gets the address details from the JSP page and passes it as an object of Address class
      * It gets the object of User class by passing the id of user in the UserService class method.
      * The id of the user is passed from the JSP Page. Depending on the role of the user, the user is redirected to the next JSP Page
+     * </p>
      * 
      * @param address
      *     object of class Address that contains the address details
@@ -59,7 +61,7 @@ public class AddressController {
             if((user.getRole().getRoleName()).equals("student")) {
                 map.addAttribute("Student", new Student());
                 map.addAttribute("standards", standardService.getStandards());
-                return "StudentInformation";
+                return "AddStandard";
             } else if (user.getRole().getRoleName().equals("teacher")){
                 map.addAttribute("Teacher", new Teacher());
                 return "AddTeacher";

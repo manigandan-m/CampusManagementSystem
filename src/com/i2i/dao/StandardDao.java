@@ -27,7 +27,8 @@ public class StandardDao {
     SessionFactory sessionFactory = hibernateConnection.getConnection();    
 
     /**
-     * Saves the standard model object to the database by passing it
+     * Saves the standard model object to the database by passing it. It also gets the list of subjects assigned to that
+     * standard and stores it as a list in the Standard class object 
      * 
      * @param standard
      *     model object of class Standard
