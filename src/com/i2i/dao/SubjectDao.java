@@ -150,7 +150,17 @@ public class SubjectDao {
         }                      
     }
     
-    
+    /**
+     * The method is used to assign a teacher to a subject by passing the objects of Subject and Teacher class
+     * 
+     * @param subject
+     *     object of class Subject
+     * @param teacher
+     *     object of class Teacher
+     * @throws DatabaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException, HibernateException
+     */
     public void updateSubjectByTeacher(Subject subject, Teacher teacher) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;

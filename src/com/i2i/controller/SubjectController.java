@@ -113,6 +113,14 @@ public class SubjectController {
         return modelView;         
     }
     
+    /**
+     * This method is used to assign a teacher to a subject. It is done by passing the id of subject
+     * It also sends the list of teachers by invoking the TeacherService method and also the object of Subject class
+     *  
+     * @param subjectId
+     *     ID of the subject
+     * @return
+     */
     @RequestMapping(value = "/assignTeacher", method=RequestMethod.GET) 
     public ModelAndView assignTeacherToSubjectForm(@RequestParam("subjectId") String subjectId) {        
         ModelAndView modelView = new ModelAndView();    	  	
@@ -126,6 +134,13 @@ public class SubjectController {
         return modelView;         
     }    
     
+    /**
+     * Allots the teacher to the subject by invoking the SubjectService class method and passing the object of Subject class 
+     * 
+     * @param subject
+     *     object of class Subject
+     * @return
+     */
     @RequestMapping(value = "/allocateTeacher", method=RequestMethod.POST) 
     public ModelAndView assignTeacherToSubject(@ModelAttribute("Subject") Subject subject) {        
         ModelAndView modelView = new ModelAndView();    	  	
@@ -137,64 +152,4 @@ public class SubjectController {
         }                                             
         return modelView;         
     }  
-    
-    /**
-     * Edits the details of the employee using it's subjectCode
-     * 
-     * @param subjectCode
-     *     code of the subject whose record should be edited
-     * @param model
-     *     ModelMap object to send the subject object to the JSP page
-     * @return EditSubject
-     *     JSP Page where user can make changes to the various attributes of the subject
-     * @throws ServletException
-     *     when a servlet related problem occurs.
-     * @throws IOException
-     *     if there is failed or interrupted input output operations.
-     */
-    /*@RequestMapping(value = "/editSubjectBySubjectCode", method = RequestMethod.POST)
-    public String editSubjectForm(@RequestParam("subjectCode") String subjectCode, ModelMap model) throws ServletException, IOException {
-    	 try {
-    		 //checks if the employee id is number
-    		 if (!isNumber(subjectCode)) {
-    			 model.addAttribute("Message", "ID must be a number");
-    			 return "editSubjectBySubjectCode";
-    		 }
-             model.addAttribute("Subject", subjectService.getSubjectBySubjectCode(Integer.parseInt(subjectCode)));
-             return "EditSubject";
-    	 } catch (DatabaseException e) {
-    		 model.addAttribute("Message", e.getMessage().toString());
-    		 return "EditSubject";
-    	 }
-    }
-    
-    /**
-     * <p>
-     * Edits the subject details by sending the subject model object details to the assigned JSP page.
-     * Invokes the SubjectService method to update the changes.
-     * </p>
-     * 
-     * @param subject
-     *     Object of Subject class    
-     * @param message
-     *     Status message
-     * @return EditSubject
-     *     JSP Page for editing subject details
-     * @throws IOException
-     *     if there is failed or interrupted input output operations.
-     * @throws ServletException
-     *     when a servlet related problem occurs.
-     */
-    /*@RequestMapping(value = "/editSubject", method = RequestMethod.POST)
-    public String editSubject(@ModelAttribute("Subject") Subject subject, ModelMap message
-                            ) throws IOException, ServletException {  
-        try {
-        	subjectService.editSubject(subject);      
-            message.addAttribute("Message", "Subject Edited Successfully");
-            return "EditSubject";
-    	} catch (DatabaseException e) {
-    		  message.addAttribute("Message", (e.getMessage().toString()));
-    		  return "EditSubject";
-    	}
-    }*/
 }
