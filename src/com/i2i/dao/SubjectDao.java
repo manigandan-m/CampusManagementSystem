@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
 import com.i2i.exception.DatabaseException;
-import com.i2i.model.Standard;
 import com.i2i.model.Subject;
 import com.i2i.model.Teacher;
 import com.i2i.connection.HibernateConnection;
@@ -167,5 +166,4 @@ public class SubjectDao {
              session.close();
        }
     }
-
 }

@@ -140,8 +140,6 @@ public class UserController {
     	 }
     }
     
-    
-    
     /**
      * <p>
      * Edits the user details by sending the user model object details to the assigned JSP page.

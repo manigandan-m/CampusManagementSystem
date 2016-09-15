@@ -39,7 +39,8 @@ body {
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="home.html">Home</a>
+                <a href="home.html">Home</a>&nbsp;&nbsp;
+                <a href="displayTeachers.html">Teachers</a>
                 <span class="right">
                     <a href="Logout.html">
                         <strong>Logout</strong>

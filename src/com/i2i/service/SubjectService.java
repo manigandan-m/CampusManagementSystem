@@ -3,7 +3,6 @@ package com.i2i.service;
 import java.util.List;
 
 import com.i2i.dao.SubjectDao;
-import com.i2i.model.Standard;
 import com.i2i.model.Subject;
 import com.i2i.model.Teacher;
 import com.i2i.exception.DatabaseException;
@@ -92,10 +91,8 @@ public class SubjectService {
     
     public void allotTeacher(Subject subject) throws DatabaseException {
     	Teacher teacher = null;
-    	
     	Subject allocateSubject = getSubjectBySubjectCode(subject.getSubjectCode());
     	int teacherId = subject.getTeacher().getTeacherId();
-    	System.out.println(teacherId);
     	if (0 != teacherId) 
         {
         	teacher = teacherService.getTeacherById(teacherId);        	

@@ -2,12 +2,8 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
@@ -21,7 +17,7 @@ import com.i2i.model.Standard;
  * Setter and Getter methods for the class variables
  * Mapping is done by annotation
  * 
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
  * @created 2015-08-27
  */

@@ -12,7 +12,6 @@ import com.i2i.exception.DatabaseException;
 import com.i2i.service.StandardService;
 import com.i2i.service.SubjectService;
 import com.i2i.service.TeacherService;
-import com.i2i.model.Standard;
 import com.i2i.model.Subject;
 
 /**
@@ -40,13 +39,13 @@ public class SubjectController {
 	 * @return
 	 *     JSP Page where user can add the subject details
 	 */
-    @RequestMapping(value = "/SubjectInformation", method=RequestMethod.GET) 
+    @RequestMapping(value = "/Subject", method=RequestMethod.GET) 
     public String Subjects(ModelMap model) {
     	try {
         model.addAttribute("subjects", subjectService.getSubjects());        
         } catch (DatabaseException e) {
         }
-        return "SubjectInformation";
+        return "RetrieveSubjects";
     }       
     
     /**
@@ -66,9 +65,8 @@ public class SubjectController {
             message = "Subject is added successfully";            
         }  catch (DatabaseException ex) {        	
             message = ex.getMessage().toString(); 
-            System.out.println(message);
         } 
-        return new ModelAndView("SubjectInformation","addMessage", message);       
+        return new ModelAndView("RetrieveSubjects","displayMessage", message);       
     }
 
     /**
@@ -83,32 +81,14 @@ public class SubjectController {
     @RequestMapping(value = "/searchSubject", method=RequestMethod.GET)  
     public ModelAndView viewSubject(@RequestParam("subjectCode") String subjectCode) {                
         ModelAndView modelView = new ModelAndView();
-        
         modelView.setViewName("SubjectInformation");
         modelView.addObject("Subject", new Subject());
         try {       	
         	modelView.addObject("searchSubject", subjectService.getSubjectBySubjectCode(subjectCode));        	                                          
         } catch (DatabaseException e) {
-        	
         	modelView.addObject("searchMessage", e.getMessage());             
         }
         return modelView; 
-    }
-
-    /**
-     * It displays all the subjects by invoking the SubjectService class method.
-     * It sends the list of the subject to the JSP Page by using ModelAndView object
-     *  
-     * @return
-     *     returns the JSP Page where all the subjects are displayed
-     */
-    @RequestMapping(value = "/displaySubjects", method=RequestMethod.GET) 
-    public ModelAndView displayStudents() {
-    	try {                                                                         
-            return new ModelAndView("DisplaySubjects","subjects", subjectService.getSubjects());                                           
-        } catch (DatabaseException e) {
-              return new ModelAndView("DisplaySubjects","displayMessage", e.getMessage());                                                       
-        } 
     }
 
     /**
@@ -122,21 +102,19 @@ public class SubjectController {
     @RequestMapping(value = "/deleteSubject", method=RequestMethod.GET) 
     public ModelAndView deleteStudent(@RequestParam("subjectCode") String subjectCode) {        
         ModelAndView modelView = new ModelAndView();
-    	
     	modelView.setViewName("SubjectInformation");
         modelView.addObject("Subject", new Subject());          
         try {                                                           
         	subjectService.removeSubjectBySubjectCode(subjectCode);
             modelView.addObject("deleteMessage", "Student Id " + subjectCode + " is deleted");                                   
         } catch (DatabaseException e) {
-        	
         	modelView.addObject("deleteMessage", e.getMessage());                                    
         } 
         return modelView;         
     }
     
-    @RequestMapping(value = "/editTeacher", method=RequestMethod.GET) 
-    public ModelAndView Coordinator(@RequestParam("subjectId") String subjectId) {        
+    @RequestMapping(value = "/assignTeacher", method=RequestMethod.GET) 
+    public ModelAndView assignTeacherToSubjectForm(@RequestParam("subjectId") String subjectId) {        
         ModelAndView modelView = new ModelAndView();    	  	
         modelView.setViewName("AllocateTeacher"); 
         try {  
@@ -149,11 +127,9 @@ public class SubjectController {
     }    
     
     @RequestMapping(value = "/allocateTeacher", method=RequestMethod.POST) 
-    public ModelAndView assignTeacher(@ModelAttribute("Subject") Subject subject) {        
+    public ModelAndView assignTeacherToSubject(@ModelAttribute("Subject") Subject subject) {        
         ModelAndView modelView = new ModelAndView();    	  	
-                  
         modelView.setViewName("AllocateTeacher"); 
-        
         try {  
             subjectService.allotTeacher(subject);      	                                          
         } catch (DatabaseException e) {        	

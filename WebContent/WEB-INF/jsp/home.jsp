@@ -23,9 +23,10 @@
 			<!-- ################################################################################################ -->
 			<nav>
 				<ul>
-					<li><a href="displayTeachers.html">Retrieve All Teachers</a>
-					<li><a href="displayStudents.html">Retrieve All Students</a>
-					<li><a href="Standard.html">Standard</a></li>
+					<li><a href="displayTeachers.html">Teachers</a></li>
+					<li><a href="displayStudents.html">Students</a>
+					<li><a href="Standard.html">Standards</a></li>
+					<li><a href="Subject.html">Subjects</a></li>
 					<li><a href="timeTable.html">Time Table</a></li>
 					<li><a href="Logout.html">Logout</a></li>
 				</ul>

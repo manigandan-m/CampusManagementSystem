@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 
 import com.i2i.model.Standard;
-import com.i2i.model.Subject;
 import com.i2i.exception.DatabaseException;
 import com.i2i.connection.HibernateConnection;
 
@@ -46,15 +45,9 @@ public class StandardDao {
             standard.getSubjects().get(3).setStandard(standard);
             standard.getSubjects().get(4).setStandard(standard);
             session.save(standard);
-            
-            //int standardId = (Integer)session.save(standard); 
-            
             transaction.commit();
-            
         } catch (HibernateException e) {
-        	e.printStackTrace();
-        	System.out.println(e);
-            throw new DatabaseException("Entered user is not added. Standard ID already exits..", e);
+        	throw new DatabaseException("Entered user is not added. Standard ID already exits..", e);
         } finally {
             session.close();
         }                                                                         
@@ -71,7 +64,6 @@ public class StandardDao {
     public void deleteStandardById(int id) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-
         try {
         	Standard standard = (Standard) session.get(Standard.class, id); 
             session.delete(standard);

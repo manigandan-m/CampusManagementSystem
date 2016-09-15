@@ -3,7 +3,7 @@
 <c:if test="${sessionScope['username']==null}" >
    <c:redirect url="Login.html"/>
 </c:if>
-<c:if test="${sessionScope['role']!='admin'}" >
+<c:if test="${sessionScope['role']!='student'}" >
      <c:redirect url="Logout.html"/>
 </c:if>
 <!DOCTYPE html>
@@ -22,8 +22,7 @@
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="home.html">Home</a>&nbsp;&nbsp;
-                <a href="displayStudents.html">Students</a>
+                <a href="timeTable.html">Time Table</a>
                 <span class="right">
                     <a href="Logout.html">
                         <strong>Logout</strong>

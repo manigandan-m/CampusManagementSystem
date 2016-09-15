@@ -20,7 +20,8 @@
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="home.html">Home</a>
+                <a href="home.html">Home</a>&nbsp;&nbsp;
+                <a href="displayStudents.html">Students</a>
                 <span class="right">
                     <a href="Logout.html">
                         <strong>Logout</strong>

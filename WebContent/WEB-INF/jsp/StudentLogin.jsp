@@ -21,10 +21,10 @@
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>
-				<h1>Admin Login</h1>
+				<h1>Student Login</h1>
             </header>       
       <div  class="form">
-    		<form id="contactform" action = "login.html" method="POST"> 
+    		<form id="contactform" action = "studentlogin.html" method="POST"> 
     			<p class="contact"><label for="username">Username</label></p> 
     			<input name="username" placeholder="username" required="" tabindex="1" type="text"> 
     			 
@@ -33,9 +33,11 @@
 
                 <input class="buttom" name="submit" id="submit" tabindex="5" value="Login" type="submit"> 	 
    </form>
+   
       <c:if test="${null != message}">
                 <c:out value="${message}"/>
-            </c:if> 
+            </c:if>
+      <br> 
 </div>      
 </div>
 

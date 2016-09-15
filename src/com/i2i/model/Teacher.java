@@ -120,19 +120,9 @@ public class Teacher {
 	}
 	
 	public void setStandardOfCoordinator(Standard standardOfCoordinator) {
-		standardOfCoordinator = standardOfCoordinator;
+		this.standardOfCoordinator = standardOfCoordinator;
 	}
     public Teacher() {
 		
 	}
-	
-	public Teacher(int yearsOfExperience, int monthsOfExperience, String qualification, String maritalStatus, String dateOfJoining, String designation) {
-		this.yearsOfExperience = yearsOfExperience;
-		this.monthsOfExperience = monthsOfExperience;
-		this.qualification = qualification;
-		this.maritalStatus = maritalStatus;
-		this.dateOfJoining = dateOfJoining;
-		this.designation = designation;
-	}
-
 }

@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.i2i.exception.DatabaseException;
 import com.i2i.model.Standard;
-import com.i2i.model.Teacher;
 import com.i2i.service.StandardService;
 import com.i2i.service.TeacherService;
 import com.i2i.model.Subject;
@@ -43,18 +42,14 @@ public class StandardController {
 	 *     returns the JSP Page where details of the standard can be entered
 	 */
 	@RequestMapping(value = "/Standard", method=RequestMethod.GET) 
-    public String addStandard(ModelMap model) {
+    public String viewStandards(ModelMap model) {
 	    
 	    try {       
-			
-		    //List<Standard> standards = standardService.getStandards();
-		    //Standard standard = standards.get(0);
-		    //System.out.println(standard.getStandardName());
-            model.addAttribute("standards", standardService.getStandards());           
+			model.addAttribute("standards", standardService.getStandards());           
         } catch (DatabaseException e) {
       	    model.addAttribute("displayMessage", e.getMessage());                                                                  
         } 
-		return "AddStandard";
+		return "RetrieveStandards";
     }  
 	
 	@RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 
@@ -81,11 +76,8 @@ public class StandardController {
         
         ModelAndView modelView = new ModelAndView(); 
         modelView.setViewName("AddStandard");
-
         try {   
         	try {                                                                         
-                List<Standard> standards = standardService.getStandards();
-
                 modelView.addObject("standards", standardService.getStandards());                                          
             } catch (DatabaseException e) {
             	modelView.addObject("displayMessage", e.getMessage());                                                                      
@@ -106,7 +98,7 @@ public class StandardController {
      * @return
      *     returns the JSP Page where all the standards are displayed
      */
-    public ModelAndView displayStandards() {
+    /*public ModelAndView displayStandards() {
     	
         try {                                                                         
             List<Standard> standards = standardService.getStandards();
@@ -114,7 +106,7 @@ public class StandardController {
         } catch (DatabaseException e) {        	
             return new ModelAndView("Standard","displayMessage", e.getMessage());                                                       
         } 
-    }
+    }*/
     
     /**
      * Deletes the standard record by passing the id of the standard
@@ -128,8 +120,8 @@ public class StandardController {
     public ModelAndView deleteStandard(@RequestParam("standardId") int standardId) {        
         ModelAndView modelView = new ModelAndView();
     	
-    	modelView.setViewName("Standard");
-        modelView.addObject("Standard", new Standard());          
+    	modelView.setViewName("RetrieveStandards");
+        modelView.addObject("RetrieveStandards", new Standard());          
         try {                                                           
             standardService.removeStandardById(standardId);
             modelView.addObject("deleteMessage", "Standard Id " + standardId + " is deleted");                                   
@@ -153,7 +145,7 @@ public class StandardController {
     public ModelAndView searchStandard(@RequestParam("standardId") int standardId) {                
         ModelAndView modelView = new ModelAndView();
         
-        modelView.setViewName("Standard");
+        modelView.setViewName("RetrieveStandards");
         modelView.addObject("Standard", new Standard());
         try {       	
         	modelView.addObject("searchStandard", standardService.getStandardById(standardId));        	                                          
@@ -188,22 +180,4 @@ public class StandardController {
         }                                             
         return modelView;         
     }  
-
-    /**
-     * Checks if the given input is a number
-     *  
-     * @param value
-     *     the input given by the user
-     * @return
-     */
-    /*private static boolean isNumber(String value) {
-        try {
-            Long.parseLong(value);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }*/
-        
-   
 }

@@ -79,6 +79,27 @@ public class TeacherController {
     }
     
     /**
+     * Used to view the record of the teacher by passing roll number
+     * It invokes the StudemtService class method and gets the object of Teacher class and passes it to JSP Page
+     * 
+     * @param teacherId
+     *     roll number of the teacher
+     * @return
+     *     JSP Page where the teacher details can be viewed
+     */
+    @RequestMapping(value = "/displayTeacher", method=RequestMethod.GET) 
+    public ModelAndView displayTeacher(@RequestParam("teacherId") int teacherId) {               
+        ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("DisplayTeacher");
+        try {
+        	modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));                                                     
+        } catch (DatabaseException e) {
+            modelView.addObject("searchMessage", e.getMessage());            
+        }
+        return modelView;
+    }
+    
+    /**
      * It displays all the teachers by invoking the TeacherService class method.
      * It sends the list of the teachers to the JSP Page by using ModelAndView object
      *  

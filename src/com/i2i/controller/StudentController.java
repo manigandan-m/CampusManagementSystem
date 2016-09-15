@@ -76,6 +76,27 @@ public class StudentController  {
         }
         return modelView;
     }
+    
+    /**
+     * Used to view the record of the student by passing roll number
+     * It invokes the StudemtService class method and gets the object of Student class and passes it to JSP Page
+     * 
+     * @param studentId
+     *     roll number of the student
+     * @return
+     *     JSP Page where the student details can be viewed
+     */
+    @RequestMapping(value = "/displayStudent", method=RequestMethod.GET) 
+    public ModelAndView displayStudent(@RequestParam("rollNumber") int studentId) {               
+        ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("DisplayStudent");
+        try {          
+            modelView.addObject("searchStudent", studentService.getStudentById(studentId));                                                     
+        } catch (DatabaseException e) {
+            modelView.addObject("searchMessage", e.getMessage());            
+        }
+        return modelView;
+    }
 
     /**
      * It displays all the students by invoking the StudentService class method.
