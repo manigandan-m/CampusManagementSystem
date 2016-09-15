@@ -23,6 +23,7 @@
 			<!-- ################################################################################################ -->
 			<nav>
 				<ul>
+				    <li><a href="User.html">Create Admin</a></li>
 					<li><a href="displayTeachers.html">Teachers</a></li>
 					<li><a href="displayStudents.html">Students</a>
 					<li><a href="Standard.html">Standards</a></li>

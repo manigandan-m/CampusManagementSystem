@@ -53,8 +53,8 @@
                  <form:input type = "hidden" path = "user.userId" value="${userId}"/>     
                        <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
                 </form:form>
-   <c:if test="${null != addMessage}">
-                    <c:out value="${addMessage}"/>
+   <c:if test="${null != message}">
+                    <c:out value="${message}"/>
                  </c:if> 
 </div>      
 </div>

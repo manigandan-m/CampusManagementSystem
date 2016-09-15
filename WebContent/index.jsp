@@ -12,7 +12,7 @@
   <div id="topbar" class="clear"> 
     <!-- ################################################################################################ -->
     <nav>
-      <ul>
+      <ul>      
         <li><a href="Login.html">Admin Login</a></li>
         <li><a href="TeacherLogin.html">Teacher Login</a></li>
         <li><a href="StudentLogin.html">Student Login</a></li>

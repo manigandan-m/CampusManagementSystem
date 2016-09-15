@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,11 +36,12 @@
    </form>
    
 </div>      
-</div>
+
+
 <c:if test="${null != message}">
-                <c:out value="${message}"/>
-            </c:if>
-            <br> 
+    <c:out value="${message}"/>
+</c:if>
+<br> 
 
 </body>
 </html> 

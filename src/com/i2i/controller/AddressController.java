@@ -61,9 +61,11 @@ public class AddressController {
                 map.addAttribute("standards", standardService.getStandards());
                 return "StudentInformation";
             } else if (user.getRole().getRoleName().equals("teacher")){
-                  map.addAttribute("Teacher", new Teacher());
-                  return "AddTeacher";
-            }     
+                map.addAttribute("Teacher", new Teacher());
+                return "AddTeacher";
+            } else {
+            	map.addAttribute("message", "Admin is created successfully"); 	 
+            }
         } catch (DatabaseException ex) {
             map.addAttribute("message", ex.getMessage().toString());  
         }
