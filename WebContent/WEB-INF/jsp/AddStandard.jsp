@@ -57,11 +57,8 @@
 	                         <form:input path="subjects[${status.index}].subjectName" placeholder="Enter Subject Name" required="" tabindex="1" type="text"/>
 	                   </p>          
 	                     </c:forEach>
- 	            
-    			       
-	                
-	                <br>
-	                <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">	                       
+ 	               <br>
+	                <input class="buttom" name="submit" id="submit" tabindex="5" value="Add Standard" type="submit">	                       
                 </form:form>
            
                   

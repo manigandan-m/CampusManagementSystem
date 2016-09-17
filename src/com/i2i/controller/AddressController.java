@@ -61,7 +61,7 @@ public class AddressController {
             if((user.getRole().getRoleName()).equals("student")) {
                 map.addAttribute("Student", new Student());
                 map.addAttribute("standards", standardService.getStandards());
-                return "AddStandard";
+                return "AddStudent";
             } else if (user.getRole().getRoleName().equals("teacher")){
                 map.addAttribute("Teacher", new Teacher());
                 return "AddTeacher";
