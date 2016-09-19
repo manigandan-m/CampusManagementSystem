@@ -8,18 +8,18 @@ import com.i2i.model.User;
 
 import com.i2i.exception.DatabaseException;
 
-    /**
-     * <p>
-     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
-     * for model Role by invoking AddressDao class methods
-     * </p>
-     * 
-     * @author Zeeshan Ali
-     * 
-     * @created 2015-08-27
-     */
-    public class AddressService {
-	AddressDao addressDao = new AddressDao();
+/**
+ * <p>
+ * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+ * for model Role by invoking AddressDao class methods
+ * </p>
+ * 
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ */
+public class AddressService {
+    AddressDao addressDao = new AddressDao();
 	
     /**
      * Calls the AddressDao class method to add the standard to the database by passing the Address class object
@@ -30,7 +30,7 @@ import com.i2i.exception.DatabaseException;
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-	public void addAddress(Address address, User user) throws DatabaseException {                 
+    public void addAddress(Address address, User user) throws DatabaseException {                 
         addressDao.insertAddress(address, user);                     
     }
 	

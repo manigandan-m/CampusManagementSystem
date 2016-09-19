@@ -11,17 +11,17 @@ import com.i2i.model.User;
 import com.i2i.exception.DatabaseException;
 import com.i2i.connection.HibernateConnection;
 
-    /**
-     * <p>
-     * DataAccessObject(Dao) which is used to perform create operation for model Address
-     * Creates session and transaction objects for each operation 
-     * </p>
-     * 
-     * @author Zeeshan
-     * 
-     * @created 2015-08-27
-     */
-    public class AddressDao {
+/**
+ * <p>
+ * DataAccessObject(Dao) which is used to perform create operation for model Address
+ * Creates session and transaction objects for each operation 
+ * </p>
+ * 
+ * @author Zeeshan
+ * 
+ * @created 2015-08-27
+ */
+public class AddressDao {
 	HibernateConnection hibernateConnection = HibernateConnection.createObject();
         SessionFactory sessionFactory = hibernateConnection.getConnection();   
     

@@ -6,17 +6,17 @@ import com.i2i.dao.UserDao;
 import com.i2i.model.User;
 import com.i2i.exception.DatabaseException;
 
-    /**
-     * <p>
-     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for
-     *  model Role by invoking UserDao class methods
-     * </p>
-     * 
-     * @author Zeeshan Ali
-     * 
-     * @created 2015-08-27
-     */
-    public class UserService {
+/**
+  * <p>
+  * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for
+  *  model Role by invoking UserDao class methods
+  * </p>
+  * 
+  * @author Zeeshan Ali
+  * 
+  * @created 2015-08-27
+ */
+public class UserService {
         UserDao userDao = new UserDao();
     
     /**

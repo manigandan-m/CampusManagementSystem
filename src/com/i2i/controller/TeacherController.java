@@ -34,7 +34,7 @@ public class TeacherController {
 	TeacherService teacherService = new TeacherService();
 	UserService userService = new UserService();
     
-	/**
+    /**
      * Gets the teacher details from the JSP Page and passes it as a Teacher.
      * It gets the userId and invokes the UserService method to get the corresponding user object.
      * It invokes the TeacherService method and sends the user and teacher object for adding teacher details
@@ -71,7 +71,7 @@ public class TeacherController {
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("SearchTeacher");
         try {
-        	modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));                                                     
+            modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));
         } catch (DatabaseException e) {
             modelView.addObject("searchMessage", e.getMessage());            
         }
@@ -92,7 +92,7 @@ public class TeacherController {
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("DisplayTeacher");
         try {
-        	modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));                                                     
+            modelView.addObject("searchTeacher", teacherService.getTeacherById(teacherId));     
         } catch (DatabaseException e) {
             modelView.addObject("searchMessage", e.getMessage());            
         }
@@ -112,7 +112,7 @@ public class TeacherController {
         try {                                                                         
             return new ModelAndView("RetrieveTeachers","teachers", teacherService.getTeachers());                                           
         } catch (DatabaseException e) {
-        	return new ModelAndView("RetrieveTeachers","displayMessage", e.getMessage());                                                       
+        	return new ModelAndView("RetrieveTeachers","displayMessage", e.getMessage());              
         } 
     }
     
@@ -144,8 +144,8 @@ public class TeacherController {
     @RequestMapping(value="/editTeacherDetails", method=RequestMethod.GET)
     public String editTeacherDetails(@RequestParam("teacherId") int teacherId, ModelMap map) {
     	try {
-    		Teacher teacher = teacherService.getTeacherById(teacherId);
-    		map.addAttribute("teacher",teacher);
+    	    Teacher teacher = teacherService.getTeacherById(teacherId);
+    	    map.addAttribute("teacher",teacher);
     	} catch(DatabaseException e) {
     		map.addAttribute("Message",e.getMessage().toString());
     	}

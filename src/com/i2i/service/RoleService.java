@@ -6,18 +6,18 @@ import com.i2i.dao.RoleDao;
 import com.i2i.exception.DatabaseException;
 import com.i2i.model.Role;
 
-    /**
-     * <p>
-     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
-     * for model Role by invoking RoleDao class methods
-     * </p>
-     * 
-     * @author Zeeshan Ali
-     * 
-     * @created 2015-08-27
-     */
-    public class RoleService {
-        RoleDao roleDao = new RoleDao();
+/**
+ * <p>
+ * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+ * for model Role by invoking RoleDao class methods
+ * </p>
+ * 
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ */
+public class RoleService {
+    RoleDao roleDao = new RoleDao();
     
     /**
      * Calls the RoleDao class method to add the period to the database by passing the Role class object

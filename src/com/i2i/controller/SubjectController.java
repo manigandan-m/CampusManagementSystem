@@ -27,21 +27,21 @@ import com.i2i.model.Subject;
  */
 @Controller
 public class SubjectController {
-	SubjectService subjectService = new SubjectService();
-	TeacherService teacherService = new TeacherService();
-	StandardService standardService = new StandardService();
+    SubjectService subjectService = new SubjectService();
+    TeacherService teacherService = new TeacherService();
+    StandardService standardService = new StandardService();
     
-	/**
-	 * It is used to send the subject and the lists of the standards and teachers to a JSP Page where
-	 * user can add the details of the subject  
-	 * @param model
-	 *     used to send the subject model object and the lists of standards and teachers
-	 * @return
-	 *     JSP Page where user can add the subject details
-	 */
+    /**
+     * It is used to send the subject and the lists of the standards and teachers to a JSP Page where
+     * user can add the details of the subject  
+     * @param model
+     *     used to send the subject model object and the lists of standards and teachers
+     * @return
+     *     JSP Page where user can add the subject details
+     */
     @RequestMapping(value = "/Subject", method=RequestMethod.GET) 
     public String Subjects(ModelMap model) {
-    	try {
+        try {
         model.addAttribute("subjects", subjectService.getSubjects());        
         } catch (DatabaseException e) {
         }
@@ -61,9 +61,9 @@ public class SubjectController {
     public ModelAndView addSubject(@ModelAttribute("Subject") Subject subject) {
         String message = null;    
         try {                                                     
-        	subjectService.addSubject(subject);                                        
+            subjectService.addSubject(subject);                                        
             message = "Subject is added successfully";            
-        }  catch (DatabaseException ex) {        	
+        }  catch (DatabaseException ex) {            
             message = ex.getMessage().toString(); 
         } 
         return new ModelAndView("RetrieveSubjects","displayMessage", message);       
@@ -83,10 +83,10 @@ public class SubjectController {
         ModelAndView modelView = new ModelAndView();
         modelView.setViewName("SubjectInformation");
         modelView.addObject("Subject", new Subject());
-        try {       	
-        	modelView.addObject("searchSubject", subjectService.getSubjectBySubjectCode(subjectCode));        	                                          
+        try {           
+            modelView.addObject("searchSubject", subjectService.getSubjectBySubjectCode(subjectCode));                  
         } catch (DatabaseException e) {
-        	modelView.addObject("searchMessage", e.getMessage());             
+            modelView.addObject("searchMessage", e.getMessage());             
         }
         return modelView; 
     }
@@ -102,13 +102,13 @@ public class SubjectController {
     @RequestMapping(value = "/deleteSubject", method=RequestMethod.GET) 
     public ModelAndView deleteStudent(@RequestParam("subjectCode") String subjectCode) {        
         ModelAndView modelView = new ModelAndView();
-    	modelView.setViewName("SubjectInformation");
+        modelView.setViewName("SubjectInformation");
         modelView.addObject("Subject", new Subject());          
         try {                                                           
-        	subjectService.removeSubjectBySubjectCode(subjectCode);
+            subjectService.removeSubjectBySubjectCode(subjectCode);
             modelView.addObject("deleteMessage", "Student Id " + subjectCode + " is deleted");                                   
         } catch (DatabaseException e) {
-        	modelView.addObject("deleteMessage", e.getMessage());                                    
+            modelView.addObject("deleteMessage", e.getMessage());                                    
         } 
         return modelView;         
     }
@@ -123,13 +123,13 @@ public class SubjectController {
      */
     @RequestMapping(value = "/assignTeacher", method=RequestMethod.GET) 
     public ModelAndView assignTeacherToSubjectForm(@RequestParam("subjectId") String subjectId) {        
-        ModelAndView modelView = new ModelAndView();    	  	
+        ModelAndView modelView = new ModelAndView();              
         modelView.setViewName("AllocateTeacher"); 
         try {  
-        	modelView.addObject("teachers", teacherService.getTeachers());
-        	modelView.addObject("Subject", subjectService.getSubjectBySubjectCode(subjectId));            	     	                                          
-        } catch (DatabaseException e) {        	
-           	modelView.addObject("message", e.getMessage());             
+            modelView.addObject("teachers", teacherService.getTeachers());
+            modelView.addObject("Subject", subjectService.getSubjectBySubjectCode(subjectId));                                  
+        } catch (DatabaseException e) {            
+               modelView.addObject("message", e.getMessage());             
         }
         return modelView;         
     }    
@@ -143,12 +143,12 @@ public class SubjectController {
      */
     @RequestMapping(value = "/allocateTeacher", method=RequestMethod.POST) 
     public ModelAndView assignTeacherToSubject(@ModelAttribute("Subject") Subject subject) {        
-        ModelAndView modelView = new ModelAndView();    	  	
+        ModelAndView modelView = new ModelAndView();              
         modelView.setViewName("AllocateTeacher"); 
         try {  
-            subjectService.allotTeacher(subject);      	                                          
-        } catch (DatabaseException e) {        	
-           	modelView.addObject("message", e.getMessage());             
+            subjectService.allotTeacher(subject);                                                    
+        } catch (DatabaseException e) {            
+               modelView.addObject("message", e.getMessage());             
         }                                             
         return modelView;         
     }  

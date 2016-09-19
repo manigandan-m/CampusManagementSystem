@@ -48,7 +48,7 @@ public class StudentController  {
         try {        	
             User user = userService.getUserById(student.getUser().getUserId());
             Standard standard = standardService.getStandardById(student.getStandard().getStandardId());
-        	studentService.addStudent(student, user, standard);                                        
+            studentService.addStudent(student, user, standard);                                        
             message = "Student is added successfully";            
         } catch (DatabaseException ex) {        	
             message = ex.getMessage().toString();                         
@@ -70,7 +70,7 @@ public class StudentController  {
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("SearchStudent");
         try {          
-            modelView.addObject("searchStudent", studentService.getStudentById(studentId));                                                     
+            modelView.addObject("searchStudent", studentService.getStudentById(studentId));                 
         } catch (DatabaseException e) {
             modelView.addObject("searchMessage", e.getMessage());            
         }
@@ -91,7 +91,7 @@ public class StudentController  {
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("DisplayStudent");
         try {          
-            modelView.addObject("searchStudent", studentService.getStudentById(studentId));                                                     
+            modelView.addObject("searchStudent", studentService.getStudentById(studentId));                                  
         } catch (DatabaseException e) {
             modelView.addObject("searchMessage", e.getMessage());            
         }
@@ -110,7 +110,7 @@ public class StudentController  {
     	try {                                                                         
             return new ModelAndView("RetrieveStudents","students", studentService.getStudents());                                           
         } catch (DatabaseException e) {
-              return new ModelAndView("RetrieveStudents","displayMessage", e.getMessage());                                                       
+            return new ModelAndView("RetrieveStudents","displayMessage", e.getMessage());                                
         } 
     }
 
@@ -146,10 +146,10 @@ public class StudentController  {
     @RequestMapping(value="/editStudentDetails", method=RequestMethod.GET)
     public String editTeacherDetails(@RequestParam("rollNumber") int studentId, ModelMap map) {
     	try {
-    		Student student = studentService.getStudentById(studentId);
-    		map.addAttribute("student",student);
+    	    Student student = studentService.getStudentById(studentId);
+    	    map.addAttribute("student",student);
     	} catch (DatabaseException e) {
-    		map.addAttribute("Message",e.getMessage().toString());
+    	    map.addAttribute("Message",e.getMessage().toString());
     	}
     	return "EditStudentDetails";
     }
@@ -169,11 +169,11 @@ public class StudentController  {
     @RequestMapping(value = "/editStudentById", method = RequestMethod.POST)
     public String editStudentForm(@RequestParam("rollNumber") int rollNumber, ModelMap model) {
     	 try {
-    		 model.addAttribute("Student", studentService.getStudentById(rollNumber));
+    	     model.addAttribute("Student", studentService.getStudentById(rollNumber));
              return "EditStudent";
     	 } catch (DatabaseException e) {
-    		 model.addAttribute("Message", e.getMessage().toString());
-    		 return "EditStudent";
+    	     model.addAttribute("Message", e.getMessage().toString());
+    	     return "EditStudent";
     	 }
     }
     
@@ -197,12 +197,12 @@ public class StudentController  {
     @RequestMapping(value = "/editStudent", method = RequestMethod.POST)
     public String editStudent(@ModelAttribute("Student") Student student, ModelMap message) {  
         try {
-        	studentService.editStudent(student);      
+            studentService.editStudent(student);      
             message.addAttribute("Message", "Student Edited Successfully");
             return "EditStudent";
     	} catch (DatabaseException e) {
-    		message.addAttribute("Message", (e.getMessage().toString()));
-    		return "EditStudent";
+    	    message.addAttribute("Message", (e.getMessage().toString()));
+    	    return "EditStudent";
     	}
     }
 }

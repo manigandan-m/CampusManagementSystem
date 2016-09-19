@@ -12,17 +12,17 @@ import com.i2i.exception.DatabaseException;
 import com.i2i.model.Teacher;
 import com.i2i.model.User;
 
-    /**
-     * <p>
-     * DataAccessObject(Dao) which is used to perform create, retrieve, retrieve all, delete operations for model Teacher
-     * Creates session and transaction objects for each operation 
-     * </p>
-     * 
-     * @author Zeeshan
-     * 
-     * @created 2015-08-27
-     */
-    public class TeacherDao {
+/**
+ * <p>
+ * DataAccessObject(Dao) which is used to perform create, retrieve, retrieve all, delete operations for model Teacher
+ * Creates session and transaction objects for each operation 
+ * </p>
+ * 
+ * @author Zeeshan
+ * 
+ * @created 2015-08-27
+ */
+public class TeacherDao {
     HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();     
 

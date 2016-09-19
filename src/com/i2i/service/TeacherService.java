@@ -7,18 +7,18 @@ import com.i2i.exception.DatabaseException;
 import com.i2i.model.Teacher;
 import com.i2i.model.User;
 
-    /**
-     * <p>
-     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
-     * for model Role by invoking TeacherDao class methods
-     * </p>
-     * 
-     * @author Zeeshan Ali
-     * 
-     * @created 2015-08-27
-     */
-    public class TeacherService {
-        TeacherDao teacherDao = new TeacherDao();
+/**
+ * <p>
+ * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+ * for model Role by invoking TeacherDao class methods
+ * </p>
+ * 
+ * @author Zeeshan Ali
+ * 
+ * @created 2015-08-27
+ */
+public class TeacherService {
+    TeacherDao teacherDao = new TeacherDao();
     
     /**
      * Calls the TeacherDao class method to add the standard to the database by passing the Teacher class object

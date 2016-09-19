@@ -7,19 +7,19 @@ import com.i2i.model.Subject;
 import com.i2i.model.Teacher;
 import com.i2i.exception.DatabaseException;
     
-    /**
-     * <p>
-     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
-     *  for model Subject by invoking SubjectDao class methods
-     * </p>
-     * 
-     * @author Manigandan
-     * 
-     * @created 2015-08-27
-     */
-    public class SubjectService {
-	SubjectDao subjectDao = new SubjectDao();
-	TeacherService teacherService = new TeacherService();
+/**
+ * <p>
+ * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+ *  for model Subject by invoking SubjectDao class methods
+ * </p>
+ * 
+ * @author Manigandan
+ * 
+ * @created 2015-08-27
+ */
+public class SubjectService {
+    SubjectDao subjectDao = new SubjectDao();
+    TeacherService teacherService = new TeacherService();
     
     /**
      * Calls the SubjectDao class method to add the subject to the database by passing the subject

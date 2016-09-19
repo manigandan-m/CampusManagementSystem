@@ -27,71 +27,70 @@ import com.i2i.model.Subject;
  */
 @Controller
 public class StandardController {
-	StandardService standardService = new StandardService();
-	TeacherService teacherService = new TeacherService();
-    	
+    StandardService standardService = new StandardService();
+    TeacherService teacherService = new TeacherService();
+        
     /**
-	 * Sends the object of class Standard and the list of teachers by invoking
-	 * the TeacherService method to the JSP Page
-	 * 
-	 * @param model
-	 *     used to send the standard and the list of teachers
-	 * @return
-	 *     returns the JSP Page where details of the standard can be entered
-	 */
-	@RequestMapping(value = "/Standard", method=RequestMethod.GET) 
+     * Sends the object of class Standard and the list of teachers by invoking
+     * the TeacherService method to the JSP Page
+     * 
+     * @param model
+     *     used to send the standard and the list of teachers
+     * @return
+     *     returns the JSP Page where details of the standard can be entered
+     */
+    @RequestMapping(value = "/Standard", method=RequestMethod.GET) 
     public String viewStandards(ModelMap model) {
-	    try {       
-			model.addAttribute("standards", standardService.getStandards());           
+        try {       
+            model.addAttribute("standards", standardService.getStandards());           
         } catch (DatabaseException e) {
-      	    model.addAttribute("displayMessage", e.getMessage());                                                                  
+              model.addAttribute("displayMessage", e.getMessage());                                                                  
         } 
-		return "RetrieveStandards";
-    }  
-	
-	/**
-	 * Returns to the JSP Page with a list of subjects
-	 * 
-	 * @param model
-	 *     to add the the object of class Standard to the JSP Page using addAtribute method
-	 * @return
-	 */
-	@RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 
-    public String newStandard(ModelMap model) {
-	    Standard standard = new Standard();
-	    standard.addSubject(new Subject());
-	    standard.addSubject(new Subject());
-	    standard.addSubject(new Subject());
-	    standard.addSubject(new Subject());
-	    standard.addSubject(new Subject());
-	    model.addAttribute("Standard", standard);
-		return "AddStandard";
+        return "RetrieveStandards";
     }  
     
-	/**
-	 * Gets the details of the standard from JSP Page
-	 * and invokes the StandardService method to add the standard details
-	 * 
-	 * @param standard
-	 *     grade in which group of students study
-	 * @return
-	 */
-	@RequestMapping(value = "/addStandard", method=RequestMethod.POST) 
+    /**
+     * Returns to the JSP Page with a list of subjects
+     * 
+     * @param model
+     *     to add the the object of class Standard to the JSP Page using addAtribute method
+     * @return
+     */
+    @RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 
+    public String newStandard(ModelMap model) {
+        Standard standard = new Standard();
+        standard.addSubject(new Subject());
+        standard.addSubject(new Subject());
+        standard.addSubject(new Subject());
+        standard.addSubject(new Subject());
+        standard.addSubject(new Subject());
+        model.addAttribute("Standard", standard);
+        return "AddStandard";
+    }  
+    
+    /**
+     * Gets the details of the standard from JSP Page
+     * and invokes the StandardService method to add the standard details
+     * 
+     * @param standard
+     *     grade in which group of students study
+     * @return
+     */
+    @RequestMapping(value = "/addStandard", method=RequestMethod.POST) 
         public ModelAndView addStandard(@ModelAttribute("Standard") Standard standard) {
-        
         ModelAndView modelView = new ModelAndView(); 
         modelView.setViewName("AddStandard");
         try {   
-        	try {                                                                         
+            try {                                                                         
                 modelView.addObject("standards", standardService.getStandards());                                          
             } catch (DatabaseException e) {
-            	modelView.addObject("displayMessage", e.getMessage());                                                                      
-            }        	
-        	standardService.addStandard(standard);
-        	modelView.addObject("addMessage", "Standard is added successfully");  
-        	
+                modelView.addObject("displayMessage", e.getMessage());                                                                      
+            }            
+            standardService.addStandard(standard);
+            modelView.addObject("addMessage", "Standard is added successfully");  
+            
         }  catch (DatabaseException ex) {  
-        	modelView.addObject("addMessage", ex.getMessage().toString());                                    
+            modelView.addObject("addMessage", ex.getMessage().toString());                                    
         } 
         return modelView;       
     }
@@ -107,15 +106,14 @@ public class StandardController {
     @RequestMapping(value = "/deleteStandard", method=RequestMethod.GET) 
     public ModelAndView deleteStandard(@RequestParam("standardId") int standardId) {        
         ModelAndView modelView = new ModelAndView();
-    	
-    	modelView.setViewName("RetrieveStandards");
+        modelView.setViewName("RetrieveStandards");
         modelView.addObject("RetrieveStandards", new Standard());          
         try {                                                           
             standardService.removeStandardById(standardId);
             modelView.addObject("deleteMessage", "Standard Id " + standardId + " is deleted");                                   
         } catch (DatabaseException e) {
-        	
-        	modelView.addObject("deleteMessage", e.getMessage());                                    
+            
+            modelView.addObject("deleteMessage", e.getMessage());                                    
         } 
         return modelView;         
     }
@@ -135,10 +133,10 @@ public class StandardController {
         
         modelView.setViewName("RetrieveStandards");
         modelView.addObject("Standard", new Standard());
-        try {       	
-        	modelView.addObject("searchStandard", standardService.getStandardById(standardId));        	                                          
-        } catch (DatabaseException e) {        	
-        	modelView.addObject("searchMessage", e.getMessage());             
+        try {           
+            modelView.addObject("searchStandard", standardService.getStandardById(standardId));               
+        } catch (DatabaseException e) {            
+            modelView.addObject("searchMessage", e.getMessage());             
         }
         return modelView; 
     }
@@ -157,13 +155,13 @@ public class StandardController {
      */
     @RequestMapping(value = "/Coordinator", method=RequestMethod.GET) 
     public ModelAndView Coordinator(@RequestParam("standardId") int standardId) {        
-        ModelAndView modelView = new ModelAndView();    	  	
+        ModelAndView modelView = new ModelAndView();              
         modelView.setViewName("EditCoordinator"); 
         try {  
-        	modelView.addObject("teachers", teacherService.getTeachers());
-        	modelView.addObject("Standard", standardService.getStandardById(standardId));            	     	                                          
-        } catch (DatabaseException e) {        	
-           	modelView.addObject("message", e.getMessage());             
+            modelView.addObject("teachers", teacherService.getTeachers());
+            modelView.addObject("Standard", standardService.getStandardById(standardId));                                             
+        } catch (DatabaseException e) {            
+               modelView.addObject("message", e.getMessage());             
         }
         return modelView;         
     }    
@@ -176,13 +174,12 @@ public class StandardController {
      */
     @RequestMapping(value = "/editCoordinator", method=RequestMethod.POST) 
     public ModelAndView assignCoordinator(@ModelAttribute("Standard") Standard standard) {        
-        ModelAndView modelView = new ModelAndView();    	  	
-                  
+        ModelAndView modelView = new ModelAndView();              
         modelView.setViewName("EditCoordinator"); 
         try {  
-            standardService.editStandard(standard);      	                                          
-        } catch (DatabaseException e) {        	
-           	modelView.addObject("message", e.getMessage());             
+            standardService.editStandard(standard);                                                    
+        } catch (DatabaseException e) {            
+               modelView.addObject("message", e.getMessage());             
         }                                             
         return modelView;         
     }  

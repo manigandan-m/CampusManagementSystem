@@ -6,17 +6,17 @@ import com.i2i.dao.StandardDao;
 import com.i2i.model.Standard;
 import com.i2i.exception.DatabaseException;
 
-    /**
-     * <p>
-     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
-     * for model Role by invoking StandardDao class methods
-     * </p>
-     * 
-     * @author Manigandan
-     * 
-     * @created 2015-08-27
-     */
-    public class StandardService {
+/**
+ * <p>
+ * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+ * for model Role by invoking StandardDao class methods
+ * </p>
+ * 
+ * @author Manigandan
+ * 
+ * @created 2015-08-27
+ */
+public class StandardService {
     StandardDao standardDao = new StandardDao();
     
     /**
