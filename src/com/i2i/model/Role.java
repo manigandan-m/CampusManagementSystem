@@ -6,6 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Model class for Role
+ * Setter and Getter methods for the class variables
+ * 
+ * @author Manigandan
+ * 
+ * @created 2015-09-10
+ */
+
 @Entity
 @Table(name= "role")
 public class Role {

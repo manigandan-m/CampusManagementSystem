@@ -12,6 +12,15 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+/**
+ * Model class for Role
+ * Setter and Getter methods for the class variables
+ * 
+ * @author Manigandan
+ * 
+ * @created 2015-09-10
+ */
+
 @Entity
 @Table(name= "address")
 public class Address {

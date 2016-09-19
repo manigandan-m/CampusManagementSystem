@@ -15,6 +15,15 @@ import javax.persistence.JoinColumn;
 
 import com.i2i.model.User;
 
+/**
+ * Model class for Role
+ * Setter and Getter methods for the class variables
+ * 
+ * @author Zeeshan
+ * 
+ * @created 2015-09-10
+ */
+
 @Entity
 @Table(name= "teacher")
 public class Teacher {

@@ -18,6 +18,15 @@ import javax.persistence.GeneratedValue;
 import com.i2i.model.Role;
 import com.i2i.model.Address;
 
+/**
+ * Model class for Role
+ * Setter and Getter methods for the class variables
+ * 
+ * @author Zeeshan
+ * 
+ * @created 2015-09-10
+ */
+
 @Entity
 @Table(name= "user")
 public class User {
