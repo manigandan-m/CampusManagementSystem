@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${sessionScope['username']==null}" >
-   <c:redirect url="Login.html"/>
+   <c:redirect url="StudentLogin.html"/>
 </c:if>
 <c:if test="${sessionScope['role']!='student'}" >
      <c:redirect url="Logout.html"/>
@@ -22,7 +22,7 @@
 <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="timeTable.html">Time Table</a>
+                <a  href="studentTimeTable.html?standardId=${searchStudent.getStandard().getStandardId()}&rollNumber=${searchStudent.getRollNumber()}">View Time Table</a>
                 <span class="right">
                     <a href="Logout.html">
                         <strong>Logout</strong>
@@ -77,6 +77,9 @@
                 <c:out value="${searchMessage}"/>
             </c:if>
             
+ <c:if test="${null != message}">
+                <c:out value="${message}"/>
+            </c:if>
             <br>
 </div>
 </section>

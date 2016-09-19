@@ -20,8 +20,6 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style3.css">
 </head>
-
-
 <body>
      <div class="container">
 			<!-- freshdesignweb top bar -->
@@ -34,17 +32,16 @@
                 </span>
                 </div>
     <section> <!--for demo wrap-->
-<h1>Subject List</h1>  
+<h1>Standard List</h1>  
 <div  class="tbl-header">
 <table cellpadding="0" cellspacing="0" border="0">
-<c:if test="${null != subjects}">
+<c:if test="${null != standards}">
   <thead>
-    <tr>
-      <th>Subject Code</th>
-      <th>Subject Name</th>
-      <th>Standard Name</th>
-      <th>Faculty Name</th>
-      <th>Action</th>
+    <tr>		
+			<th>ID</th>
+                        <th>Standard Name</th>
+                        <th>Generate Action</th>			
+                        <th>View Action</th>
     </tr>
   </thead>
   </c:if>
@@ -53,18 +50,47 @@
 <div  class="tbl-content">
 <table id="teachertable" cellpadding="0" cellspacing="0" border="0">
   <tbody>
-    <c:forEach items="${subjects}" var="subject">
+     <c:forEach items="${standards}" var="standard">
                 <tr>
-                    <td><c:out value="${subject.getSubjectCode()}" /></td>    
-                    <td><c:out value="${subject.getSubjectName()}" /></td> 
-                    <td><c:out value="${subject.getStandard().getStandardName()}" /></td>  
-                    <td><c:out value="${subject.getTeacher().getUser().getFirstName()}" /></td>
-                    <td><a  href="assignTeacher.html?subjectId=${subject.getSubjectCode()}">Allocate / Deallocate Teacher</a></td>
+		    <td><c:out value="${standard.getStandardId()}" /></td>	
+                    <td><c:out value="${standard.getStandardName()}" /></td> 
+                    <td><a  href="generateTimeTable.html?standardId=${standard.getStandardId()}">Generate Time Table</a></td>		    
+		    <td><a  href="standardTimeTable.html?standardId=${standard.getStandardId()}">View Time Table</a></td>
                 </tr>
             </c:forEach>
-        </tbody>
+            </tbody>
         </table>
 </div>
+
+<div  class="tbl-header">
+<table cellpadding="0" cellspacing="0" border="0">
+<c:if test="${null != teachers}">
+  <thead>
+    <tr>
+			<th>ID</th>
+                        <th>Teacher First Name</th>
+                        <th>Teacher Last Name</th>
+			<th>Time Table</th>
+    </tr>
+  </thead>
+  </c:if>
+</table>
+</div>
+<div  class="tbl-content">
+<table id="teachertable" cellpadding="0" cellspacing="0" border="0">
+  <tbody>
+    <c:forEach items="${teachers}" var="teacher">
+    <tr>
+      <td><c:out value="${teacher.getTeacherId()}" /></td>      
+      <td><c:out value="${teacher.getUser().getFirstName()}"/></td>
+      <td><c:out value="${teacher.getUser().getLastName()}" /></td>
+      <td><a  href="teacherTimeTable.html?teacherId=${teacher.getTeacherId()}">View Time Table</a></td>
+    </tr>
+    </c:forEach>
+    </tbody>
+</table>
+</div>
+
 </section>
 <c:if test="${null != displaymesage}">
               <c:out value="${displayMessage}"/>

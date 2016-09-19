@@ -11,7 +11,7 @@ import com.i2i.exception.DatabaseException;
  * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Role by invoking StandardDao class methods
  * </p>
  * 
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
  * @created 2015-08-27
  */

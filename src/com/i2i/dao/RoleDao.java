@@ -39,6 +39,7 @@ public class RoleDao {
     public void insertRole(Role role) throws DatabaseException {
     	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+        
         try { 
         	session.save(role);            
             transaction.commit();        
@@ -81,19 +82,19 @@ public class RoleDao {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
-    public void editRole(Role role)
-            throws DatabaseException {
+    public void editRole(Role role) throws DatabaseException {
 	    Session session = sessionFactory.openSession();
         Transaction transaction = null;
+        
         try {
             transaction = session.beginTransaction();
             session.update(role);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-            throw new DatabaseException("Please check the data you have given..." , e);  
-       } finally {
+             throw new DatabaseException("Please check the data you have given..." , e);  
+        } finally {
              session.close(); 
-       }
+        }
     }
     
     /**
@@ -111,6 +112,7 @@ public class RoleDao {
          Role role = null;
          Session session = sessionFactory.openSession();
          Transaction transaction = null;
+         
          try {
              transaction = session.beginTransaction();
              role = (Role)session.get(Role.class, id); 
@@ -119,8 +121,7 @@ public class RoleDao {
          } catch (HibernateException e) {
              throw new DatabaseException("Check role ID, please enter different id", e);  
          } finally {
-             session.close();
-             
+             session.close();             
          } 
     }
     
@@ -134,7 +135,8 @@ public class RoleDao {
      */
     public List<Role> retrieveRoles() throws DatabaseException {
         Session session = sessionFactory.openSession();        
-        List<Role> roles = new ArrayList<Role>();        
+        List<Role> roles = new ArrayList<Role>(); 
+        
         try {
         	roles = session.createQuery("FROM Role").list();
             if (roles.isEmpty()) {

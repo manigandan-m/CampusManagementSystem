@@ -121,8 +121,7 @@ public class StandardDao {
             {
             	standard.setClassCoordinator(null);
             }
-            session.update(standard);
-            
+            session.update(standard);            
             transaction.commit();                                                                   
         } catch (HibernateException e) {
         	e.printStackTrace();

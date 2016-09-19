@@ -1,10 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:if test="${sessionScope['username']==null}" >
-   <c:redirect url="StudentLogin.html"/>
+
+<c:if test="${null != sessionScope['username']} && ${'admin' == sessionScope['role']}">
+    <c:redirect url="home.html"/>
 </c:if>
-<c:if test="${sessionScope['role']!='student'}" >
-     <c:redirect url="Logout.html"/>
-</c:if>   
+
+<c:if test="${null != sessionScope['username']} && ${'student' == sessionScope['role']}">
+    <c:redirect url="studentlogin.html?username=${sessionScope['username']}"/>
+</c:if>
+
+<c:if test="${null != sessionScope['username']} && ${'teacher' == sessionScope['role']}">
+    <c:redirect url="teacherlogin.html?username=${sessionScope['username']}"/>
+</c:if>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +27,7 @@
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
                 <a href="index.jsp">Home</a>
-                <span class="right">
-                    <a href="Logout.html">
-                        <strong>Logout</strong>
-                    </a>
-                </span>
+                
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>

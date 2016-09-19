@@ -18,7 +18,7 @@ import com.i2i.connection.HibernateConnection;
  * Creates session and transaction objects for each operation 
  * </p>
  * 
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
  * @created 2015-08-27
  */
@@ -69,6 +69,31 @@ public class SubjectDao {
             if (subject == null) {
                 throw new DatabaseException("Invalid student Id");
             }                     
+            return subject;
+        } catch (HibernateException e) {                        
+            throw new DatabaseException("Entered subject is not found. Kindly try again with vaild input data", e);
+        } finally {
+            session.close();
+        }                          
+    }
+    
+    /**
+     * Retrieves the subject object by passing subject code of the subject
+     * 
+     * @param teacher id
+     *     id of teacher whose record has to be viewed
+     * @return subject
+     *    object of class Subject
+     * @throws DataBaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException, HibernateException
+     */
+    public Subject findSubjectByTeacherId(int teacherId) throws DatabaseException {        
+        Session session = sessionFactory.openSession();        
+        Subject subject = null; 
+        
+        try {                           
+            subject = (Subject) session.get(Subject.class, teacherId);            
             return subject;
         } catch (HibernateException e) {                        
             throw new DatabaseException("Entered subject is not found. Kindly try again with vaild input data", e);

@@ -34,8 +34,8 @@ public class AddressDao {
      * @throws DatabaseException
      */
     public void insertAddress(Address address, User user) throws DatabaseException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
+       Session session = sessionFactory.openSession();
+       Transaction transaction = session.beginTransaction();
         try {
             address.setUser(user);
             session.save(address);           
@@ -58,6 +58,7 @@ public class AddressDao {
     public void deleteAddressById(int id) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
+        
         try {
             transaction = session.beginTransaction();
             Address address = (Address)session.get(Address.class, id); 
@@ -79,10 +80,10 @@ public class AddressDao {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
-    public void editAddress(Address address)
-            throws DatabaseException {
+    public void editAddress(Address address) throws DatabaseException {
 	    Session session = sessionFactory.openSession();
         Transaction transaction = null;
+        
         try {
             transaction = session.beginTransaction();
             session.update(address);
@@ -109,6 +110,7 @@ public class AddressDao {
          Address address = null;
          Session session = sessionFactory.openSession();
          Transaction transaction = null;
+         
          try {
              transaction = session.beginTransaction();
              address = (Address)session.get(Address.class, id); 
@@ -135,6 +137,7 @@ public class AddressDao {
         List<Address> addresses = new ArrayList<Address>();
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
+        
         try {
             transaction = session.beginTransaction();
             addresses = session.createQuery("FROM Address").list(); 

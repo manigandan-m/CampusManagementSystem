@@ -66,8 +66,7 @@ public class PeriodDao {
             session.delete(period);
             transaction.commit();            
         } catch (IllegalArgumentException e) {      
-        	System.out.println(e);
-            throw new DatabaseException("Entered user is not deleted. Kindly try again with vaild user id", e);
+        	throw new DatabaseException("Entered user is not deleted. Kindly try again with vaild user id", e);
         } finally {
             session.close();
         }                            
@@ -118,7 +117,6 @@ public class PeriodDao {
              transaction.commit();
              return period;
          } catch (HibernateException e) {
-             System.out.println("Exception : " +e);
              throw new DatabaseException("Check period ID, please enter different id", e);  
          } finally {
              session.close();

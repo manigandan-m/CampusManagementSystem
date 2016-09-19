@@ -11,7 +11,7 @@ import com.i2i.exception.DatabaseException;
  * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Subject by invoking SubjectDao class methods
  * </p>
  * 
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
  * @created 2015-08-27
  */
@@ -46,6 +46,22 @@ public class SubjectService {
      */
     public Subject getSubjectBySubjectCode(String subjectCode) throws DatabaseException {
         return (subjectDao.findSubjectBySubjectCode(subjectCode));        
+    }
+    
+    /**
+     * Invokes the SubjectDao class method to get subject model object using teacherId
+     * Returns the subject model object
+     * 
+     * @param teacherId
+     *     id of teacher
+     * @return 
+     *     Subject model object    
+     * @throws DatabaseException
+     *     if there is an error in getting the object like NullPointerException,
+     *     NumberFormatException
+     */
+    public Subject getSubjectByTeacherId(int teacherId) throws DatabaseException {
+        return (subjectDao.findSubjectByTeacherId(teacherId));        
     }
     
     /**

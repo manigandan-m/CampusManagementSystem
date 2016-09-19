@@ -18,12 +18,11 @@ import com.i2i.model.PeriodSubjectDetail;
 import com.i2i.model.Subject;
 
 /**
- * Controller to perform add, update, delete, retrieve, retrieve all operations using model class Subject by 
- * invoking SubjectService class methods.
+ * Controller to perform add, delete, retrieve, retrieve all operations of time table periods
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
  *   
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
  * @created 2015-08-27
  * 
@@ -31,47 +30,133 @@ import com.i2i.model.Subject;
 @Controller
 public class PeriodSubjectDetailController {
 	PeriodSubjectDetailService periodSubjectDetailService = new PeriodSubjectDetailService();
-	SubjectService subjectService = new SubjectService();
-	PeriodService periodService = new PeriodService();
-	/**
-	 * It is used to send the object of class Subject and the lists of the standards and teachers to a JSP Page where
-	 * user can add the details of the subject  
-	 * @param model
-	 *     used to send the subject model object and the lists of standards and teachers
+    StandardService standardService = new StandardService();
+    SubjectService subjectService = new SubjectService();
+	
+    /**
+	 * Redirects to the time table jsp page with the list of standards
+	 *   
 	 * @return
-	 *     JSP Page where user can add the subject details
+	 *     JSP Page of time table
 	 */
-    @RequestMapping(value = "/addPeriodSubjectDetail", method=RequestMethod.GET) 
-    public String addPeriodSubjectDetail(ModelMap model) {
-    	String message = null;
-        model.addAttribute("PeriodSubjectDetail", new PeriodSubjectDetail());
+	@RequestMapping("/TimeTable")
+	public String timeTablePage(ModelMap model) {
+		try {
+		    model.addAttribute("standards", standardService.getStandards());
+		} catch (DatabaseException e) {
+		    model.addAttribute("message", e.getMessage());   
+	    }
+		return "TimeTable";
+	}
+	
+	/**
+	 * Sends the standard id whose time table is to retrieved and get the periods of timetable
+	 *   
+	 * @param standardId
+	 *     standard id whose time table is to retrieved
+	 * @return
+	 *     JSP Page of standard time table
+	 */
+    @RequestMapping(value = "/generateTimeTable", method=RequestMethod.GET) 
+    public ModelAndView generateTimeTable(@RequestParam("standardId") int standardId) {
+	ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("StandardTimeTable");
+    	
         try {
-        model.addAttribute("subjectList", subjectService.getSubjects());
-        model.addAttribute("periodList", periodService.getPeriods());
+	        periodSubjectDetailService.GenerateTimeTable(standardId);
+            modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByStandardId(standardId));
         } catch (DatabaseException e) {
+	    modelView.addObject("message", e.getMessage());   
         }
-        return "AddPeriodSubject";
+        return modelView;
+    }
+
+    /**
+	 * Sends the standard id whose time table is to retrieved and get the periods of timetable
+	 *   
+	 * @param standardId
+	 *     standard id whose time table is to retrieved
+	 * @return
+	 *     JSP Page of standard time table
+	 */
+    @RequestMapping(value = "/standardTimeTable", method=RequestMethod.GET) 
+    public ModelAndView displayStandardTimeTable(@RequestParam("standardId") int standardId) {               
+        ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("StandardTimeTable");
+
+        try {          
+            modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByStandardId(standardId)); 
+            modelView.addObject("subjects", standardService.getStandardById(standardId).getSubjects());
+        } catch (DatabaseException e) {
+            modelView.addObject("message", e.getMessage());            
+        }
+        return modelView;
+    }
+
+    /**
+	 * Sends the standard id whose time table is to retrieved and get the periods of timetable
+	 *   
+	 * @param standardId
+	 *     standard id whose time table is to retrieved
+	 * @return
+	 *     JSP Page of student time table
+	 */
+    @RequestMapping(value = "/studentTimeTable", method=RequestMethod.GET) 
+    public ModelAndView displayStandardTimeTable(@RequestParam("standardId") int standardId, @RequestParam("rollNumber") int rollNumber) {
+        ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("StudentTimeTable");
+
+        try {          
+            modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByStandardId(standardId)); 
+            modelView.addObject("subjects", standardService.getStandardById(standardId).getSubjects());
+            modelView.addObject("rollNumber",rollNumber);
+        } catch (DatabaseException e) {
+            modelView.addObject("message", e.getMessage());            
+        }
+        return modelView;
     }
     
     /**
-     * The method gets the subject details from the JSP Page and invokes the 
-     * SubjectService class method and sends the details as an object of model class Subject
-     * 
-     * @param subject
-     *     object of class Subject. It contains all the user details that is sent from the JSP Page
-     * @return
-     *     returns the JSP Page called SubjectInformation
-     */
-    @RequestMapping(value = "/addPeriodSubject", method=RequestMethod.POST) 
-    public ModelAndView addSubject(@ModelAttribute("PeriodSubjectDetail") PeriodSubjectDetail periodSubjectDetail) {
-        String message = null;    
-        try {                                                     
-        	periodSubjectDetailService.addPeriodSubjectDetail(periodSubjectDetail);                                        
-            message = "Period Details are added added successfully";            
-        }  catch (DatabaseException ex) {        	
-            message = ex.getMessage().toString(); 
-            System.out.println(message);
-        } 
-        return new ModelAndView("AddPeriodSubject","addMessage", message);       
+	 * Sends the teacher id whose time table is to retrieved and get the periods of timetable
+	 *   
+	 * @param teacher
+	 *     teacher id whose time table is to retrieved
+	 * @return
+	 *     JSP Page of teacher time table when admin login is used
+	 */
+    @RequestMapping(value = "/teacherTimeTable", method=RequestMethod.GET) 
+    public ModelAndView displayTeacherTimeTable(@RequestParam("teacherId") int teacherId) {               
+        ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("TeacherTimeTable");
+        try {          
+            modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByTeacherId(teacherId)); 
+            modelView.addObject("subject", subjectService.getSubjectByTeacherId(teacherId));
+        } catch (DatabaseException e) {
+            modelView.addObject("message", e.getMessage());            
+        }
+        return modelView;
     }
+
+    /**
+	 * Sends the teacher id whose time table is to retrieved and get the periods of timetable
+	 *   
+	 * @param teacher
+	 *     teacher id whose time table is to retrieved
+	 * @return
+	 *     JSP Page of teacher time table when teacher login is used
+	 */
+    @RequestMapping(value = "/facultyTimeTable", method=RequestMethod.GET) 
+    public ModelAndView displayFacultyTimeTable(@RequestParam("teacherId") int teacherId) {               
+        ModelAndView modelView = new ModelAndView();  
+        modelView.setViewName("FacultyTimeTable");
+        try {          
+            modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByTeacherId(teacherId)); 
+            modelView.addObject("subject", subjectService.getSubjectByTeacherId(teacherId));
+            modelView.addObject("teacherId", teacherId);            
+        } catch (DatabaseException e) {
+            modelView.addObject("message", e.getMessage());            
+        }
+        return modelView;
+    }
+    
 }

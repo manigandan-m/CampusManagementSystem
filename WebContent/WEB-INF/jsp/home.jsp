@@ -28,8 +28,7 @@
 					<li><a href="displayStudents.html">Students</a>
 					<li><a href="Standard.html">Standards</a></li>
 					<li><a href="Subject.html">Subjects</a></li>
-					<li><a href="displayPeriods.html">Periods</a>
-					<li><a href="addPeriodSubjectDetail.html">Time Table</a></li>
+					<li><a href="TimeTable.html">Time Table</a></li>
 					<li><a href="Logout.html">Logout</a></li>
 				</ul>
 			</nav>

@@ -86,3 +86,7 @@ mysql> desc student;
 | admission_category | varchar(10) | YES  |     | NULL    |                |
 +--------------------+-------------+------+-----+---------+----------------+
 
+create table period_subject_detail (period_subject_id int not null primary key auto_increment, period_id int, teacher_id int, subject_code varchar(10), standard_id int, foreign key(teacher_id) references teacher(teacher_id), foreign key(standard_id) references standard(standard_id));
+Query OK, 0 rows affected (0.13 sec)
+
+

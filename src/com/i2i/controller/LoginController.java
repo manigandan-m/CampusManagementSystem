@@ -16,6 +16,15 @@ import com.i2i.service.UserService;
 import com.i2i.model.Role;
 import com.i2i.model.User;
 
+/**
+ * <p>
+ * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Subject by invoking SubjectDao class methods
+ * </p>
+ * 
+ * @author zeeshan
+ * 
+ * @created 2015-08-27
+ */
 @Controller
 public class LoginController {
 	UserService userService = new UserService();
@@ -112,7 +121,7 @@ public class LoginController {
 		        if (role.getRoleName().equals("teacher")) {
             	    session.setAttribute("username", username);
             	    session.setAttribute("role",role.getRoleName());
-            	    return "redirect:displayTeacher?teacherId="+user.getTeacher().getTeacherId();
+            	    return "redirect:displayTeacher.html?teacherId="+user.getTeacher().getTeacherId();
 		        } else {
 		        	map.addAttribute("message","Are you sure you're teacher?");
 				}
@@ -123,6 +132,29 @@ public class LoginController {
 			map.addAttribute("message", e.getMessage().toString());
 		}
 		return "TeacherLogin";
+	}
+
+	/**
+	 * Redirects to teacher home page
+	 * 
+	 * @param username
+	 *     username of the user
+	 * @return
+	 *     returns the teacher JSP page 
+	 * @throws IOException
+	 *     if there is failed or interrupted input output operations.
+	 * @throws ServletException
+	 *     when a servlet related problem occurs.
+	 */
+	@RequestMapping(value = "/teacherlogin", method = RequestMethod.GET)
+	public String teacherLoginCheck(@RequestParam("username") String username, ModelMap map) throws  IOException, ServletException {
+		try {
+		    User user = userService.getUserByUsername(username);
+    	            return "redirect:displayTeacher.html?teacherId="+user.getTeacher().getTeacherId();		        
+		} catch (DatabaseException e) {
+		    map.addAttribute("message", e.getMessage().toString());
+		}
+		return "DisplayTeacher";
 	}
 	
 	/**
@@ -135,7 +167,7 @@ public class LoginController {
 	 * @param session
 	 *     HttpSession object
 	 * @return
-	 *     returns the teacher JSP page if the user is a student
+	 *     returns the student JSP page if the user is a student
 	 * @throws IOException
 	 *     if there is failed or interrupted input output operations.
 	 * @throws ServletException
@@ -150,7 +182,7 @@ public class LoginController {
 		        if (role.getRoleName().equals("student")) {
             	    session.setAttribute("username", username);
             	    session.setAttribute("role",role.getRoleName());
-            	    return "redirect:displayStudent?rollNUmber="+user.getStudent().getRollNumber();
+            	    return "redirect:displayStudent?rollNumber="+user.getStudent().getRollNumber();
 		        } else {
 		        	map.addAttribute("message","Are you sure you're a student?");
 				}
@@ -161,6 +193,30 @@ public class LoginController {
 			map.addAttribute("message", e.getMessage().toString());
 		}
 		return "StudentLogin";
+	}
+	
+	/**
+	 * Redirects to student home page
+	 * 
+	 * @param username
+	 *     username of the user 
+	
+	 * @return
+	 *     returns the student JSP page 
+	 * @throws IOException
+	 *     if there is failed or interrupted input output operations.
+	 * @throws ServletException
+	 *     when a servlet related problem occurs.
+	 */
+	@RequestMapping(value = "/studentlogin", method = RequestMethod.GET)
+	public String studentLoginCheck(@RequestParam("username") String username, ModelMap map) throws  IOException, ServletException {
+		try {
+		    User user = userService.getUserByUsername(username);
+    	    	    return "redirect:displayStudent?rollNumber="+user.getStudent().getRollNumber();		    
+		} catch (DatabaseException e) {
+		    map.addAttribute("message", e.getMessage().toString());
+		}
+		return "DisplayStudent";
 	}
 	
 	/**

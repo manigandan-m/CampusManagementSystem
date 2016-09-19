@@ -33,17 +33,13 @@ public class PeriodSubjectDetail {
     @Column(name = "period_subject_id")
 	private int periodSubjectId;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "period_id")   
-	private Period period;
+	private int periodId;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "teacher_id")  
-	private Teacher teacher;
+	private Teacher teacher;	
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "subject_id")  
-	private Subject subject;
+	private String subjectCode;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "standard_id")  
@@ -57,12 +53,12 @@ public class PeriodSubjectDetail {
 		return periodSubjectId;
 	}
 	
-	public void setPeriod(Period period) {
-		this.period = period;		
+	public void setPeriodId(int periodId) {
+		this.periodId = periodId;		
 	}
 	
-	public Period getPeriod() {
-		return period;
+	public int getPeriodId() {
+		return periodId;
 	}
 	
 	public void setTeacher(Teacher teacher) {
@@ -73,12 +69,12 @@ public class PeriodSubjectDetail {
 		return teacher;
 	}
 	
-	public void setSubject(Subject subject) {
-		this.subject = subject;		
+	public void setSubjectCode(String subjectCode) {
+		this.subjectCode = subjectCode;		
 	}
 	
-	public Subject getSubject() {
-		return subject;
+	public String getSubjectCode() {
+		return subjectCode;
 	}
 	
 	public void setStandard(Standard standard) {

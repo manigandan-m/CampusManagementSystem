@@ -32,6 +32,24 @@ mysql> alter table user add column (religion varchar(10));
 Query OK, 28 rows affected (0.29 sec)
 Records: 28  Duplicates: 0  Warnings: 0
 ---------------
+
+mysql> alter table teacher add column qualification varchar(20);
+Query OK, 0 rows affected (0.26 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table teacher add column marital_status varchar(10);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table teacher add column date_of_joining date;
+Query OK, 0 rows affected (0.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table teacher add column designation varchar(20);
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+---------------------------
 mysql> desc user;
 +---------------+-------------+------+-----+---------+----------------+
 | Field         | Type        | Null | Key | Default | Extra          |
