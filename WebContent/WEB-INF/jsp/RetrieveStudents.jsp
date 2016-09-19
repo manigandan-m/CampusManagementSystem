@@ -46,6 +46,9 @@
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Standard</th>
+      <th>Edit Action</th>
+      <th>Delete Action</th>
+      <th>View Action</th>
     </tr>
   </thead>
 </table>
