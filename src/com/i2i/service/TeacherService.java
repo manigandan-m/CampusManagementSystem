@@ -69,7 +69,6 @@ public class TeacherService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    
     public void editTeacher(Teacher teacher)
             throws DatabaseException {
 	    teacherDao.editTeacher(teacher);

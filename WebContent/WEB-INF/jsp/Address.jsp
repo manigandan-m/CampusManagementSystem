@@ -34,22 +34,22 @@
       <div  class="form">
     		<form:form id="contactform" action="addAddress.html" method="POST" modelAttribute="Address"> 
     			<p class="contact"><label for="houseNumber" path = "label1">House Number</label></p> 
-    			<form:input path="houseNumber" placeholder="House Number" required="" tabindex="1" type="text"/>
+    			<form:input path="houseNumber" placeholder="House Number" required="required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="streetName" path = "label1">Street Name</label><p> 
-    			<form:input path="streetName" placeholder="Street Name" required="" tabindex="1" type="text"/>
+    			<form:input path="streetName" placeholder="Street Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="city" path = "label1">City</label><p> 
-    			<form:input path="city" placeholder="city" required="" tabindex="1" type="text"/>
+    			<form:input path="city" placeholder="city" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="state" path = "label1">State</label></p> 
-    			<form:input path="state" placeholder="State" required="" tabindex="1" type="text"/>
+    			<form:input path="state" placeholder="State" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
                         
                         <p class="contact"><label for="country" path = "label1">Country</label><p> 
-    			<form:input path="country" placeholder="Country" required="" tabindex="1" type="text"/>  
+    			<form:input path="country" placeholder="Country" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>  
     			 
     			<p class="contact"><label for="pincode" path = "label1">PinCode</label></p> 
-    			<form:input path="pincode" placeholder="PinCode" required="" tabindex="1" type="text"/> 
+    			<form:input path="pincode" placeholder="PinCode" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/> 
                  <form:input type = "hidden" path = "user.userId" value="${userId}"/>     
                        <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
                 </form:form>
@@ -58,6 +58,12 @@
                  </c:if> 
 </div>      
 </div>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+   <script>
+       $.validate({
+       lang: 'en'
+        });
+   </script> 
 </body>
 </html>

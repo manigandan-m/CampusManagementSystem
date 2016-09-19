@@ -69,7 +69,6 @@ public class RoleService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    
     public void editRole(Role role) throws DatabaseException {
 	    roleDao.editRole(role);
     }

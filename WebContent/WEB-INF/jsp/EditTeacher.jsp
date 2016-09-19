@@ -35,16 +35,16 @@
       <div  class="form">
            <form:form id="contactform" action="editTeacher.html" method="POST" modelAttribute="Teacher"> 
     			<p class="contact"><label for="yearsOfExperience" path = "label1">Years Of Experience</label></p> 
-    			<form:input path="yearsOfExperience" placeholder="Years Of Experience" required="" tabindex="1" type="text"/>
+    			<form:input path="yearsOfExperience" placeholder="Years Of Experience" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="monthsOfExperience" path = "label1">Months Of Experience</label><p> 
-    			<form:input path="monthsOfExperience" placeholder="Months Of Experience" required="" tabindex="1" type="text"/>
+    			<form:input path="monthsOfExperience" placeholder="Months Of Experience" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="dateOfJoining" path = "label1">Date Of Joining (YYYY-MM-DD)</label><p> 
     			<form:input path="dateOfJoining" placeholder="Date Of Joining" required="" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="designation" path = "label1">Designation</label></p> 
-    			<form:input path="designation" placeholder="Designation" required="" tabindex="1" type="text"/>
+    			<form:input path="designation" placeholder="Designation" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
                         
                         <form:select class="select-style gender" name="qualification" path="qualification">
                         <option value="select">Qualification</option>

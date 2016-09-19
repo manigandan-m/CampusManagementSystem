@@ -52,9 +52,9 @@
 	                     
 	                   <c:forEach items="${Standard.subjects}" var="subject" varStatus="status">
 	                   <p><label> Enter Subject Code :</label>
-	                         <form:input path="subjects[${status.index}].subjectCode" placeholder="Enter Subject Code" required="" tabindex="1" type="text"/>
+	                         <form:input path="subjects[${status.index}].subjectCode" placeholder="Enter Subject Code" data-validation="length alphanumeric" data-validation-length="min4" required ="required" tabindex="1" type="text"/>
 	                      <label> Enter Subject Name:</label>   
-	                         <form:input path="subjects[${status.index}].subjectName" placeholder="Enter Subject Name" required="" tabindex="1" type="text"/>
+	                         <form:input path="subjects[${status.index}].subjectName" placeholder="Enter Subject Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 	                   </p>          
 	                     </c:forEach>
  	               <br>
@@ -71,6 +71,12 @@
           
         </div>
              
-          
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+   <script>
+       $.validate({
+       lang: 'en'
+        });
+   </script>   
     </body>
 </html> 

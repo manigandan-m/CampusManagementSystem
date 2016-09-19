@@ -40,7 +40,6 @@ public class UserService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    
     public void editUser(User user)
             throws DatabaseException {
 	    userDao.editUser(user);

@@ -53,7 +53,6 @@ public class StudentDao {
         }                                                                         
     }  
     
-    
     /**
      * Retrieves the student object by passing id of the student
      * 

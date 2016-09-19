@@ -35,19 +35,19 @@
     			<form:input path="password" placeholder="password" required="" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="firstName" path = "label1">First Name</label><p> 
-    			<form:input path="firstName" placeholder="FirstName" required="" tabindex="1" type="text"/>
+    			<form:input path="firstName" placeholder="FirstName" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="lastName" path = "label1">Last Name</label></p> 
-    			<form:input path="lastName" placeholder="Last Name" required="" tabindex="1" type="text"/>
+    			<form:input path="lastName" placeholder="Last Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
                         
-                        <p class="contact"><label for="dateOfBirth" path = "label1">Date Of Birth</label><p> 
+                        <p class="contact"><label for="dateOfBirth" path = "label1">Date Of Birth(YYYY-MM-DD)</label><p> 
     			<form:input path="dateOfBirth" placeholder="Date Of Birth" required="" tabindex="1" type="text"/>  
     			 
     			<p class="contact"><label for="nationality" path = "label1">Nationality</label></p> 
-    			<form:input path="nationality" placeholder="Nationality" required="" tabindex="1" type="text"/> 
+    			<form:input path="nationality" placeholder="Nationality" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/> 
                 
                         <p class="contact"><label for="religion" path = "label1">Religion</label></p> 
-    			<form:input path="religion" placeholder="Religion" required="" tabindex="1" type="text"/>   
+    			<form:input path="religion" placeholder="Religion" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>   
         
                         <form:select class="select-style gender" name="gender" path="gender">
                         <option value="select">i am..</option>
@@ -63,7 +63,7 @@
                         </form:select><br><br>
 
                         <p class="contact"><label for="mobileNumber" path = "label1">Mobile Number</label></p> 
-    			<form:input path="mobileNumber" placeholder="Mobile Nunber" required="" tabindex="1" type="text"/>
+    			<form:input path="mobileNumber" placeholder="Mobile Nunber" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>
              
                         <form:select class="select-style gender" path="role.roleId">
 	                     <option value="select"> Role </option>
@@ -79,6 +79,12 @@
                  </c:if> 
 </div>
 </div>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+   <script>
+       $.validate({
+       lang: 'en'
+        });
+   </script> 
 </body>
 </html>

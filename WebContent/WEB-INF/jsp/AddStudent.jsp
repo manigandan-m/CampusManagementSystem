@@ -35,21 +35,21 @@
       <div  class="form">
     		<form:form id="contactform" action="addStudent.html" method="POST" modelAttribute="Student"> 
     			<p class="contact"><label for="fatherFirstName" path = "label1">Father First Name</label></p> 
-    			<form:input path="fatherFirstName" placeholder="Father First Name" required="" tabindex="1" type="text"/>
+    			<form:input path="fatherFirstName" placeholder="Father First Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="fatherLastName" path = "label1">Father Last Name</label><p> 
-    			<form:input path="fatherLastName" placeholder="Father Last Name" required="" tabindex="1" type="text"/>
+    			<form:input path="fatherLastName" placeholder="Father Last Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="motherFirstName" path = "label1">Mother First Name</label><p> 
-    			<form:input path="motherFirstName" placeholder="Mother First Name" required="" tabindex="1" type="text"/>
+    			<form:input path="motherFirstName" placeholder="Mother First Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="motherLastName" path = "label1">Mother Last Name</label></p> 
-    			<form:input path="motherLastName" placeholder="Mother Last Name" required="" tabindex="1" type="text"/>
+    			<form:input path="motherLastName" placeholder="Mother Last Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
                         
                         <p class="contact"><label for="familyIncome" path = "label1">Annual Income</label><p> 
-    			<form:input path="familyIncome" placeholder="Annual Income" required="" tabindex="1" type="text"/>  
+    			<form:input path="familyIncome" placeholder="Annual Income" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>  
     			 
-    			<p class="contact"><label for="dateOfAdmission" path = "label1">Date Of Admission</label></p> 
+    			<p class="contact"><label for="dateOfAdmission" path = "label1">Date Of Admission(YYYY-MM-DD)</label></p> 
     			<form:input path="dateOfAdmission" placeholder="Date Of Admission" required="" tabindex="1" type="text"/>
 
                         <form:select class="select-style gender" name="admissionCategory" path="admissionCategory">
@@ -62,7 +62,7 @@
                         
                         <label id = "label1">Standard Name:</label>           
 	                
-                    
+                         
                         <form:select path="standard.standardId">
                         <option value="select">select</option>
                         
@@ -80,6 +80,12 @@
                  </c:if> 
 </div>
 </div>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+   <script>
+       $.validate({
+       lang: 'en'
+        });
+   </script> 
 </body>
 </html>

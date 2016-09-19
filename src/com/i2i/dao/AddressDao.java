@@ -34,9 +34,7 @@ public class AddressDao {
      * @throws DatabaseException
      */
     public void insertAddress(Address address, User user) throws DatabaseException {
-        System.out.println("session");
         Session session = sessionFactory.openSession();
-        System.out.println("session created");
         Transaction transaction = session.beginTransaction();
         try {
             address.setUser(user);

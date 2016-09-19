@@ -70,7 +70,6 @@ public class StudentService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    
     public void editStudent(Student student)
             throws DatabaseException {
 	    studentDao.editStudent(student);

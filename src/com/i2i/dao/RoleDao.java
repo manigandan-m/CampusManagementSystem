@@ -90,7 +90,7 @@ public class RoleDao {
             session.update(role);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-              throw new DatabaseException("Please check the data you have given..." , e);  
+            throw new DatabaseException("Please check the data you have given..." , e);  
        } finally {
              session.close(); 
        }

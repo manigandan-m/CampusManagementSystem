@@ -122,16 +122,4 @@ public class Address {
    
     public Address() {
     }   
-   
-    public Address(String houseNumber, String streetName, String city, String state, String country, int pincode, String type, User user) {
-        this.houseNumber = houseNumber;
-        this.streetName = streetName;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.pincode = pincode;
-        this.type = type;
-        this.user = user;
-    }
-
 }
