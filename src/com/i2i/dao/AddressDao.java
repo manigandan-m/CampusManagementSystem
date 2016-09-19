@@ -25,7 +25,6 @@ import com.i2i.connection.HibernateConnection;
 public class AddressDao {
 	HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();   
-    
     /**
      * Saves the address model object to the database by passing it
      * 
