@@ -14,6 +14,7 @@ import com.i2i.model.Standard;
 
 /**
  * Model class for Subject
+ * Subject is a physical entity which is a branch of knowledge taught in school, college or university
  * Setter and Getter methods for the class variables
  * Mapping is done by annotation
  * 
@@ -25,51 +26,51 @@ import com.i2i.model.Standard;
 @Entity
 @Table(name= "subject")
 public class Subject {
-	@Id	
-	@Column(name = "subject_code")
-	private String subjectCode;
-	
-	@Column(name = "subject_name")
-	private String subjectName;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)	
-	@JoinColumn(name = "teacher_id")
-	Teacher teacher;
-	
-	@ManyToOne
-	@JoinColumn(name = "standard_id")
-	Standard standard;
+    @Id    
+    @Column(name = "subject_code")
+    private String subjectCode;
+    
+    @Column(name = "subject_name")
+    private String subjectName;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)    
+    @JoinColumn(name = "teacher_id")
+    Teacher teacher;
+    
+    @ManyToOne
+    @JoinColumn(name = "standard_id")
+    Standard standard;
 
-	public String getSubjectCode() {
-		return subjectCode;
-	}
+    public String getSubjectCode() {
+        return subjectCode;
+    }
 
-	public void setSubjectCode(String subjectCode) {
-		this.subjectCode = subjectCode;
-	}
+    public void setSubjectCode(String subjectCode) {
+        this.subjectCode = subjectCode;
+    }
 
-	public String getSubjectName() {
-		return subjectName;
-	}
+    public String getSubjectName() {
+        return subjectName;
+    }
 
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
-	}
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
 
-	public Teacher getTeacher() {
-		return teacher;
-	}
+    public Teacher getTeacher() {
+        return teacher;
+    }
 
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
-	}
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
-	public Standard getStandard() {
-		return standard;
-	}
+    public Standard getStandard() {
+        return standard;
+    }
 
-	public void setStandard(Standard standard) {
-		this.standard = standard;
-	}
+        public void setStandard(Standard standard) {
+        this.standard = standard;
+    }
 
 }

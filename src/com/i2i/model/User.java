@@ -19,10 +19,11 @@ import com.i2i.model.Role;
 import com.i2i.model.Address;
 
 /**
- * Model class for Role
+ * Model class for User
+ * User is a person who can be teacher, admin or a student
  * Setter and Getter methods for the class variables
  * 
- * @author Zeeshan
+ * @author Manigandan
  * 
  * @created 2015-09-10
  */

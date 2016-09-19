@@ -35,12 +35,12 @@ public class TeacherController {
 	UserService userService = new UserService();
     
 	/**
-     * Gets the teacher details from the JSP Page and passes it as an object of Teacher class.
+     * Gets the teacher details from the JSP Page and passes it as a Teacher.
      * It gets the userId and invokes the UserService method to get the corresponding user object.
      * It invokes the TeacherService method and sends the user and teacher object for adding teacher details
      *  
      * @param teacher
-     *     object of Teacher class
+     *     a person who teaches in a school.
      * @return
      */
     @RequestMapping(value = "/addTeacher", method=RequestMethod.POST)
@@ -62,7 +62,7 @@ public class TeacherController {
      * It invokes the StudemtService class method and gets the object of Teacher class and passes it to JSP Page
      * 
      * @param teacherId
-     *     roll number of the teacher
+     *     ID of the teacher
      * @return
      *     JSP Page where the teacher details can be viewed
      */
@@ -80,10 +80,10 @@ public class TeacherController {
     
     /**
      * Used to view the record of the teacher by passing roll number
-     * It invokes the StudemtService class method and gets the object of Teacher class and passes it to JSP Page
+     * It invokes the StudemtService class method and gets the Teacher and passes it to JSP Page
      * 
      * @param teacherId
-     *     roll number of the teacher
+     *     ID of the teacher
      * @return
      *     JSP Page where the teacher details can be viewed
      */
@@ -117,10 +117,10 @@ public class TeacherController {
     }
     
     /**
-     * Deletes the teacher record by passing the roll number of the teacher
+     * Deletes the teacher record by passing the ID of the teacher
      * 
      * @param teacherId
-     *     roll number of the teacher whose record has to be deleted
+     *     ID of the teacher whose record has to be deleted
      * @return
      *     JSP Page where the user is redirected
      */
@@ -140,9 +140,6 @@ public class TeacherController {
      * 
      * @param teacherId
      *     id of teacher
-     * @param map
-     *    sends the object of Teacher class whose record has to be edited
-     * @return
      */
     @RequestMapping(value="/editTeacherDetails", method=RequestMethod.GET)
     public String editTeacherDetails(@RequestParam("teacherId") int teacherId, ModelMap map) {
@@ -160,8 +157,6 @@ public class TeacherController {
      * 
      * @param id
      *     id of teacher entered by the user
-     * @param model
-     *     ModelMap object to send the teacher object to the JSP page
      * @return EditTeacher
      *     JSP Page where user can make changes to the various attributes of the teacher
      * @throws ServletException
@@ -182,14 +177,14 @@ public class TeacherController {
     
     /**
      * <p>
-     * Edits the teacher details by sending the teacher model object details to the assigned JSP page.
+     * Edits the teacher details by sending the teacher details to the assigned JSP page.
      * Invokes the TeacherService method to update the changes.
      * </p>
      * 
      * @param teacher
      *     Object of Teacher class    
      * @param message
-     *     Status message
+     *     Status message, if the operation was successful or failure
      * @return EditTeacher
      *     JSP Page for editing teacher details
      * @throws IOException

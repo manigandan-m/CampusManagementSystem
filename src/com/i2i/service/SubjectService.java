@@ -6,24 +6,26 @@ import com.i2i.dao.SubjectDao;
 import com.i2i.model.Subject;
 import com.i2i.model.Teacher;
 import com.i2i.exception.DatabaseException;
-/**
- * <p>
- * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Subject by invoking SubjectDao class methods
- * </p>
- * 
- * @author Manigandan
- * 
- * @created 2015-08-27
- */
-public class SubjectService {
+    
+    /**
+     * <p>
+     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+     *  for model Subject by invoking SubjectDao class methods
+     * </p>
+     * 
+     * @author Manigandan
+     * 
+     * @created 2015-08-27
+     */
+    public class SubjectService {
 	SubjectDao subjectDao = new SubjectDao();
 	TeacherService teacherService = new TeacherService();
     
-	 /**
-     * Calls the SubjectDao class method to add the subject to the database by passing the Subject class object
+    /**
+     * Calls the SubjectDao class method to add the subject to the database by passing the subject
      * 
      * @param subject
-     *     model object of class Subject
+     *     subject is a branch of knowledge that is taught to students
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -33,13 +35,13 @@ public class SubjectService {
     }
     
     /**
-     * Invokes the SubjectDao class method to get subject model object using subjectCode of the subject
-     * Returns the subject model object
+     * Invokes the SubjectDao class method to get subject using subjectCode of the subject
+     * Returns the subject
      * 
      * @param subjectCode
      *     code of the subject
      * @return 
-     *     Subject model object    
+     *     Subject of the corresponding subject code    
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -55,7 +57,7 @@ public class SubjectService {
      * @param teacherId
      *     id of teacher
      * @return 
-     *     Subject model object    
+     *     subject assigned to the particular teacher    
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -78,15 +80,14 @@ public class SubjectService {
     }
     
     /**
-     * Invokes the SubjectDao method to edit the subject details by passing the Subject class object
+     * Invokes the SubjectDao method to edit the subject details by passing the subject
      * 
      * @param subject
-     *     object of Subject class
+     *     subject is a branch of knowledge that is taught to students
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    
     public void editSubject(Subject subject)
             throws DatabaseException {
 	    subjectDao.editSubject(subject);
@@ -96,7 +97,7 @@ public class SubjectService {
      * Invokes the SubjectDao class method to get the list of all of subjects 
      * 
      * @return
-     *     returns the list of subjects by invoking SubjectDao method
+     *     returns the list of subjects
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -107,24 +108,23 @@ public class SubjectService {
     
     /**
      * <p>
-     * Used to allot teacher to a subject by passing the subject object
-     * Checks if the teacher object by invoking the TeacherService method by passing the teacherId
+     * Used to allot teacher to a subject by passing the subject
+     * Checks if the teacher is present by invoking the TeacherService method by passing the teacherId
      * Invokes the SubjectDao method to allot the teacher to the subject by passing the
-     *  objects of Subject class and Teacher class
+     *  subject and teacher
      *  </p>
      *  
      * @param subject
-     *     object of class Subject to which the teacher should be assigned
+     *     subject to which the teacher is assigned
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
     public void allotTeacher(Subject subject) throws DatabaseException {
-    	Teacher teacher = null;
+    	Teacher teacher = new Teacher();
     	Subject allocateSubject = getSubjectBySubjectCode(subject.getSubjectCode());
     	int teacherId = subject.getTeacher().getTeacherId();
-    	if (0 != teacherId) 
-        {
+    	if (0 != teacherId) {
         	teacher = teacherService.getTeacherById(teacherId);        	
         }
         subjectDao.updateSubjectByTeacher(allocateSubject, teacher);

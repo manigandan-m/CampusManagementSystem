@@ -1,7 +1,6 @@
 package com.i2i.dao;
 
 import java.util.List;
-import java.util.ArrayList;
 import org.hibernate.Session;  
 import org.hibernate.SessionFactory;  
 import org.hibernate.Transaction;
@@ -22,14 +21,14 @@ import com.i2i.connection.HibernateConnection;
  * @created 2015-08-27
  */
 public class UserDao {
-	HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();    
 
     /**
-     * Saves the user model object to the database by passing it
+     * Saves the user to the database by passing it
      * 
      * @param user
-     *     model object of class User
+     *     user is a person who can be a teacher, admin or student
      * @throws DatabaseException
      *     if there is an error in getting the object like HibernateException
      *     
@@ -74,7 +73,7 @@ public class UserDao {
     }
     
     /**
-     * Retrieves the user model object by passing userId of the user
+     * Retrieves the user by passing userId of the user
      * 
      * @param id
      *     id of the user whose record has to be viewed
@@ -85,11 +84,9 @@ public class UserDao {
      */
     public User findUserById(int id) throws DatabaseException {       
         Session session = sessionFactory.openSession();       
-        User user = null;
-       
         try {                          
-            user = (User) session.get(User.class, id);           
-            if (user == null) {
+            User user = (User) session.get(User.class, id);           
+            if (null == user) {
                throw new DatabaseException("Invalid user Id");
             }                    
             return user;
@@ -101,7 +98,7 @@ public class UserDao {
     }
     
     /**
-     * Edits the user details by accessing the database, passing the User class object.
+     * Edits the user details by accessing the database.
      * 
      * @param user
      *     object of User class to edit
@@ -111,10 +108,9 @@ public class UserDao {
      */
     public void editUser(User user)
             throws DatabaseException {
-	    Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             session.update(user);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
@@ -125,19 +121,17 @@ public class UserDao {
     }
     
     /**
-    * Retrieves  the list of users from the database
-    *  
-    * @return users
-    *     List of all users in the database 
-    * @throws DatabaseException
-    *     if there is an error in getting the object like HibernateException
-    */
-   public List<User> retrieveUsers() throws DatabaseException {
+     * Retrieves  the list of users from the database
+     *  
+     * @return users
+     *     List of all users in the database 
+     * @throws DatabaseException
+     *     if there is an error in getting the object like HibernateException
+     */
+    public List<User> retrieveUsers() throws DatabaseException {
         Session session = sessionFactory.openSession();        
-        List<User> users = new ArrayList<User>();        
-         
         try {
-            users = session.createQuery("FROM User").list();
+        	List<User> users = session.createQuery("FROM User").list();
             if (users.isEmpty()) {
                 throw new DatabaseException("The user list is empty");
             }            
@@ -147,5 +141,5 @@ public class UserDao {
         } finally {
             session.close();
         }                      
-   }   
+    }   
 }

@@ -34,10 +34,8 @@ public class UserController {
     AddressService addressService = new AddressService();
     
     /**
-     * This returns a JSP Page where user can add it's details. It passes a model object of class User by using addAttribute to the JSP Page
+     * This returns a JSP Page where user can add it's details. It passes a User to the JSP Page
      * 
-     * @param model
-     *     it is used to send the model object and the list of roles from Role class using addAttribute method
      * @return User
      *     JSP Page where user can add the user details
      */
@@ -57,7 +55,7 @@ public class UserController {
      * UserService class method and sends the details as an object of model class User
      * 
      * @param user
-     *     object of class User. It contains all the user details that is sent from the JSP Page
+     *     user is a person who can be an admin, teacher or a student. It contains all the user details that is sent from the JSP Page
      * @return
      *     returns the JSP Page called Address
      */
@@ -122,8 +120,6 @@ public class UserController {
      * 
      * @param id
      *     id of user entered by the user
-     * @param model
-     *     ModelMap object to send the user object to the JSP page
      * @return EditUser
      *     JSP Page where user can make changes to the various attributes of the user
      * 
@@ -142,12 +138,12 @@ public class UserController {
     
     /**
      * <p>
-     * Edits the user details by sending the user model object details to the assigned JSP page.
+     * Edits the user details by sending the user to the assigned JSP page.
      * Invokes the UserService method to update the changes.
      * </p>
      * 
      * @param user
-     *     Object of User class    
+     *     user is a person who can be an admin, teacher or a student. It contains all the user details that is sent from the JSP Page
      * @param message
      *     Status message
      * @return EditUser

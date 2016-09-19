@@ -1,7 +1,6 @@
 package com.i2i.dao;
 
 import java.util.List;
-import java.util.ArrayList;
 import org.hibernate.Session;  
 import org.hibernate.SessionFactory;  
 import org.hibernate.Transaction;
@@ -23,14 +22,14 @@ import com.i2i.connection.HibernateConnection;
  * @created 2015-08-27
  */
 public class SubjectDao {
-	HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();
     
     /**
-     * Saves the subject model object to the database by passing the Subject class object
+     * Saves the subject model object to the database by passing the Subject
      * 
      * @param subject
-     *     model object of class Subject
+     *     subject is a branch of knowledge taught to students in a standard
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
@@ -55,18 +54,16 @@ public class SubjectDao {
      * @param subjectCode
      *     code of the subject whose record has to be viewed
      * @return subject
-     *    object of class Subject
+     *    subject is a branch of knowledge taught to students in a standard
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
     public Subject findSubjectBySubjectCode(String subjectCode) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
-        Subject subject = null; 
-        
         try {                           
-        	subject = (Subject) session.get(Subject.class, subjectCode);            
-            if (subject == null) {
+            Subject subject = (Subject) session.get(Subject.class, subjectCode);            
+            if (null == subject) {
                 throw new DatabaseException("Invalid student Id");
             }                     
             return subject;
@@ -90,10 +87,8 @@ public class SubjectDao {
      */
     public Subject findSubjectByTeacherId(int teacherId) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
-        Subject subject = null; 
-        
         try {                           
-            subject = (Subject) session.get(Subject.class, teacherId);            
+            Subject subject = (Subject) session.get(Subject.class, teacherId);            
             return subject;
         } catch (HibernateException e) {                        
             throw new DatabaseException("Entered subject is not found. Kindly try again with vaild input data", e);
@@ -113,9 +108,8 @@ public class SubjectDao {
     public void deleteSubjectBySubjectCode(String subjectCode) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-
         try {
-        	Subject subject = (Subject) session.get(Subject.class, subjectCode); 
+            Subject subject = (Subject) session.get(Subject.class, subjectCode); 
             session.delete(subject);
             transaction.commit();            
         } catch (IllegalArgumentException e) {                       
@@ -136,10 +130,9 @@ public class SubjectDao {
      */
     public void editSubject(Subject subject)
             throws DatabaseException {
-	    Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+	Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             session.update(subject);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
@@ -153,17 +146,15 @@ public class SubjectDao {
      * Retrieves  the list of subjects from the database
      * 
      * @return subjects
-     *     ArrayList of subjects
+     *     List of subjects
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
     public List<Subject> retrieveSubjects() throws DatabaseException {
         Session session = sessionFactory.openSession();        
-        List<Subject> subjects = new ArrayList<Subject>();        
-         
         try {
-        	subjects = session.createQuery("FROM Subject").list();
+            List<Subject> subjects = session.createQuery("FROM Subject").list();
             if (subjects.isEmpty()) {
                 throw new DatabaseException("The student list is empty");
             }            
@@ -188,15 +179,13 @@ public class SubjectDao {
      */
     public void updateSubjectByTeacher(Subject subject, Teacher teacher) throws DatabaseException {
         Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             subject.setTeacher(teacher);            
             session.update(subject);            
             transaction.commit();                                                                   
         } catch (HibernateException e) {
-        	e.printStackTrace();
-              throw new DatabaseException("Please check the data you have given..." , e); 
+        	throw new DatabaseException("Please check the data you have given..." , e); 
        } finally {
              session.close();
        }

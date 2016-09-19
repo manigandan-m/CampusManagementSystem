@@ -18,10 +18,12 @@ import com.i2i.model.User;
 
 /**
  * <p>
- * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Subject by invoking SubjectDao class methods
+ * Used to check the login credentials of the user when a user attempts to login. It checks if the username and password exists.
+ * If it exists it creates a session object. Depending on the role it redirects the user to the corresponding JSP Page.
+ * When a user logs out it invalidates the session
  * </p>
  * 
- * @author zeeshan
+ * @author Zeeshan
  * 
  * @created 2015-08-27
  */
@@ -64,7 +66,7 @@ public class LoginController {
 	 * @param password
 	 *     password of the user
 	 * @param session
-	 *     HttpSession object
+	 *     HttpSession
 	 * @return
 	 *     returns home JSP page if the user is an admin
 	 *     returns the teacher JSP page if the user is a teacher
@@ -104,7 +106,7 @@ public class LoginController {
 	 * @param password
 	 *     password of the user
 	 * @param session
-	 *     HttpSession object
+	 *     HttpSession
 	 * @return
 	 *     returns the teacher JSP page if the user is a teacher
 	 * @throws IOException
@@ -165,7 +167,7 @@ public class LoginController {
 	 * @param password
 	 *     password of the user
 	 * @param session
-	 *     HttpSession object
+	 *     HttpSession
 	 * @return
 	 *     returns the student JSP page if the user is a student
 	 * @throws IOException
@@ -234,8 +236,6 @@ public class LoginController {
      * Sets the session attribute to null and removes it.
      * </p>
      * 
-     * @param session
-     *     HttpSession interface reference
      * @return Login
      *     JSP Page for login 
      */

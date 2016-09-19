@@ -1,7 +1,6 @@
 package com.i2i.dao;
 
 import java.util.List;
-import java.util.ArrayList;
 import org.hibernate.Session;  
 import org.hibernate.SessionFactory;  
 import org.hibernate.Transaction;
@@ -20,22 +19,22 @@ import com.i2i.connection.HibernateConnection;
  * Creates session and transaction objects for each operation 
  * </p>
  * 
- * @author Manigandan
+ * @author Zeeshan
  * 
  * @created 2015-08-27
  */
 
 public class StudentDao {
-	HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();     
 
     /**
      * Saves the student model object to the database by passing it
      * 
      * @param student
-     *     model object of class Student
+     *     a person who studies in a standard
      * @throws DatabaseException
-     *     if there is an error in getting the object like HibernateException
+     *     if there is an error in saving the student like HibernateException
      *     
      */
     public void insertStudent(Student student, User user, Standard standard) throws DatabaseException {
@@ -59,16 +58,15 @@ public class StudentDao {
      * @param id
      *     id of the student whose record has to be viewed
      * @return student
-     *    object of class Student
+     *    student entity which contains the details of the student
      * @throws DatabaseException
-     *     if there is an error in getting the object like HibernateException
+     *     if there is an error in getting the student like HibernateException
      */
     public Student findStudentById(int id) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
-        Student student = null; 
         try {                           
-            student = (Student) session.get(Student.class, id);            
-            if (student == null) {
+            Student student = (Student) session.get(Student.class, id);            
+            if (null == student) {
                 throw new DatabaseException("Invalid student Id");
             }                     
             return student;
@@ -85,7 +83,7 @@ public class StudentDao {
      * @param studentId
      *     id of the student to delete
      * @throws DatabaseException
-     *     if there is an error in getting the object like HibernateException
+     *     if there is an error in deleting the student like HibernateException
      */
     public void deleteStudentById(int id) throws DatabaseException {
         Session session = sessionFactory.openSession();
@@ -102,19 +100,18 @@ public class StudentDao {
     }
     
     /**
-     * Edits the student details by accessing the database, passing the Student class object.
+     * Edits the student details by accessing the database, passing the Student.
      * 
      * @param student
-     *     object of Student class to edit
+     *     student whose details need to be edited
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
     public void editStudent(Student student) throws DatabaseException {
 	    Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             session.update(student);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
@@ -134,9 +131,8 @@ public class StudentDao {
      */
     public List<Student> retrieveStudents() throws DatabaseException {
         Session session = sessionFactory.openSession();        
-        List<Student> students = new ArrayList<Student>();        
         try {
-            students = session.createQuery("FROM Student").list();
+        	List<Student> students = session.createQuery("FROM Student").list();
             if (students.isEmpty()) {
                 throw new DatabaseException("The student list is empty");
             }            

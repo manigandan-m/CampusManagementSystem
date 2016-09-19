@@ -1,6 +1,5 @@
 package com.i2i.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -24,24 +23,23 @@ import com.i2i.model.Role;
  */
 
 public class RoleDao {
-	HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();     
 
     /**
-     * Saves the role model object to the database by passing it
+     * Saves the role to the database by passing it
      * 
      * @param role
-     *     model object of class Role
+     *     role is the position that is saved in the database
      * @throws DatabaseException
-     *     if there is an error in getting the object like HibernateException
+     *     if there is an error in getting the role details like HibernateException
      *     
      */
     public void insertRole(Role role) throws DatabaseException {
     	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        
         try { 
-        	session.save(role);            
+            session.save(role);            
             transaction.commit();        
         } catch (HibernateException e) {   
             throw new DatabaseException("Entered role is not added.", e);
@@ -56,12 +54,11 @@ public class RoleDao {
      * @param roleId
      *     id of the role to delete
      * @throws DatabaseException
-     *     if there is an error in getting the object like HibernateException
+     *     if there is an error in deleting the role details like HibernateException
      */
     public void deleteRoleById(int roleId) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-
         try {
             Role role = (Role) session.get(Role.class, roleId); 
             session.delete(role);
@@ -77,17 +74,15 @@ public class RoleDao {
      * Edits the role details by accessing the database, passing the Role class object.
      * 
      * @param role
-     *     object of Role class to edit
+     *     role whose details have to be edited
      * @throws DataBaseException
-     *     if there is an error in getting the object like NullPointerException,
+     *     if there is an error in getting the role details like NullPointerException,
      *     NumberFormatException, HibernateException
      */
     public void editRole(Role role) throws DatabaseException {
-	    Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             session.update(role);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
@@ -98,24 +93,21 @@ public class RoleDao {
     }
     
     /**
-     * Retrieves the role object by passing id of the role
+     * Retrieves the role by passing id of the role
      * 
      * @param id
      *     id of the role whose record has to be viewed
      * @return role
-     *    object of class Role
+     *    role is the position of the user
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
     public Role findRoleById(int id) throws DatabaseException {
-         Role role = null;
          Session session = sessionFactory.openSession();
-         Transaction transaction = null;
-         
+         Transaction transaction = session.beginTransaction();
          try {
-             transaction = session.beginTransaction();
-             role = (Role)session.get(Role.class, id); 
+             Role role = (Role)session.get(Role.class, id); 
              transaction.commit();
              return role;
          } catch (HibernateException e) {
@@ -129,16 +121,14 @@ public class RoleDao {
      * Retrieves  the list of roles from the database
      * 
      * @return roles
-     *     ArrayList of roles
+     *     List of roles
      * @throws DatabaseException
-     *     if there is an error in getting the object like HibernateException
+     *     if there is an error in getting the list of roles like HibernateException
      */
     public List<Role> retrieveRoles() throws DatabaseException {
         Session session = sessionFactory.openSession();        
-        List<Role> roles = new ArrayList<Role>(); 
-        
         try {
-        	roles = session.createQuery("FROM Role").list();
+        	List<Role> roles = session.createQuery("FROM Role").list();
             if (roles.isEmpty()) {
             	throw new DatabaseException("The role list is empty");
             }            

@@ -13,7 +13,8 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 /**
- * Model class for Role
+ * Model class for Address
+ * It is a physical entity which depicts the particulars of the place where someone lives.
  * Setter and Getter methods for the class variables
  * 
  * @author Manigandan
@@ -50,7 +51,6 @@ public class Address {
    
     @Column(name = "type")
     private String type;
-   
    
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")

@@ -15,7 +15,7 @@ import com.i2i.service.TeacherService;
 import com.i2i.model.Subject;
 
 /**
- * Controller to perform add, update, delete, retrieve, retrieve all operations using model class Subject by 
+ * Controller to perform add, update, delete, retrieve, retrieve all operations using Subject by 
  * invoking SubjectService class methods.
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
@@ -32,7 +32,7 @@ public class SubjectController {
 	StandardService standardService = new StandardService();
     
 	/**
-	 * It is used to send the object of class Subject and the lists of the standards and teachers to a JSP Page where
+	 * It is used to send the subject and the lists of the standards and teachers to a JSP Page where
 	 * user can add the details of the subject  
 	 * @param model
 	 *     used to send the subject model object and the lists of standards and teachers
@@ -50,10 +50,10 @@ public class SubjectController {
     
     /**
      * The method gets the subject details from the JSP Page and invokes the 
-     * SubjectService class method and sends the details as an object of model class Subject
+     * SubjectService class method and sends the details as Subject
      * 
      * @param subject
-     *     object of class Subject. It contains all the user details that is sent from the JSP Page
+     *     a branch of knowledge studied or taught in a school
      * @return
      *     returns the JSP Page called SubjectInformation
      */
@@ -71,7 +71,7 @@ public class SubjectController {
 
     /**
      * Used to find the details of a subject by getting the subject code. It passes
-     *  an object of class Subject to the JSP Page where the subject details can be viewed
+     *  subject to the JSP Page where the subject details can be viewed
      *   
      * @param subjectCode
      *     code of the subject
@@ -115,10 +115,10 @@ public class SubjectController {
     
     /**
      * This method is used to assign a teacher to a subject. It is done by passing the id of subject
-     * It also sends the list of teachers by invoking the TeacherService method and also the object of Subject class
+     * It also sends the list of teachers by invoking the TeacherService method and also the Subject
      *  
      * @param subjectId
-     *     ID of the subject
+     *     code of the subject
      * @return
      */
     @RequestMapping(value = "/assignTeacher", method=RequestMethod.GET) 
@@ -135,7 +135,7 @@ public class SubjectController {
     }    
     
     /**
-     * Allots the teacher to the subject by invoking the SubjectService class method and passing the object of Subject class 
+     * Allots the teacher to the subject by invoking the SubjectService class method and passing the Subject 
      * 
      * @param subject
      *     object of class Subject

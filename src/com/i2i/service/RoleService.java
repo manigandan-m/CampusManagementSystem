@@ -6,23 +6,24 @@ import com.i2i.dao.RoleDao;
 import com.i2i.exception.DatabaseException;
 import com.i2i.model.Role;
 
-/**
- * <p>
- * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Role by invoking RoleDao class methods
- * </p>
- * 
- * @author Zeeshan Ali
- * 
- * @created 2015-08-27
- */
-public class RoleService {
-	RoleDao roleDao = new RoleDao();
+    /**
+     * <p>
+     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+     * for model Role by invoking RoleDao class methods
+     * </p>
+     * 
+     * @author Zeeshan Ali
+     * 
+     * @created 2015-08-27
+     */
+    public class RoleService {
+        RoleDao roleDao = new RoleDao();
     
-	/**
+    /**
      * Calls the RoleDao class method to add the period to the database by passing the Role class object
      * 
      * @param role
-     *     object of class Role
+     *     role is the position of a person in the school
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -45,8 +46,8 @@ public class RoleService {
     }
     
     /**
-     * Invokes the RoleDao class method to get role model object using id of the role
-     * Returns the role model object
+     * Invokes the RoleDao class method to get role using id of the role
+     * Returns the role
      * 
      * @param id
      *     id of the role
@@ -64,7 +65,7 @@ public class RoleService {
      * Invokes the roleDao method to edit the role details by passing the Role class object
      * 
      * @param role
-     *     object of Role class
+     *     role is the position of a person in the school
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException

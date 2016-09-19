@@ -1,7 +1,6 @@
 package com.i2i.dao;
 
 import java.util.List;
-import java.util.ArrayList;
 import org.hibernate.Session;  
 import org.hibernate.SessionFactory;  
 import org.hibernate.Transaction;
@@ -23,15 +22,15 @@ import com.i2i.connection.HibernateConnection;
  */
 
 public class StandardDao {
-	HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory sessionFactory = hibernateConnection.getConnection();    
 
     /**
-     * Saves the standard model object to the database by passing it. It also gets the list of subjects assigned to that
-     * standard and stores it as a list in the Standard class object 
+     * Saves the standard to the database by passing it. It also gets the list of subjects assigned to that
+     * standard and stores it as a list in the Standard 
      * 
      * @param standard
-     *     model object of class Standard
+     *     It is a grade in which students are taught a set of subjects
      * @throws DatabaseException
      *     if there is an error in getting the object like HibernateException
      *     
@@ -40,7 +39,7 @@ public class StandardDao {
     	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {     	
-        	standard.getSubjects().get(0).setStandard(standard);
+            standard.getSubjects().get(0).setStandard(standard);
             standard.getSubjects().get(1).setStandard(standard);
             standard.getSubjects().get(2).setStandard(standard);
             standard.getSubjects().get(3).setStandard(standard);
@@ -88,11 +87,9 @@ public class StandardDao {
      */
     public Standard findStandardById(int id) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
-        Standard standard = null; 
-        
         try {                           
-            standard = (Standard) session.get(Standard.class, id);            
-            if (standard == null) {
+            Standard standard = (Standard) session.get(Standard.class, id);            
+            if (null == standard) {
                 throw new DatabaseException("Invalid student Id");
             }                     
             return standard;
@@ -107,25 +104,22 @@ public class StandardDao {
      * Edits the standard details by accessing the database, passing the Standard class object.
      * 
      * @param standard
-     *     object of Standard class to edit
+     *     Standard class which is to edited
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
     public void updateStandard(Standard standard) throws DatabaseException {
         Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
-            if (0 == standard.getClassCoordinator().getTeacherId()) 
-            {
+            if (0 == standard.getClassCoordinator().getTeacherId()) {
             	standard.setClassCoordinator(null);
             }
             session.update(standard);            
             transaction.commit();                                                                   
         } catch (HibernateException e) {
-        	e.printStackTrace();
-              throw new DatabaseException("Please check the data you have given..." , e); 
+        	throw new DatabaseException("Please check the data you have given..." , e); 
        } finally {
              session.close();
        }
@@ -141,10 +135,8 @@ public class StandardDao {
      */
     public List<Standard> retrieveStandards() throws DatabaseException {
         Session session = sessionFactory.openSession();        
-        List<Standard> standards = new ArrayList<Standard>();        
-         
         try {
-        	standards = session.createQuery("FROM Standard").list();
+            List<Standard> standards = session.createQuery("FROM Standard").list();
             if (standards.isEmpty()) {
                 throw new DatabaseException("The user list is empty");
             }            

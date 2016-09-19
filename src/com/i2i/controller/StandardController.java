@@ -15,7 +15,7 @@ import com.i2i.service.TeacherService;
 import com.i2i.model.Subject;
 
 /**
- * Controller to perform add, update, delete, retrieve, retrieve all operations using model class Standard
+ * Controller to perform add, update, delete, retrieve, retrieve all operations using standard
  * by invoking StandardService class methods.
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
@@ -35,13 +35,12 @@ public class StandardController {
 	 * the TeacherService method to the JSP Page
 	 * 
 	 * @param model
-	 *     used to send the standard model object and the list of teachers using addAttribute method
+	 *     used to send the standard and the list of teachers
 	 * @return
 	 *     returns the JSP Page where details of the standard can be entered
 	 */
 	@RequestMapping(value = "/Standard", method=RequestMethod.GET) 
     public String viewStandards(ModelMap model) {
-	    
 	    try {       
 			model.addAttribute("standards", standardService.getStandards());           
         } catch (DatabaseException e) {
@@ -51,7 +50,7 @@ public class StandardController {
     }  
 	
 	/**
-	 * Returns to the JSP Page with a list of subjects using standard model class method
+	 * Returns to the JSP Page with a list of subjects
 	 * 
 	 * @param model
 	 *     to add the the object of class Standard to the JSP Page using addAtribute method
@@ -68,12 +67,13 @@ public class StandardController {
 	    model.addAttribute("Standard", standard);
 		return "AddStandard";
     }  
-    /**
-	 * Gets the details of the standard from JSP Page as an object of standard class
-	 * and invokes the StandardService method to add the add the standard details
+    
+	/**
+	 * Gets the details of the standard from JSP Page
+	 * and invokes the StandardService method to add the standard details
 	 * 
 	 * @param standard
-	 *     object of Standard class
+	 *     grade in which group of students study
 	 * @return
 	 */
 	@RequestMapping(value = "/addStandard", method=RequestMethod.POST) 
@@ -96,23 +96,6 @@ public class StandardController {
         return modelView;       
     }
 
-    /**
-     * It displays all the standards by invoking the StandardService class method.
-     * It sends the list of the standards to the JSP Page by using ModelAndView object
-     *  
-     * @return
-     *     returns the JSP Page where all the standards are displayed
-     */
-    /*public ModelAndView displayStandards() {
-    	
-        try {                                                                         
-            List<Standard> standards = standardService.getStandards();
-            return new ModelAndView("Standard","standards", standards);                                           
-        } catch (DatabaseException e) {        	
-            return new ModelAndView("Standard","displayMessage", e.getMessage());                                                       
-        } 
-    }*/
-    
     /**
      * Deletes the standard record by passing the id of the standard
      * 
@@ -139,10 +122,10 @@ public class StandardController {
     
     /**
      * Used to find the details of a standard by getting the standardId. It passes
-     * an object of class Standard to the JSP Page where the subject details can be viewed
+     * Standard to the JSP Page where the standard details can be viewed
      *   
      * @param standardId
-     *     id of the standard
+     *     id of the standard whose details have to be viewed
      * @return
      *     JSP Page where standard details can be viewed
      */
@@ -163,7 +146,7 @@ public class StandardController {
     /**
      * <p>
      * JSP Page where admin can assign a class teacher for a standard 
-     * Sends the list of teachers by invoking the class TeacherService method and the standard class object 
+     * Sends the list of teachers by invoking the class TeacherService method and the standard  
      * to which class teacher should be assigned
      * </p>
      *  
@@ -188,7 +171,7 @@ public class StandardController {
     /**
      * Assigns a class coordinator to a standard by invoking the StandardService class method and passing the Standard class object 
      * @param standard
-     *     object of class Standard
+     *     grade in which a group of students study
      * @return
      */
     @RequestMapping(value = "/editCoordinator", method=RequestMethod.POST) 

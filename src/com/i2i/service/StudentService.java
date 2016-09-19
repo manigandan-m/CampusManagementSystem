@@ -8,23 +8,24 @@ import com.i2i.model.Student;
 import com.i2i.model.User;
 import com.i2i.exception.DatabaseException;
 
-/**
- * <p>
- * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Role by invoking StudentDao class methods
- * </p>
- * 
- * @author Zeeshan Ali
- * 
- * @created 2015-08-27
- */
-public class StudentService {
+    /**
+     * <p>
+     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+     * for model Role by invoking StudentDao class methods
+     * </p>
+     * 
+     * @author Zeeshan Ali
+     * 
+     * @created 2015-08-27
+     */
+    public class StudentService {
     StudentDao studentDao = new StudentDao();
     
     /**
      * Calls the StudentDao class method to add the standard to the database by passing the Student class object
      * 
      * @param student
-     *     object of class Student
+     *     student is a person who is pupil in a school
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -39,7 +40,7 @@ public class StudentService {
      * @param id
      *     id of student
      * @return
-     *     object of class Student
+     *     student
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -65,7 +66,7 @@ public class StudentService {
      * Invokes the studentDao method to edit the student details by passing the Student class object
      * 
      * @param student
-     *     object of Student class
+     *     student is a person who is pupil in a school
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -79,7 +80,7 @@ public class StudentService {
      * Invokes the StudentDao class method to get the list of all of students
      *  
      * @return 
-     *     list of students returned in List datatype
+     *     list of students returned
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException

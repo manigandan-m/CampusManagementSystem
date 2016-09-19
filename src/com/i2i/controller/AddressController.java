@@ -18,7 +18,7 @@ import com.i2i.service.StandardService;
 import com.i2i.service.UserService;
 
 /**
- * Controller to perform add, update, delete, retrieve, retrieve all operations using model class User
+ * Controller to perform add, update, delete, retrieve, retrieve all operations using user
  * by invoking AddressService class methods.
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
@@ -37,15 +37,13 @@ public class AddressController {
     
     /**
      * <p>
-     * The method gets the address details from the JSP page and passes it as an object of Address class
-     * It gets the object of User class by passing the id of user in the UserService class method.
+     * The method gets the address details from the JSP page and passes it
+     * It gets the user by passing the id of user in the UserService class method.
      * The id of the user is passed from the JSP Page. Depending on the role of the user, the user is redirected to the next JSP Page
      * </p>
      * 
      * @param address
-     *     object of class Address that contains the address details
-     * @param map
-     *     object of ModelMap type. It is used to send the userId and the student model object or teacher model object depending on the tole of the user 
+     *     the particulars of the place where a person lives is situated
      * @return
      *     if the role of the user is teacher it returns the JSP Page where user can enter teacher details
      *     if the role of the user is student it returns the JSP Page where user can enter student details
@@ -92,11 +90,10 @@ public class AddressController {
     
     /**
      * It provides the page where the user can edit the address details. It calls the AddressService method 
-     * to get the address object and passes it to the JSP Page by using adAttribute method
+     * to get the address object and passes it to the JSP Page
      *  
      * @param id
      *     id of address whose details has to be edited
-     * @param model
      * @return 
      *     returns the JSP Page where user can edit the address details
      * @throws ServletException
@@ -122,9 +119,9 @@ public class AddressController {
      * </p>
      * 
      * @param address
-     *     Object of Address class    
+     *     the particulars of the place where a person lives is situated     
      * @param message
-     *     Status message
+     *     Status message if the given operation was successful or failure
      * @return EditAddress
      *     JSP Page for editing address details
      * @throws IOException

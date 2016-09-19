@@ -17,7 +17,7 @@ import com.i2i.model.Student;
 import com.i2i.model.User;
 
 /**
- * Controller to perform add, update, delete, retrieve, retrieve all operations using model class Student
+ * Controller to perform add, update, delete, retrieve, retrieve all operations using Student
  * by invoking StudentService class methods.
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
@@ -34,12 +34,12 @@ public class StudentController  {
     StandardService standardService = new StandardService();
     
     /**
-     * Gets the student details from the JSP Page and passes it as an object of Student class.
-     * It gets the userId and invokes the UserService method to get the corresponding user object.
-     * It invokes the StudentService method and sends the user and student object for adding student details
+     * Gets the student details from the JSP Page and passes it as student.
+     * It gets the userId and invokes the UserService method to get the corresponding user.
+     * It invokes the StudentService method and sends the user and student for adding student details
      *  
      * @param student
-     *     object of Student class
+     *     person who is a pupil of a school   
      * @return
      */
     @RequestMapping(value = "/addStudent", method=RequestMethod.POST) 
@@ -58,7 +58,7 @@ public class StudentController  {
 
     /**
      * Used to view the record of the student by passing roll number
-     * It invokes the StudemtService class method and gets the object of Student class and passes it to JSP Page
+     * It invokes the StudemtService class method and gets the Student and passes it to JSP Page
      * 
      * @param studentId
      *     roll number of the student
@@ -79,7 +79,7 @@ public class StudentController  {
     
     /**
      * Used to view the record of the student by passing roll number
-     * It invokes the StudemtService class method and gets the object of Student class and passes it to JSP Page
+     * It invokes the StudemtService class method and gets the Student and passes it to JSP Page
      * 
      * @param studentId
      *     roll number of the student
@@ -100,7 +100,7 @@ public class StudentController  {
 
     /**
      * It displays all the students by invoking the StudentService class method.
-     * It sends the list of the students to the JSP Page by using ModelAndView object
+     * It sends the list of the students to the JSP Page
      *  
      * @return
      *     returns the JSP Page where all the students are displayed
@@ -159,8 +159,6 @@ public class StudentController  {
      * 
      * @param id
      *     id of student entered by the user
-     * @param model
-     *     ModelMap object to send the student object to the JSP page
      * @return EditStudent
      *     JSP Page where user can make changes to the various attributes of the student
      * @throws ServletException
@@ -186,7 +184,7 @@ public class StudentController  {
      * </p>
      * 
      * @param student
-     *     Object of Student class    
+     *     person who is a pupil of a school    
      * @param message
      *     Status message
      * @return EditStudent

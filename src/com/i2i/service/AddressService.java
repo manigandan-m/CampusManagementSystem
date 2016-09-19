@@ -8,23 +8,24 @@ import com.i2i.model.User;
 
 import com.i2i.exception.DatabaseException;
 
-/**
- * <p>
- * Service which is used to perform basic create update, retrieve, retrieve all and delete operations for model Role by invoking AddressDao class methods
- * </p>
- * 
- * @author Zeeshan Ali
- * 
- * @created 2015-08-27
- */
-public class AddressService {
+    /**
+     * <p>
+     * Service which is used to perform basic create update, retrieve, retrieve all and delete operations
+     * for model Role by invoking AddressDao class methods
+     * </p>
+     * 
+     * @author Zeeshan Ali
+     * 
+     * @created 2015-08-27
+     */
+    public class AddressService {
 	AddressDao addressDao = new AddressDao();
 	
-	/**
+    /**
      * Calls the AddressDao class method to add the standard to the database by passing the Address class object
      * 
      * @param address
-     *     object of class Address
+     *     address is the particulars of a place where a person lives
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -33,16 +34,15 @@ public class AddressService {
         addressDao.insertAddress(address, user);                     
     }
 	
-	/**
+    /**
      * Invokes the addressDao method to edit the address details by passing the Address class object
      * 
      * @param address
-     *     object of Address class
+     *     address is the particulars of a place where a person lives
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    
     public void editAddress(Address address)
             throws DatabaseException {
 	    addressDao.editAddress(address);
@@ -52,7 +52,7 @@ public class AddressService {
      * Invokes the AddressDao class method to get the list of all of addresss
      *  
      * @return 
-     *     list of addresses returned in List datatype
+     *     list of addresses returned
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
@@ -66,9 +66,9 @@ public class AddressService {
      * Invokes the AddressDao method to get the address object
      * 
      * @param addressId
-     *     ID of address passed as argument to get the address object
+     *     ID of address passed as argument to get the address
      * @return
-     *     object of Address class
+     *     address of a person
      * @throws DatabaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
