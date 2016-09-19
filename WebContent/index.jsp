@@ -7,34 +7,34 @@
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
-<!-- ################################################################################################ --> 
+<!-- ################################################################################################ -->
 <div class="wrapper row0">
-  <div id="topbar" class="clear"> 
+  <div id="topbar" class="clear">
     <!-- ################################################################################################ -->
     <nav>
-      <ul>      
+      <ul>     
         <li><a href="Login.html">Admin Login</a></li>
         <li><a href="TeacherLogin.html">Teacher Login</a></li>
         <li><a href="StudentLogin.html">Student Login</a></li>
         </ul>
     </nav>
-    <!-- ################################################################################################ --> 
+    <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ --> 
+<!-- ################################################################################################ -->
 <div class="wrapper row1">
-  <header id="header" class="clear"> 
+  <header id="header" class="clear">
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
       <h1><a href="index.jsp">School Of Rock</a></h1>
     </div>
-    <!-- ################################################################################################ --> 
+    <!-- ################################################################################################ -->
   </header>
 </div>
-<!-- ################################################################################################ --> 
+<!-- ################################################################################################ -->
 <div class="wrapper">
   <div id="slider">
-    <div id="slide-wrapper" class="rounded clear"> 
+    <div id="slide-wrapper" class="rounded clear">
       <!-- ################################################################################################ -->
       <figure id="slide-1"><a class="view" href="#"><img src="images/demo/slider/101.jpg" alt=""></a>
         <figcaption>
@@ -76,16 +76,16 @@
         <li><a href="#slide-4">Alumni And Its Donors</a></li>
         <li><a href="#slide-5">Contact Us</a></li>
       </ul>
-      <!-- ################################################################################################ --> 
+      <!-- ################################################################################################ -->
     </div>
   </div>
 </div>
-<!-- ################################################################################################ --> 
+<!-- ################################################################################################ -->
 
-<!-- JAVASCRIPTS --> 
-<script src="layout/scripts/jquery.min.js"></script> 
-<script src="layout/scripts/jquery.fitvids.min.js"></script> 
-<script src="layout/scripts/jquery.mobilemenu.js"></script> 
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.fitvids.min.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
 <script src="layout/scripts/tabslet/jquery.tabslet.min.js"></script>
 </body>
 </html>

@@ -29,7 +29,7 @@ body {
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Campus Management</title>
 <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
 <%-- <link rel="stylesheet" type="text/css" href="css/style3.css" media="all" />--%>

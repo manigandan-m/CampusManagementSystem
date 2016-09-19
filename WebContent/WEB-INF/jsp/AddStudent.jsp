@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Demo Beautiful Registration Form with HTML5 and CSS3</title>
+<title>Campus Management</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -30,7 +30,7 @@
                 <div class="clr"></div>
             </div><!--/ freshdesignweb top bar -->
 			<header>
-				<h1><span>Tutorials</span> Demo Beautiful Registration Form with HTML5 and CSS3</h1>
+				<h1>Add student</h1>
             </header>       
       <div  class="form">
     		<form:form id="contactform" action="addStudent.html" method="POST" modelAttribute="Student"> 
