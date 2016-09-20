@@ -88,9 +88,8 @@ public class SubjectService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    public void editSubject(Subject subject)
-            throws DatabaseException {
-	    subjectDao.editSubject(subject);
+    public void editSubject(Subject subject) throws DatabaseException {
+        subjectDao.editSubject(subject);
     }
     
     /**
@@ -121,13 +120,13 @@ public class SubjectService {
      *     NumberFormatException
      */
     public void allotTeacher(Subject subject) throws DatabaseException {
-    	Teacher teacher = new Teacher();
+        Teacher teacher = new Teacher();
     	Subject allocateSubject = getSubjectBySubjectCode(subject.getSubjectCode());
     	int teacherId = subject.getTeacher().getTeacherId();
     	if (0 != teacherId) {
-        	teacher = teacherService.getTeacherById(teacherId);        	
+            teacher = teacherService.getTeacherById(teacherId);        	
         } else {
-        	teacher = null;
+            teacher = null;
         }
         subjectDao.updateSubjectByTeacher(allocateSubject, teacher);
     }

@@ -88,7 +88,7 @@ public class SubjectDao {
     public Subject findSubjectByTeacherId(int teacherId) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
         try {
-        	List<Subject> subjects = session.createQuery("FROM Subject where teacher_id= '"+teacherId+"'").list();
+            List<Subject> subjects = session.createQuery("FROM Subject where teacher_id= '"+teacherId+"'").list();
             return subjects.get(0);
         } catch (HibernateException e) {                        
             throw new DatabaseException("Entered subject is not found. Kindly try again with vaild input data", e);
@@ -129,7 +129,7 @@ public class SubjectDao {
      *     NumberFormatException, HibernateException
      */
     public void editSubject(Subject subject) throws DatabaseException {
-	    Session session = sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update(subject);
@@ -184,7 +184,7 @@ public class SubjectDao {
             session.update(subject);            
             transaction.commit();                                                                   
         } catch (HibernateException e) {
-        	throw new DatabaseException("Please check the data you have given..." , e); 
+            throw new DatabaseException("Please check the data you have given..." , e); 
         } finally {
             session.close();
         }
