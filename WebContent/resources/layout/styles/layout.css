@@ -25,7 +25,7 @@ File: Layout CSS
 
 /* Top Bar
 --------------------------------------------------------------------------------------------------------------- */
-#topbar{padding:10px 0 0 0; text-align:right; font-size:.8em;}
+#topbar{padding:10px 0 0 0; text-align:right; font-size:1.1em;}
 
 #topbar li{display:inline; margin-right:3px; padding-right:8px; border-right:1px solid;}
 #topbar li:last-child{margin-right:0; padding-right:0; border:none;}
@@ -268,7 +268,8 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#F9F9F9; background-color:#06213F;}
+body{color:#F9F9F9; background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);}
 
 a{color:#55ABDA;}
 
@@ -280,13 +281,16 @@ label span{color:#FF0000; background-color:inherit;}
 
 
 /* Rows */
-.row0, .row0 a{color:#F9F9F9; background-color:#06213F;}
-.row1{color:#979797; background-color:#06213F;}
+.row0, .row0 a{color:#F9F9F9;/*background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);*/}
+.row1{color:#979797; background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);}
 .row1 a{color:#F9F9F9; background-color:inherit;}
 .row2, .row2 a{color:#06213F; background-color:inherit;}
 .row3{color:#979797; background-color:inherit;}
 .row4{color:#979797; background-color:inherit;}
-.row5, .row5 a{color:#55ABDA; background-color:#06213F;}
+.row5, .row5 a{color:#55ABDA; background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);}
 
 
 /* Top Bar */
@@ -302,19 +306,22 @@ label span{color:#FF0000; background-color:inherit;}
 #slide-wrapper figure figcaption{color:#666666; background-color:rgba(255,255,255,.5);}
 #slide-wrapper figure figcaption:hover{background-color:rgba(255,255,255,1);}
 #slider #slide-tabs li a{color:#666666; background-color:#DEDACB; border-color:#666666;}
-#slider #slide-tabs li a:hover, #slider #slide-tabs li.active a{color:#FFFFFF; background-color:#06213F;}
+#slider #slide-tabs li a:hover, #slider #slide-tabs li.active a{color:#FFFFFF; background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);}
 
 
 /* Content Area */
 .container h1, .container h2, .container h3, .container h4, .container h5, .container h6, .container .heading{border-color:#D7D7D7;}
 
-#twitter{color:#FFFFFF; background-color:#06213F;}
+#twitter{color:#FFFFFF; background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);}
 #twitter div:first-child{border-color:#FFFFFF;}
 
 .listing li{border-color:#D7D7D7;}
 
 .quickinfo li a{color:#666666; background-color:#DEDACB;}
-.quickinfo li a:hover{color:#FFFFFF; background-color:#06213F;}
+.quickinfo li a:hover{color:#FFFFFF; background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);}
 
 
 /* Footer */
@@ -338,7 +345,8 @@ label span{color:#FF0000; background-color:inherit;}
 .container .sidebar nav a:hover{color:#55ABDA;}
 
 .pagination a, .pagination strong{border-color:#D7D7D7;}
-.pagination .current strong{color:#FFFFFF; background-color:#06213F;}
+.pagination .current strong{color:#FFFFFF; background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);}
 
 
 /* Tables + Comments */
