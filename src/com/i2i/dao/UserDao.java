@@ -18,7 +18,7 @@ import com.i2i.connection.HibernateConnection;
  * 
  * @author Manigandan
  * 
- * @created 2015-08-27
+ * @created 2016-09-05
  */
 public class UserDao {
     HibernateConnection hibernateConnection = HibernateConnection.createObject();

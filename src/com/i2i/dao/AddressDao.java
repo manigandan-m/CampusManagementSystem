@@ -10,7 +10,7 @@ import com.i2i.model.Address;
 import com.i2i.model.User;
 import com.i2i.exception.DatabaseException;
 import com.i2i.connection.HibernateConnection;
-
+ 
 /**
  * <p>
  * DataAccessObject(Dao) which is used to perform create operation for model Address
@@ -19,11 +19,11 @@ import com.i2i.connection.HibernateConnection;
  * 
  * @author Zeeshan
  * 
- * @created 2015-08-27
+ * @created 2016-09-05
  */
 public class AddressDao {
-	HibernateConnection hibernateConnection = HibernateConnection.createObject();
-        SessionFactory sessionFactory = hibernateConnection.getConnection();   
+    HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    SessionFactory sessionFactory = hibernateConnection.getConnection();   
     
     /**
      * Saves the address model object to the database by passing it

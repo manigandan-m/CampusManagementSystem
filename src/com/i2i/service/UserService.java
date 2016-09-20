@@ -12,9 +12,9 @@ import com.i2i.exception.DatabaseException;
   *  model Role by invoking UserDao class methods
   * </p>
   * 
-  * @author Zeeshan Ali
+  * @author Manigandan
   * 
-  * @created 2015-08-27
+  * @created 2016-09-05
  */
 public class UserService {
         UserDao userDao = new UserDao();
