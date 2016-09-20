@@ -56,7 +56,7 @@ body {
 <center>
 <a  href="editUserById.html?userId=${teacher.getUser().getUserId()}">Edit User Details</a>
 <a  href="editAddressById.html?addressId=${teacher.getUser().getAddress().getAddressId()}">Edit Address Details</a>
-<a  href="editTeacher.html?teacherId=${teacher.getTeacherId()}">Edit Teacher Details</a>
+<a  href="editTeacherById.html?teacherId=${teacher.getTeacherId()}">Edit Teacher Details</a>
 </center></c:if>
 <c:if test="${null != Message}">
                 <c:out value="${Message}"/>

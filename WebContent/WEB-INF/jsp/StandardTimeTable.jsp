@@ -107,7 +107,7 @@
             <tr>
                 <td><c:out value="${subject.getSubjectCode()}" /></td>                   
                 <td><c:out value="${subject.getSubjectName()}" /></td>
-                <td><c:out value="${subject.getTeacher().getUser().getFirstName()} {subject.getTeacher().getUser().getLastName()}" /></td>
+                <td><c:out value="${subject.getTeacher().getUser().getFirstName()} ${subject.getTeacher().getUser().getLastName()}" /></td>
             </tr>
             </c:forEach>
 </tbody>

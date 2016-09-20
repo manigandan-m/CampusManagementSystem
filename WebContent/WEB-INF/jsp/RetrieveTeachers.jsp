@@ -79,15 +79,18 @@
 <div  class="form">
        <form id="contactform" action="viewTeacher.html" method="GET">
            <p class="contact"><label for="teacherId" path = "label1">Enter Teacher ID To Search</label></p> 
-    	  <input name="teacherId" placeholder="Teacher ID" required="" tabindex="1" type="text"/>
+    	  <input name="teacherId" placeholder="Teacher ID" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>
           <input class="buttom" name="submit" id="submit" tabindex="5" value="Search" type="submit">
           </form>
 </div>
 <!-- follow me template -->
-
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-        <script src="js/index.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+   <script>
+       $.validate({
+       lang: 'en'
+        });
+   </script>
 
     
     

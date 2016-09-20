@@ -87,9 +87,9 @@ public class SubjectDao {
      */
     public Subject findSubjectByTeacherId(int teacherId) throws DatabaseException {        
         Session session = sessionFactory.openSession();        
-        try {                           
-            Subject subject = (Subject) session.get(Subject.class, teacherId);            
-            return subject;
+        try {
+        	List<Subject> subjects = session.createQuery("FROM Subject where teacher_id= '"+teacherId+"'").list();
+            return subjects.get(0);
         } catch (HibernateException e) {                        
             throw new DatabaseException("Entered subject is not found. Kindly try again with vaild input data", e);
         } finally {
@@ -128,18 +128,17 @@ public class SubjectDao {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
-    public void editSubject(Subject subject)
-            throws DatabaseException {
-	Session session = sessionFactory.openSession();
+    public void editSubject(Subject subject) throws DatabaseException {
+	    Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update(subject);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-              throw new DatabaseException("Please check the data you have given..." , e);  
-       } finally {
-             session.close(); 
-       }
+            throw new DatabaseException("Please check the data you have given..." , e);  
+        } finally {
+            session.close(); 
+        }
     }
     
     /**
@@ -186,8 +185,8 @@ public class SubjectDao {
             transaction.commit();                                                                   
         } catch (HibernateException e) {
         	throw new DatabaseException("Please check the data you have given..." , e); 
-       } finally {
-             session.close();
-       }
+        } finally {
+            session.close();
+        }
     }
 }

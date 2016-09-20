@@ -33,7 +33,7 @@
 				<h1>Edit Student</h1>
             </header>       
       <div  class="form">
-            <c:if test="${student != null}">
+            
     		<form:form id="contactform" action="editStudent.html" method="POST" modelAttribute="Student"> 
     			<p class="contact"><label for="fatherFirstName" path = "label1">Father First Name</label></p> 
     			<form:input path="fatherFirstName" placeholder="Father First Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
@@ -60,12 +60,12 @@
                         <option value="SC">SC</option>
                         <option value="ST">ST</option>
                         </form:select><br><br> 
-                        <form:input type = "hidden" path = "studentId" value="${studentId}"/>
+                        <form:input type = "hidden" path = "rollNumber" value="${rollNumber}"/>
                         <form:input type = "hidden" path = "user.userId" value="${userId}"/>
                         
                        <input class="buttom" name="submit" id="submit" tabindex="5" value="Edit" type="submit"> 	 
                 </form:form>
-                </c:if>
+                
    <c:if test="${null != Message}">
                     <c:out value="${Message}"/>
                  </c:if> 

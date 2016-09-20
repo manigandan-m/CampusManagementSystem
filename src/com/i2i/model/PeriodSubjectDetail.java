@@ -33,12 +33,14 @@ public class PeriodSubjectDetail {
     @Column(name = "period_subject_id")
 	private int periodSubjectId;
 	
+	@Column(name = "period_id") 
 	private int periodId;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "teacher_id")  
 	private Teacher teacher;	
 	
+	@Column(name = "subject_code") 
 	private String subjectCode;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

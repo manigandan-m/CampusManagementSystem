@@ -36,12 +36,10 @@ public class PeriodSubjectDetailService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException    
      */
-	public void GenerateTimeTable(int standardId) throws DatabaseException {
+	public void generateTimeTable(int standardId) throws DatabaseException {
 		Standard standard = standardService.getStandardById(standardId);
-        List<Subject> subjects = new ArrayList<Subject>();
-        subjects = standard.getSubjects();       
-            
-        addPeriodSubjectDetails(generatePeriods(allocateSubjectToPeriod(subjects)));        
+        List<Subject> subjects = standard.getSubjects();                    
+        generatePeriods(allocateSubjectToPeriod(subjects));        
 	}	
 	
 	/**
@@ -88,60 +86,61 @@ public class PeriodSubjectDetailService {
      * @return periodSubjectDetails
      *     periodSubjectDetails holds the list of periods with subject code, teacher id and standard id       
      */
-	public List<PeriodSubjectDetail> generatePeriods(List<Subject> periods) {
+	public List<PeriodSubjectDetail> generatePeriods(List<Subject> periods) throws DatabaseException {
        	PeriodSubjectDetail periodSubjectDetail = new PeriodSubjectDetail();
         List<PeriodSubjectDetail> periodSubjectDetails = new ArrayList<PeriodSubjectDetail>();
                 	
 		int i = 1;			
-		while (i< 20) {
+		while (i<= 20) {
 		    Subject subject = periods.get(i);				
 			periodSubjectDetail.setPeriodId(i);				
 			periodSubjectDetail.setSubjectCode(subject.getSubjectCode());				
 			periodSubjectDetail.setStandard(subject.getStandard());
 			periodSubjectDetail.setTeacher(subject.getTeacher());
 			periodSubjectDetails.add(periodSubjectDetail);
+			periodSubjectDetailDao.insertPeriodSubjectDetail(periodSubjectDetail);   
 			i++;												
         }
 		return periodSubjectDetails;
-    }
-    
-	 /**
-     * Gets the list of periods and sends them to PeriodSubjectDetail Dao
-     * 
-     * @param periodSubjectDetails
-     *     periodSubjectDetails holds the list of periods
-     * @throws DataBaseException
-     *     if there is an error in getting the object like NullPointerException,
-     *     NumberFormatException
-     */
-    public void addPeriodSubjectDetails(List<PeriodSubjectDetail> periodSubjectDetails) throws DatabaseException {                 
-    	periodSubjectDetailDao.insertPeriodSubjectDetails(periodSubjectDetails);                     
-    }    
+    }	 
     
     /**
      * Gets the standard id whose time table has to be retrieved and sends to PeriodSubjectDetail Dao    
      * 
-     * @param periodSubjectDetails
-     *     periodSubjectDetails holds the list of periods
+     * @param standardId
+     *     standardId holds the id of standard for which the periods have to be retrieved
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
     public List<PeriodSubjectDetail> getPeriodSubjectDetailsByStandardId(int standardId) throws DatabaseException {
-        return (periodSubjectDetailDao.retrievePeriodSubjectDetailsByStandardId(standardId));        
+    	return (periodSubjectDetailDao.retrievePeriodSubjectDetailsByStandardId(standardId));        
     }
     
     /**
      * Gets the teacher id whose time table has to be retrieved and sends to PeriodSubjectDetail Dao    
      * 
-     * @param periodSubjectDetails
-     *     periodSubjectDetails holds the list of periods
+     * @param teacherId
+     *     teacherId holds the id of teacher for which the periods have to be retrieved
      * @throws DataBaseException
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
     public List<PeriodSubjectDetail> getPeriodSubjectDetailsByTeacherId(int teacherId) throws DatabaseException {
-        return (periodSubjectDetailDao.retrievePeriodSubjectDetailsByTeacherId(teacherId));        
-    }
-    
+    	List<PeriodSubjectDetail> teacherPeriods = new ArrayList<PeriodSubjectDetail>();
+    	List<PeriodSubjectDetail> periodSubjectDetails = periodSubjectDetailDao.retrievePeriodSubjectDetailsByTeacherId(teacherId);
+    	
+    	PeriodSubjectDetail periodSubjectDetail = null;
+    	int i = 0;			
+		while (i<= 20) {		    
+			teacherPeriods.add(periodSubjectDetail);			
+			i++;												
+        }		
+    	teacherPeriods.add(periodSubjectDetails.get(0).getPeriodId(),periodSubjectDetails.get(0));    	
+    	teacherPeriods.add(periodSubjectDetails.get(1).getPeriodId(),periodSubjectDetails.get(1));    	
+    	teacherPeriods.add(periodSubjectDetails.get(2).getPeriodId(),periodSubjectDetails.get(2));    	
+    	teacherPeriods.add(periodSubjectDetails.get(3).getPeriodId(),periodSubjectDetails.get(3));
+    	
+        return (teacherPeriods);        
+    }    
 }

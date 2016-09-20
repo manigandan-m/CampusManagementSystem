@@ -126,6 +126,8 @@ public class SubjectService {
     	int teacherId = subject.getTeacher().getTeacherId();
     	if (0 != teacherId) {
         	teacher = teacherService.getTeacherById(teacherId);        	
+        } else {
+        	teacher = null;
         }
         subjectDao.updateSubjectByTeacher(allocateSubject, teacher);
     }

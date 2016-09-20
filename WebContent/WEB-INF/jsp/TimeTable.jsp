@@ -62,6 +62,7 @@
         </table>
 </div>
 
+<h1 style="margin-top:30px;">Teacher List</h1>
 <div  class="tbl-header">
 <table cellpadding="0" cellspacing="0" border="0">
 <c:if test="${null != teachers}">

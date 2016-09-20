@@ -52,7 +52,7 @@ a:hover, a:active {
 <center>
 <a  href="editUserById.html?userId=${student.getUser().getUserId()}">Edit User Details</a>
 <a  href="editAddressById.html?addressId=${student.getUser().getAddress().getAddressId()}">Edit Address Details</a>
-<a  href="editStudent.html?rollNumber=${student.getRollNumber()}">Edit Student Details</a>
+<a  href="editStudentById.html?rollNumber=${student.getRollNumber()}">Edit Student Details</a>
 </center></c:if>
 <c:if test="${null != Message}">
                 <c:out value="${Message}"/>

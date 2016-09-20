@@ -166,7 +166,7 @@ public class StudentController  {
      * @throws IOException
      *     if there is failed or interrupted input output operations.
      */
-    @RequestMapping(value = "/editStudentById", method = RequestMethod.POST)
+    @RequestMapping(value = "/editStudentById", method = RequestMethod.GET)
     public String editStudentForm(@RequestParam("rollNumber") int rollNumber, ModelMap model) {
     	 try {
     	     model.addAttribute("Student", studentService.getStudentById(rollNumber));

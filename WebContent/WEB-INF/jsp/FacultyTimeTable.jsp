@@ -1,10 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<c:if test="${sessionScope['username']==null}" >
-   <c:redirect url="Login.html"/>
-</c:if>
-<c:if test="${sessionScope['role']!='admin'}" >
-     <c:redirect url="Logout.html"/>
-</c:if>
+
 <!DOCTYPE html>
 <html >
   <head>
@@ -26,7 +21,9 @@
      <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="displayTeacher?teacherId="+"${teacherId}">Go Back</a>
+                
+                <a href="displayTeacher?teacherId=${teacher.getTeacherId()}">Go Back</a>
+                
                 <span class="right">
                     <a href="Logout.html">
                         <strong>Logout</strong>
@@ -39,7 +36,7 @@
 
 <c:if test="${null != periodSubjectDetails}">
 <div  class="tbl-header">
-<table cellpadding="0" cellspacing="0" border="0">
+<table cellpadding="0" cellspacing="0" border="1">
   <thead>
     <tr>
       <th>Day / Hour</th>
@@ -52,47 +49,50 @@
 </table>
 </div>
 <div  class="tbl-content">
-<table id="teachertable" cellpadding="0" cellspacing="0" border="0">
+
+<table id="teachertable" cellpadding="0" cellspacing="0" border="1">
   <tbody>
     <tr>
       <td>Monday</td>
-      <td><c:out value="${periodSubjectDetails.get(0).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(1).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(2).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(3).getSubjectCode()}"/></td>
+      <td><c:out value="${periodSubjectDetails.get(4).getSubjectCode()}"/></td>
     </tr>
     <tr>
       <td>Tuesday</td>
-      <td><c:out value="${periodSubjectDetails.get(4).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(5).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(6).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(7).getSubjectCode()}"/></td>
+      <td><c:out value="${periodSubjectDetails.get(8).getSubjectCode()}"/></td>
     </tr>
     <tr>
       <td>Wednesday</td>
-      <td><c:out value="${periodSubjectDetails.get(8).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(9).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(10).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(11).getSubjectCode()}"/></td>
+      <td><c:out value="${periodSubjectDetails.get(12).getSubjectCode()}"/></td>
     </tr>
     <tr>
       <td>Thursday</td>
-      <td><c:out value="${periodSubjectDetails.get(12).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(13).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(14).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(15).getSubjectCode()}"/></td>
+      <td><c:out value="${periodSubjectDetails.get(16).getSubjectCode()}"/></td>
     </tr>
     <tr>
       <td>Friday</td>
-      <td><c:out value="${periodSubjectDetails.get(16).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(17).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(18).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(19).getSubjectCode()}"/></td>
+      <td><c:out value="${periodSubjectDetails.get(20).getSubjectCode()}"/></td>
     </tr>
-    </tbody>
+      </tbody>
 </table>
 </div>
 </c:if>
+
+<h1 style="margin-top:30px;">Standard and Subject Details</h1>
 
 <c:if test="${null != subject}">
 <div  class="tbl-header">

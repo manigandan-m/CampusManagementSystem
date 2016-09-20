@@ -1,10 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<c:if test="${sessionScope['username']==null}" >
-   <c:redirect url="Login.html"/>
-</c:if>
-<c:if test="${sessionScope['role']!='admin'}" >
-     <c:redirect url="Logout.html"/>
-</c:if>
+
 <!DOCTYPE html>
 <html >
   <head>
@@ -26,7 +21,7 @@
      <div class="container">
 			<!-- freshdesignweb top bar -->
             <div class="freshdesignweb-top">
-                <a href="displayStudent?rollNumber="+"${rollNumber}">Go Back</a>
+                <a href="displayStudent?rollNumber=${rollNumber}">Go Back</a>
                 <span class="right">
                     <a href="Logout.html">
                         <strong>Logout</strong>
@@ -113,7 +108,7 @@
             <tr>
                 <td><c:out value="${subject.getSubjectCode()}" /></td>                   
                 <td><c:out value="${subject.getSubjectName()}" /></td>
-                <td><c:out value="${subject.getTeacher().getUser().getFirstName()()} {subject.getTeacher().getUser().getLastName()()}" /></td>
+                <td><c:out value="${subject.getTeacher().getUser().getFirstName()} ${subject.getTeacher().getUser().getLastName()}" /></td>
             </tr>
             </c:forEach>
 </tbody>
