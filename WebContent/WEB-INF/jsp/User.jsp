@@ -29,10 +29,10 @@
       <div class="form">
     		<form:form id="contactform" action="addUser.html" method="POST" modelAttribute="User"> 
     			<p class="contact"><label for="username" path = "label1">Username</label></p> 
-    			<form:input path="username" placeholder="Username" required="" tabindex="1" type="text"/>
+    			<form:input path="username" placeholder="Username" data-validation="length alphanumeric" data-validation-length="min4" required ="required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="password" path = "label1">Password</label><p> 
-    			<form:input path="password" placeholder="password" required="" tabindex="1" type="text"/>
+    			<form:input path="password" placeholder="password" data-validation="length alphanumeric" data-validation-length="min4" required ="required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="firstName" path = "label1">First Name</label><p> 
     			<form:input path="firstName" placeholder="FirstName" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>

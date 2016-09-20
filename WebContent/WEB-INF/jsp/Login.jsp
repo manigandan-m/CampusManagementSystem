@@ -36,10 +36,10 @@
       <div  class="form">
     		<form id="contactform" action = "login.html" method="POST"> 
     			<p class="contact"><label for="username">Username</label></p> 
-    			<input name="username" placeholder="username" required="" tabindex="1" type="text"> 
+    			<input name="username" placeholder="username" data-validation="length alphanumeric" data-validation-length="min4" required ="required" tabindex="1" type="text"> 
     			 
     			<p class="contact"><label for="password">Password</label></p> 
-    			<input name="password" placeholder="password" required="" type="text">
+    			<input name="password" placeholder="password" data-validation="length alphanumeric" data-validation-length="min4" required ="required" type="text">
 
                 <input class="buttom" name="submit" id="submit" tabindex="5" value="Login" type="submit"> 	 
    </form>

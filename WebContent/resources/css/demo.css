@@ -35,7 +35,9 @@ header{
 /* General Demo Style */
 body{
 	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
-	background-color:#06213F;
+	/*background-color:#06213F;*/
+	background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
 	font-weight: 400;
 	font-size: 15px;
 	color: #3a2127;
