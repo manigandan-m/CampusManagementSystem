@@ -21,9 +21,9 @@ import com.i2i.service.RoleService;
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
  *   
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
- * @created 2015-08-27
+ * @created 2016-09-05
  * 
  */
 
@@ -126,14 +126,14 @@ public class UserController {
      */
     @RequestMapping(value = "/editUserById", method = RequestMethod.GET)
     public String editUserForm(@RequestParam("userId") int id, ModelMap model) {
-    	 try {
-    	     model.addAttribute("User", userService.getUserById(id));
-    		 model.addAttribute("roleList", roleService.getRoles());
-             return "EditUser";
-    	 } catch (DatabaseException e) {
-    	     model.addAttribute("Message", e.getMessage().toString());
-    		 return "EditUser";
-    	 }
+    	try {
+    	    model.addAttribute("User", userService.getUserById(id));
+            model.addAttribute("roleList", roleService.getRoles());
+            return "EditUser";
+    	} catch (DatabaseException e) {
+    	    model.addAttribute("Message", e.getMessage().toString());
+            return "EditUser";
+    	}
     }
     
     /**
@@ -156,12 +156,12 @@ public class UserController {
     @RequestMapping(value = "/editUser", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("User") User user, ModelMap message){  
         try {
-        	userService.editUser(user);      
+            userService.editUser(user);      
             message.addAttribute("Message", "User Edited Successfully");
             return "EditUser";
     	} catch (DatabaseException e) {
     	    message.addAttribute("Message", (e.getMessage().toString()));
-    		return "EditUser";
+    	    return "EditUser";
     	}
     }
     

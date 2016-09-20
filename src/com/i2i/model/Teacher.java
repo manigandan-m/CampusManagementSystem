@@ -22,7 +22,7 @@ import com.i2i.model.User;
  * 
  * @author Zeeshan
  * 
- * @created 2015-09-10
+ * @created 2016-09-07
  */
 
 @Entity

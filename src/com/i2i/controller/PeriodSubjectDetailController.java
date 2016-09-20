@@ -20,7 +20,7 @@ import com.i2i.service.TeacherService;
  *   
  * @author Manigandan
  * 
- * @created 2015-08-27
+ * @created 2016-09-12
  * 
  */
 @Controller
@@ -29,59 +29,59 @@ public class PeriodSubjectDetailController {
     StandardService standardService = new StandardService();
     SubjectService subjectService = new SubjectService();
     TeacherService teacherService = new TeacherService();
-	
+    
     /**
-	 * Redirects to the time table jsp page with the list of standards
-	 *   
-	 * @return
-	 *     JSP Page of time table
-	 */
-	@RequestMapping("/TimeTable")
-	public String timeTablePage(ModelMap model) {
-		try {
-		    model.addAttribute("standards", standardService.getStandards());
-		    model.addAttribute("teachers", teacherService.getTeachers());
-		} catch (DatabaseException e) {
-		    model.addAttribute("message", e.getMessage());   
-	    }
-		return "TimeTable";
-	}
-	
-	/**
-	 * Sends the standard id whose time table is to be retrieved and get the periods of timetable
-	 *   
-	 * @param standardId
-	 *     standard id whose time table is to be retrieved
-	 * @return
-	 *     JSP Page of standard time table
-	 */
+     * Redirects to the time table jsp page with the list of standards
+     *   
+     * @return
+     *     JSP Page of time table
+     */
+    @RequestMapping("/TimeTable")
+    public String timeTablePage(ModelMap model) {
+        try {
+            model.addAttribute("standards", standardService.getStandards());
+            model.addAttribute("teachers", teacherService.getTeachers());
+        } catch (DatabaseException e) {
+            model.addAttribute("message", e.getMessage());   
+        }
+        return "TimeTable";
+    }
+    
+    /**
+     * Sends the standard id whose time table is to be retrieved and get the periods of timetable
+     *   
+     * @param standardId
+     *     standard id whose time table is to be retrieved
+     * @return
+     *     JSP Page of standard time table
+     */
     @RequestMapping(value = "/generateTimeTable", method=RequestMethod.GET) 
     public ModelAndView generateTimeTable(@RequestParam("standardId") int standardId) {
-	    ModelAndView modelView = new ModelAndView();  
+        ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("TimeTable");
-    	
+        
         try {
-	        periodSubjectDetailService.generateTimeTable(standardId);	        
+            periodSubjectDetailService.generateTimeTable(standardId);            
         } catch (DatabaseException e) {
-	        modelView.addObject("message", e.getMessage());   
+            modelView.addObject("message", e.getMessage());   
         }        
         return modelView;
     }
 
     /**
-	 * Sends the standard id whose time table is to be retrieved and get the periods of timetable
-	 *   
-	 * @param standardId
-	 *     standard id whose time table is to be retrieved
-	 * @return
-	 *     JSP Page of standard time table
-	 */
+     * Sends the standard id whose time table is to be retrieved and get the periods of timetable
+     *   
+     * @param standardId
+     *     standard id whose time table is to be retrieved
+     * @return
+     *     JSP Page of standard time table
+     */
     @RequestMapping(value = "/standardTimeTable", method=RequestMethod.GET) 
     public ModelAndView displayStandardTimeTable(@RequestParam("standardId") int standardId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("StandardTimeTable");
 
-        try {        	
+        try {            
             modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByStandardId(standardId));            
             modelView.addObject("subjects", standardService.getStandardById(standardId).getSubjects());
         } catch (DatabaseException e) {
@@ -91,15 +91,15 @@ public class PeriodSubjectDetailController {
     }
 
     /**
-	 * Sends the standard id whose time table is to be retrieved and get the periods of timetable
-	 *   
-	 * @param standardId
-	 *     standard id whose time table is to be retrieved
-	 * @param rollNumber
-	 *     rollNumber whose student jsp is to be retrieved    
-	 * @return
-	 *     JSP Page of student time table
-	 */
+     * Sends the standard id whose time table is to be retrieved and get the periods of timetable
+     *   
+     * @param standardId
+     *     standard id whose time table is to be retrieved
+     * @param rollNumber
+     *     rollNumber whose student jsp is to be retrieved    
+     * @return
+     *     JSP Page of student time table
+     */
     @RequestMapping(value = "/studentTimeTable", method=RequestMethod.GET) 
     public ModelAndView displayStandardTimeTable(@RequestParam("standardId") int standardId, @RequestParam("rollNumber") int rollNumber) {
         ModelAndView modelView = new ModelAndView();  
@@ -116,13 +116,13 @@ public class PeriodSubjectDetailController {
     }
     
     /**
-	 * Sends the teacher id whose time table is to be retrieved and get the periods of timetable
-	 *   
-	 * @param teacher
-	 *     teacher id whose time table is to be retrieved
-	 * @return
-	 *     JSP Page of teacher time table when admin login is used
-	 */
+     * Sends the teacher id whose time table is to be retrieved and get the periods of timetable
+     *   
+     * @param teacher
+     *     teacher id whose time table is to be retrieved
+     * @return
+     *     JSP Page of teacher time table when admin login is used
+     */
     @RequestMapping(value = "/teacherTimeTable", method=RequestMethod.GET) 
     public ModelAndView displayTeacherTimeTable(@RequestParam("teacherId") int teacherId) {               
         ModelAndView modelView = new ModelAndView();  
@@ -138,13 +138,13 @@ public class PeriodSubjectDetailController {
     }
 
     /**
-	 * Sends the teacher id whose time table is to be retrieved and get the periods of timetable
-	 *   
-	 * @param teacherId
-	 *     teacher id whose time table is to be retrieved
-	 * @return
-	 *     JSP Page of teacher time table when teacher login is used
-	 */
+     * Sends the teacher id whose time table is to be retrieved and get the periods of timetable
+     *   
+     * @param teacherId
+     *     teacher id whose time table is to be retrieved
+     * @return
+     *     JSP Page of teacher time table when teacher login is used
+     */
     @RequestMapping(value = "/facultyTimeTable", method=RequestMethod.GET) 
     public ModelAndView displayFacultyTimeTable(@RequestParam("teacherId") int teacherId) {               
         ModelAndView modelView = new ModelAndView();  

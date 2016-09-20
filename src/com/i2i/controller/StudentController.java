@@ -24,7 +24,7 @@ import com.i2i.model.User;
  *   
  * @author Zeeshan Ali
  * 
- * @created 2015-08-27
+ * @created 2016-09-07
  * 
  */
 @Controller
@@ -168,13 +168,13 @@ public class StudentController  {
      */
     @RequestMapping(value = "/editStudentById", method = RequestMethod.GET)
     public String editStudentForm(@RequestParam("rollNumber") int rollNumber, ModelMap model) {
-    	 try {
-    	     model.addAttribute("Student", studentService.getStudentById(rollNumber));
-             return "EditStudent";
-    	 } catch (DatabaseException e) {
-    	     model.addAttribute("Message", e.getMessage().toString());
-    	     return "EditStudent";
-    	 }
+    	try {
+    	    model.addAttribute("Student", studentService.getStudentById(rollNumber));
+            return "EditStudent";
+    	} catch (DatabaseException e) {
+    	    model.addAttribute("Message", e.getMessage().toString());
+    	    return "EditStudent";
+    	}
     }
     
     /**

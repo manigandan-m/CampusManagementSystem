@@ -15,14 +15,13 @@ import com.i2i.service.TeacherService;
 import com.i2i.model.Subject;
 
 /**
- * Controller to perform add, update, delete, retrieve, retrieve all operations using Subject by 
- * invoking SubjectService class methods.
+ * Controller to perform add, update, delete, retrieve, retrieve all operations using Subject by invoking SubjectService class methods.
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
  *   
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
- * @created 2015-08-27
+ * @created 2016-09-08
  * 
  */
 @Controller
@@ -41,10 +40,11 @@ public class SubjectController {
      */
     @RequestMapping(value = "/Subject", method=RequestMethod.GET) 
     public String Subjects(ModelMap model) {
-        try {
-        model.addAttribute("subjects", subjectService.getSubjects());        
-        } catch (DatabaseException e) {
-        }
+    	try { 
+            model.addAttribute("subjects", subjectService.getSubjects());
+    	}  catch (DatabaseException ex) {            
+            model.addAttribute("message", ex.getMessage().toString()); 
+        }     
         return "RetrieveSubjects";
     }       
     
@@ -129,7 +129,7 @@ public class SubjectController {
             modelView.addObject("teachers", teacherService.getTeachers());
             modelView.addObject("Subject", subjectService.getSubjectBySubjectCode(subjectId));                                  
         } catch (DatabaseException e) {            
-               modelView.addObject("message", e.getMessage());             
+            modelView.addObject("message", e.getMessage());             
         }
         return modelView;         
     }    
@@ -148,7 +148,7 @@ public class SubjectController {
         try {  
             subjectService.allotTeacher(subject);                                                    
         } catch (DatabaseException e) {            
-               modelView.addObject("message", e.getMessage());             
+            modelView.addObject("message", e.getMessage());             
         }                                             
         return modelView;         
     }  

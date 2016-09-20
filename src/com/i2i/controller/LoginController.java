@@ -25,7 +25,7 @@ import com.i2i.model.User;
  * 
  * @author Zeeshan
  * 
- * @created 2015-08-27
+ * @created 2016-09-05
  */
 @Controller
 public class LoginController {
@@ -154,7 +154,7 @@ public class LoginController {
     public String teacherLoginCheck(@RequestParam("username") String username, ModelMap map) throws  IOException, ServletException {
         try {
             User user = userService.getUserByUsername(username);
-                    return "redirect:displayTeacher.html?teacherId="+user.getTeacher().getTeacherId();                
+            return "redirect:displayTeacher.html?teacherId="+user.getTeacher().getTeacherId();                
         } catch (DatabaseException e) {
             map.addAttribute("message", e.getMessage().toString());
         }
@@ -217,7 +217,7 @@ public class LoginController {
     public String studentLoginCheck(@RequestParam("username") String username, ModelMap map) throws  IOException, ServletException {
         try {
             User user = userService.getUserByUsername(username);
-                    return "redirect:displayStudent?rollNumber="+user.getStudent().getRollNumber();            
+            return "redirect:displayStudent?rollNumber="+user.getStudent().getRollNumber();            
         } catch (DatabaseException e) {
             map.addAttribute("message", e.getMessage().toString());
         }
@@ -225,8 +225,8 @@ public class LoginController {
     }
     
     /**
-     * Returns to the home JSP Page
-     * @return
+     * Redirects to the home JSP Page
+     *
      */
     @RequestMapping("/home")
     String homePage() {

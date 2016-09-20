@@ -20,7 +20,7 @@ import com.i2i.model.Standard;
  * 
  * @author Manigandan
  * 
- * @created 2015-08-27
+ * @created 2016-09-08
  */
 
 @Entity
@@ -69,7 +69,7 @@ public class Subject {
         return standard;
     }
 
-        public void setStandard(Standard standard) {
+    public void setStandard(Standard standard) {
         this.standard = standard;
     }
 

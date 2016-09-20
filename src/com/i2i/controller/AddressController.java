@@ -25,7 +25,7 @@ import com.i2i.service.UserService;
  *   
  * @author Zeeshan Ali
  * 
- * @created 2015-08-27
+ * @created 2016-09-05
  * 
  */
 
@@ -64,7 +64,7 @@ public class AddressController {
                 map.addAttribute("Teacher", new Teacher());
                 return "AddTeacher";
             } else {
-            	map.addAttribute("message", "Admin is created successfully"); 	 
+                map.addAttribute("message", "Admin is created successfully");      
             }
         } catch (DatabaseException ex) {
             map.addAttribute("message", ex.getMessage().toString());  
@@ -81,7 +81,7 @@ public class AddressController {
      */
     @RequestMapping(value = "/displayAddresses", method=RequestMethod.GET) 
     public ModelAndView displayStudents() {
-    	try {                                                                         
+        try {                                                                         
             return new ModelAndView("DisplayAddresses","addresses", addressService.getAddresses());                                           
         } catch (DatabaseException e) {
             return new ModelAndView("DisplayAddresses","displayMessage", e.getMessage());                                                       
@@ -103,13 +103,13 @@ public class AddressController {
      */
     @RequestMapping(value = "/editAddressById", method = RequestMethod.GET)
     public String editAddressForm(@RequestParam("addressId") int id, ModelMap model) {
-    	 try {
-    		 model.addAttribute("Address", addressService.getAddressById(id));
+         try {
+             model.addAttribute("Address", addressService.getAddressById(id));
              return "EditAddress";
-    	 } catch (DatabaseException e) {
-    		 model.addAttribute("Message", e.getMessage().toString());
-    		 return "EditAddress";
-    	 }
+         } catch (DatabaseException e) {
+             model.addAttribute("Message", e.getMessage().toString());
+             return "EditAddress";
+         }
     }
     
     /**
@@ -132,12 +132,12 @@ public class AddressController {
     @RequestMapping(value = "/editAddress", method = RequestMethod.POST)
     public String editAddress(@ModelAttribute("Address") Address address, ModelMap message) {  
         try {
-        	addressService.editAddress(address);      
+            addressService.editAddress(address);      
             message.addAttribute("Message", "Address Edited Successfully");
             return "EditAddress";
-    	} catch (DatabaseException e) {
-    		message.addAttribute("Message", (e.getMessage().toString()));
-    		return "EditAddress";
-    	}
+        } catch (DatabaseException e) {
+            message.addAttribute("Message", (e.getMessage().toString()));
+            return "EditAddress";
+        }
     }
 }

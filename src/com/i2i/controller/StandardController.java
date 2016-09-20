@@ -20,9 +20,9 @@ import com.i2i.model.Subject;
  * It is used to set views (JSP Pages) for the methods.
  * Assigns handlers (methods) to process the requests
  *   
- * @author Zeeshan Ali
+ * @author Manigandan
  * 
- * @created 2015-08-27
+ * @created 2016-09-08
  * 
  */
 @Controller
@@ -44,7 +44,7 @@ public class StandardController {
         try {       
             model.addAttribute("standards", standardService.getStandards());           
         } catch (DatabaseException e) {
-              model.addAttribute("displayMessage", e.getMessage());                                                                  
+            model.addAttribute("displayMessage", e.getMessage());                                                                  
         } 
         return "RetrieveStandards";
     }  
@@ -53,8 +53,9 @@ public class StandardController {
      * Returns to the JSP Page with a list of subjects
      * 
      * @param model
-     *     to add the the object of class Standard to the JSP Page using addAtribute method
+     *     It add the the object of class Standard to the JSP Page using addAtribute method
      * @return
+     *     return the add standard jsp page  
      */
     @RequestMapping(value = "/AddStandard", method=RequestMethod.GET) 
     public String newStandard(ModelMap model) {
@@ -75,6 +76,7 @@ public class StandardController {
      * @param standard
      *     grade in which group of students study
      * @return
+     *    returns the add standard jsp page
      */
     @RequestMapping(value = "/addStandard", method=RequestMethod.POST) 
         public ModelAndView addStandard(@ModelAttribute("Standard") Standard standard) {
@@ -87,8 +89,7 @@ public class StandardController {
                 modelView.addObject("displayMessage", e.getMessage());                                                                      
             }            
             standardService.addStandard(standard);
-            modelView.addObject("addMessage", "Standard is added successfully");  
-            
+            modelView.addObject("addMessage", "Standard is added successfully");           
         }  catch (DatabaseException ex) {  
             modelView.addObject("addMessage", ex.getMessage().toString());                                    
         } 
@@ -111,8 +112,7 @@ public class StandardController {
         try {                                                           
             standardService.removeStandardById(standardId);
             modelView.addObject("deleteMessage", "Standard Id " + standardId + " is deleted");                                   
-        } catch (DatabaseException e) {
-            
+        } catch (DatabaseException e) {            
             modelView.addObject("deleteMessage", e.getMessage());                                    
         } 
         return modelView;         
@@ -129,8 +129,7 @@ public class StandardController {
      */
     @RequestMapping(value = "/searchStandard", method=RequestMethod.GET)  
     public ModelAndView searchStandard(@RequestParam("standardId") int standardId) {                
-        ModelAndView modelView = new ModelAndView();
-        
+        ModelAndView modelView = new ModelAndView();        
         modelView.setViewName("RetrieveStandards");
         modelView.addObject("Standard", new Standard());
         try {           
@@ -161,7 +160,7 @@ public class StandardController {
             modelView.addObject("teachers", teacherService.getTeachers());
             modelView.addObject("Standard", standardService.getStandardById(standardId));                                             
         } catch (DatabaseException e) {            
-               modelView.addObject("message", e.getMessage());             
+            modelView.addObject("message", e.getMessage());             
         }
         return modelView;         
     }    
@@ -171,6 +170,7 @@ public class StandardController {
      * @param standard
      *     grade in which a group of students study
      * @return
+     *     returns the edit coordinator jsp page   
      */
     @RequestMapping(value = "/editCoordinator", method=RequestMethod.POST) 
     public ModelAndView assignCoordinator(@ModelAttribute("Standard") Standard standard) {        
@@ -179,7 +179,7 @@ public class StandardController {
         try {  
             standardService.editStandard(standard);                                                    
         } catch (DatabaseException e) {            
-               modelView.addObject("message", e.getMessage());             
+            modelView.addObject("message", e.getMessage());             
         }                                             
         return modelView;         
     }  
