@@ -146,7 +146,7 @@ public class StudentController  {
     @RequestMapping(value="/editStudentDetails", method=RequestMethod.GET)
     public String editTeacherDetails(@RequestParam("rollNumber") int studentId, ModelMap map) {
     	try {
-    	    Student student = studentService.getStudentById(studentId);
+    	    Student student = studentService.getStudentById(studentId);    	    
     	    map.addAttribute("student",student);
     	} catch (DatabaseException e) {
     	    map.addAttribute("Message",e.getMessage().toString());
@@ -170,6 +170,7 @@ public class StudentController  {
     public String editStudentForm(@RequestParam("rollNumber") int rollNumber, ModelMap model) {
     	try {
     	    model.addAttribute("Student", studentService.getStudentById(rollNumber));
+    	    model.addAttribute("standards", standardService.getStandards());
             return "EditStudent";
     	} catch (DatabaseException e) {
     	    model.addAttribute("Message", e.getMessage().toString());
@@ -197,6 +198,10 @@ public class StudentController  {
     @RequestMapping(value = "/editStudent", method = RequestMethod.POST)
     public String editStudent(@ModelAttribute("Student") Student student, ModelMap message) {  
         try {
+        	User user = userService.getUserById(student.getUser().getUserId());
+            Standard standard = standardService.getStandardById(student.getStandard().getStandardId());
+            student.setUser(user);
+            student.setStandard(standard);
             studentService.editStudent(student);      
             message.addAttribute("Message", "Student Edited Successfully");
             return "EditStudent";

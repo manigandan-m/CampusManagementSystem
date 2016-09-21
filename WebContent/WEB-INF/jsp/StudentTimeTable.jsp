@@ -1,5 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-
+<c:if test="${sessionScope['username']==null}" >
+   <c:redirect url="StudentLogin.html"/>
+</c:if>
+<c:if test="${sessionScope['role']!='student'}" >
+     <c:redirect url="Logout.html"/>
+</c:if>
 <!DOCTYPE html>
 <html >
   <head>
@@ -83,12 +88,14 @@
       <td><c:out value="${periodSubjectDetails.get(18).getSubjectCode()}"/></td>
       <td><c:out value="${periodSubjectDetails.get(19).getSubjectCode()}"/></td>
     </tr>
+    
     </tbody>
 </table>
 </div>
 
 </c:if>
 
+<h1 style="margin-top:20px;">Subject and Teacher Details</h1>
 <c:if test="${null != subjects}">
 <div  class="tbl-header">
 <table cellpadding="0" cellspacing="0" border="0">

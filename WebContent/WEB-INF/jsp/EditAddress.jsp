@@ -35,7 +35,7 @@
             <c:if test="${Address != null}">
     		<form:form id="contactform" action="editAddress.html" method="POST" modelAttribute="Address"> 
     			<p class="contact"><label for="houseNumber" path = "label1">House Number</label></p> 
-    			<form:input path="houseNumber" placeholder="House Number" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
+    			<form:input path="houseNumber" placeholder="House Number" data-validation="alphanumeric" data-validation-error-msg = "Enter alphabets or numbers or both only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="streetName" path = "label1">Street Name</label><p> 
     			<form:input path="streetName" placeholder="Street Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>

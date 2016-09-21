@@ -195,6 +195,8 @@ public class TeacherController {
     @RequestMapping(value = "/editTeacher", method = RequestMethod.POST)
     public String editTeacher(@ModelAttribute("Teacher") Teacher teacher, ModelMap message) {  
         try {
+        	User user = userService.getUserById(teacher.getUser().getUserId()); 
+        	teacher.setUser(user);
         	teacherService.editTeacher(teacher);      
             message.addAttribute("Message", "Teacher Edited Successfully");
             return "EditTeacher";

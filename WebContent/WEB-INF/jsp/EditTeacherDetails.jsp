@@ -13,8 +13,7 @@
 <head>
 <style type="text/css">
  a:link, a:visited {
-    background-color: #6ef10e;
-    color: white;
+    color: black;
     padding: 14px 25px;
     text-align: center;
     text-decoration: none;
@@ -22,7 +21,7 @@
 }
 
 a:hover, a:active {
-    background-color: red;
+    background-color: white;
 }
 body {
     background-color: #ffffff; 
