@@ -34,22 +34,26 @@
       <div  class="form">
     		<form:form id="contactform" action="addAddress.html" method="POST" modelAttribute="Address"> 
     			<p class="contact"><label for="houseNumber" path = "label1">House Number</label></p> 
-    			<form:input path="houseNumber" placeholder="House Number" required="required" tabindex="1" type="text"/>
+    			<form:input path="houseNumber" placeholder="House Number" data-validation="length alphanumeric" data-validation-length="min1" required ="required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="streetName" path = "label1">Street Name</label><p> 
-    			<form:input path="streetName" placeholder="Street Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
+    			<form:input path="streetName" placeholder="Street Name" data-validation="custom" data-validation-regexp="^([A-Za-z\s]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
-                        <p class="contact"><label for="city" path = "label1">City</label><p> 
-    			<form:input path="city" placeholder="city" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
-
-                        <p class="contact"><label for="state" path = "label1">State</label></p> 
-    			<form:input path="state" placeholder="State" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
+                        <select name="country" class="countries" path="country">
+                        <option value="">Select Country</option>
+                        </select>
                         
-                        <p class="contact"><label for="country" path = "label1">Country</label><p> 
-    			<form:input path="country" placeholder="Country" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>  
-    			 
+                        <select name="state" class="states" path="state">
+                        <option value="">Select State</option>
+                        </select>
+                        
+                        <select name="city" class="cities" path="city">
+                        <option value="">Select City</option>
+                        </select>
+                                                
+                        
     			<p class="contact"><label for="pincode" path = "label1">PinCode</label></p> 
-    			<form:input path="pincode" placeholder="PinCode" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/> 
+    			<form:input path="pincode" placeholder="PinCode" maxlength="6" pattern="\d{6}" title="Please enter exactly 6 digits" required="required" tabindex="1" type="number"/> 
                  <form:input type = "hidden" path = "user.userId" value="${userId}"/>     
                        <input class="buttom" name="submit" id="submit" tabindex="5" value="Submit" type="submit"> 	 
                 </form:form>
@@ -64,6 +68,8 @@
        $.validate({
        lang: 'en'
         });
-   </script> 
+   </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://iamrohit.in/lab/js/location.js"></script> 
 </body>
 </html>

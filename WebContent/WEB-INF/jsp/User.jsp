@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
 <div class="container">
@@ -35,19 +36,28 @@
     			<form:input path="password" placeholder="password" data-validation="length alphanumeric" data-validation-length="min4" required ="required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="firstName" path = "label1">First Name</label><p> 
-    			<form:input path="firstName" placeholder="FirstName" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
+    			<form:input path="firstName" placeholder="FirstName" data-validation="custom" data-validation-regexp="^([A-Za-z\s]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
 
                         <p class="contact"><label for="lastName" path = "label1">Last Name</label></p> 
-    			<form:input path="lastName" placeholder="Last Name" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
+    			<form:input path="lastName" placeholder="Last Name" data-validation="custom" data-validation-regexp="^([A-Za-z\s]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
                         
                         <p class="contact"><label for="dateOfBirth" path = "label1">Date Of Birth(YYYY-MM-DD)</label><p> 
-    			<form:input path="dateOfBirth" placeholder="Date Of Birth" required="" tabindex="1" type="text"/>  
+    			<form:input path="dateOfBirth" id = "datepicker" placeholder="Date Of Birth" required="" tabindex="1" type="text"/>  
     			 
-    			<p class="contact"><label for="nationality" path = "label1">Nationality</label></p> 
-    			<form:input path="nationality" placeholder="Nationality" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/> 
-                
-                        <p class="contact"><label for="religion" path = "label1">Religion</label></p> 
-    			<form:input path="religion" placeholder="Religion" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>   
+    			        <form:select class="select-style gender" name="nationality" path="nationality">
+                        <option value="Nationality">Nationality</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Other">Other</option>
+                        </form:select><br><br>
+                        
+                        <form:select class="select-style gender" name="religion" path="religion">
+                        <option value="select">Religion</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Christian">Christian</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Jainism">Jainism</option>
+                        <option value="Buddhism">Buddhism</option>
+                        </form:select><br><br>
         
                         <form:select class="select-style gender" name="gender" path="gender">
                         <option value="select">i am..</option>
@@ -58,12 +68,17 @@
                         <form:select class="select-style gender" name="bloodGroup" path="bloodGroup">
                         <option value="select">Blood Group</option>
                         <option value="O+">O+</option>
+                        <option value="O-">O-</option>
                         <option value="B+">B+</option>
+                        <option value="B-">B-</option>
                         <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
                         </form:select><br><br>
 
                         <p class="contact"><label for="mobileNumber" path = "label1">Mobile Number</label></p> 
-    			<form:input path="mobileNumber" placeholder="Mobile Nunber" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>
+    			<form:input path="mobileNumber" placeholder="Mobile Number" maxlength="10" pattern="\d{10}" title="Please enter exactly 10 digits" tabindex="1" type="text"/>
              
                         <form:select class="select-style gender" path="role.roleId">
 	                     <option value="select"> Role </option>
@@ -79,12 +94,26 @@
                  </c:if> 
 </div>
 </div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
    <script>
        $.validate({
        lang: 'en'
         });
-   </script> 
+   </script>
+
+<script>
+  $(document).ready(function() {
+	  var date = new Date(2012-09-10);
+	$("#datepicker").datepicker({
+    	minDate: new Date(date),	
+        dateFormat:'yy-mm-dd',
+        changeYear:true,
+        yearRange:'1980:2100'
+        
+    });
+  });
+  </script> 
 </body>
 </html>

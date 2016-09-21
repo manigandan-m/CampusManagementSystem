@@ -20,7 +20,6 @@
         <mapping class="com.i2i.model.Subject"/>
         <mapping class="com.i2i.model.Teacher"/>
         <mapping class="com.i2i.model.Standard"/>
-        <mapping class="com.i2i.model.Period"/>
         <mapping class="com.i2i.model.PeriodSubjectDetail"/>    
         
     </session-factory>

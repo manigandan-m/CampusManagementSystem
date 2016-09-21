@@ -8,10 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
-
-import com.i2i.model.Period;
 import com.i2i.model.Teacher;
-import com.i2i.model.Subject;
 import com.i2i.model.Standard;
 
 /**

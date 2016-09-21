@@ -15,6 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
 <div class="container">
@@ -34,17 +35,47 @@
             </header>       
       <div  class="form">
     		<form:form id="contactform" action="addTeacher.html" method="POST" modelAttribute="Teacher"> 
-    			<p class="contact"><label for="yearsOfExperience" path = "label1">Years Of Experience</label></p> 
-    			<form:input path="yearsOfExperience" placeholder="Years Of Experience" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>
+                
+                <form:select class="select-style gender" name="yearsOfExperience" path="yearsOfExperience">
+                        <option value="yearsOfExperience">Years Of Experience</option>
+                        <option value="0">0</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        </form:select><br><br>
+                        
+                <form:select class="select-style gender" name="monthsOfExperience" path="monthsOfExperience">
+                        <option value="monthsOfExperience">Months Of Experience</option>
+                        <option value="0">0</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        </form:select><br><br>
+                <p class="contact"><label for="dateOfJoining" path = "label1">Date Of Joining (YYYY-MM-DD)</label><p> 
+    			<form:input path="dateOfJoining" id="datepicker" placeholder="Date Of Joining" required="" tabindex="1" type="text"/>
 
-                        <p class="contact"><label for="monthsOfExperience" path = "label1">Months Of Experience</label><p> 
-    			<form:input path="monthsOfExperience" placeholder="Months Of Experience" data-validation="number" data-validation-error-msg = "Enter numbers only" required="required" tabindex="1" type="text"/>
-
-                        <p class="contact"><label for="dateOfJoining" path = "label1">Date Of Joining (YYYY-MM-DD)</label><p> 
-    			<form:input path="dateOfJoining" placeholder="Date Of Joining" required="" tabindex="1" type="text"/>
-
-                        <p class="contact"><label for="designation" path = "label1">Designation</label></p> 
-    			<form:input path="designation" placeholder="Designation" data-validation="custom" data-validation-regexp="^([a-z]+)$" data-validation-error-msg = "Enter alphabets only" required = "required" tabindex="1" type="text"/>
+                        <form:select class="select-style gender" name="designation" path="designation">
+                        <option value="select">Designation</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Senior Teacher">Senior Teacher</option>
+                        </form:select><br><br>
                         
                         <form:select class="select-style gender" name="qualification" path="qualification">
                         <option value="select">Qualification</option>
@@ -69,12 +100,26 @@
                  </c:if> 
 </div>
 </div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
    <script>
        $.validate({
        lang: 'en'
         });
-   </script> 
+   </script>
+
+<script>
+  $(document).ready(function() {
+	  var date = new Date(2012-09-10);
+	$("#datepicker").datepicker({
+    	minDate: new Date(date),	
+        dateFormat:'yy-mm-dd',
+        changeYear:true,
+        yearRange:'1980:2100'
+        
+    });
+  });
+  </script>  
 </body>
 </html>
