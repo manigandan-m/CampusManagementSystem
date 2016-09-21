@@ -17,7 +17,7 @@ import com.i2i.exception.DatabaseException;
   * @created 2016-09-05
  */
 public class UserService {
-        UserDao userDao = new UserDao();
+    UserDao userDao = new UserDao();
     
     /**
      * Calls the UserDao class method to add the standard to the database by passing the User class object
@@ -41,8 +41,7 @@ public class UserService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    public void editUser(User user)
-            throws DatabaseException {
+    public void editUser(User user) throws DatabaseException {
         userDao.editUser(user);
     }
     

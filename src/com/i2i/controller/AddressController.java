@@ -82,9 +82,9 @@ public class AddressController {
     @RequestMapping(value = "/displayAddresses", method=RequestMethod.GET) 
     public ModelAndView displayStudents() {
         try {                                                                         
-            return new ModelAndView("DisplayAddresses","addresses", addressService.getAddresses());                                           
+            return new ModelAndView("DisplayAddresses","addresses", addressService.getAddresses());             
         } catch (DatabaseException e) {
-            return new ModelAndView("DisplayAddresses","displayMessage", e.getMessage());                                                       
+            return new ModelAndView("DisplayAddresses","displayMessage", e.getMessage());                          
         } 
     }
     

@@ -41,12 +41,12 @@ public class StudentDao {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {  
-        	student.setStandard(standard);
-        	student.setUser(user);
+            student.setStandard(standard);
+            student.setUser(user);
             session.save(student);            
             transaction.commit(); 
         } catch (HibernateException e) {   
-        	throw new DatabaseException("Entered student is not added. Student ID already exits..", e);
+            throw new DatabaseException("Entered student is not added. Student ID already exits..", e);
         } finally {
             session.close();
         }                                                                         
@@ -109,15 +109,15 @@ public class StudentDao {
      *     NumberFormatException, HibernateException
      */
     public void editStudent(Student student) throws DatabaseException {
-	    Session session = sessionFactory.openSession();
+	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update(student);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-              throw new DatabaseException("Please check the data you have given..." , e);  
+            throw new DatabaseException("Please check the data you have given..." , e);  
        } finally {
-             session.close(); 
+            session.close(); 
        }
     }
     
@@ -132,7 +132,7 @@ public class StudentDao {
     public List<Student> retrieveStudents() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         try {
-        	List<Student> students = session.createQuery("FROM Student").list();
+            List<Student> students = session.createQuery("FROM Student").list();
             if (students.isEmpty()) {
                 throw new DatabaseException("The student list is empty");
             }            

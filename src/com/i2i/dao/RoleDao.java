@@ -64,7 +64,7 @@ public class RoleDao {
             session.delete(role);
             transaction.commit();            
         } catch (IllegalArgumentException e) {      
-        	throw new DatabaseException("Entered role is not deleted. Kindly try again with vaild user id", e);
+            throw new DatabaseException("Entered role is not deleted. Kindly try again with vaild user id", e);
         } finally {
             session.close();
         }                            
@@ -86,9 +86,9 @@ public class RoleDao {
             session.update(role);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-             throw new DatabaseException("Please check the data you have given..." , e);  
+            throw new DatabaseException("Please check the data you have given..." , e);  
         } finally {
-             session.close(); 
+            session.close(); 
         }
     }
     
@@ -104,17 +104,17 @@ public class RoleDao {
      *     NumberFormatException, HibernateException
      */
     public Role findRoleById(int id) throws DatabaseException {
-         Session session = sessionFactory.openSession();
-         Transaction transaction = session.beginTransaction();
-         try {
-             Role role = (Role)session.get(Role.class, id); 
-             transaction.commit();
-             return role;
-         } catch (HibernateException e) {
-             throw new DatabaseException("Check role ID, please enter different id", e);  
-         } finally {
-             session.close();             
-         } 
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Role role = (Role)session.get(Role.class, id); 
+            transaction.commit();
+            return role;
+        } catch (HibernateException e) {
+            throw new DatabaseException("Check role ID, please enter different id", e);  
+        } finally {
+            session.close();             
+        } 
     }
     
     /**
@@ -128,9 +128,9 @@ public class RoleDao {
     public List<Role> retrieveRoles() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         try {
-        	List<Role> roles = session.createQuery("FROM Role").list();
+            List<Role> roles = session.createQuery("FROM Role").list();
             if (roles.isEmpty()) {
-            	throw new DatabaseException("The role list is empty");
+                throw new DatabaseException("The role list is empty");
             }            
             return roles;              
         } catch (HibernateException e) {            

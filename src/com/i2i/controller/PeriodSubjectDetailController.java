@@ -80,9 +80,8 @@ public class PeriodSubjectDetailController {
     public ModelAndView displayStandardTimeTable(@RequestParam("standardId") int standardId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("StandardTimeTable");
-
         try {            
-            modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByStandardId(standardId));            
+            modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByStandardId(standardId));
             modelView.addObject("subjects", standardService.getStandardById(standardId).getSubjects());
         } catch (DatabaseException e) {
             modelView.addObject("message", e.getMessage());            
@@ -104,7 +103,6 @@ public class PeriodSubjectDetailController {
     public ModelAndView displayStandardTimeTable(@RequestParam("standardId") int standardId, @RequestParam("rollNumber") int rollNumber) {
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("StudentTimeTable");
-
         try {          
             modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByStandardId(standardId)); 
             modelView.addObject("subjects", standardService.getStandardById(standardId).getSubjects());
@@ -127,7 +125,6 @@ public class PeriodSubjectDetailController {
     public ModelAndView displayTeacherTimeTable(@RequestParam("teacherId") int teacherId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("TeacherTimeTable");
-        
         try {          
             modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByTeacherId(teacherId)); 
             modelView.addObject("subject", subjectService.getSubjectByTeacherId(teacherId));
@@ -149,7 +146,6 @@ public class PeriodSubjectDetailController {
     public ModelAndView displayFacultyTimeTable(@RequestParam("teacherId") int teacherId) {               
         ModelAndView modelView = new ModelAndView();  
         modelView.setViewName("FacultyTimeTable");
-        
         try {          
             modelView.addObject("periodSubjectDetails", periodSubjectDetailService.getPeriodSubjectDetailsByTeacherId(teacherId)); 
             modelView.addObject("teacher", teacherService.getTeacherById(teacherId));

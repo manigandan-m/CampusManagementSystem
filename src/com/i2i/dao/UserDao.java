@@ -106,17 +106,16 @@ public class UserDao {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException, HibernateException
      */
-    public void editUser(User user)
-            throws DatabaseException {
+    public void editUser(User user) throws DatabaseException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update(user);
             transaction.commit();                                                                    
         } catch (HibernateException e) {
-        	throw new DatabaseException("Please check the data you have given..." , e);  
+            throw new DatabaseException("Please check the data you have given..." , e);  
        } finally {
-             session.close(); 
+            session.close(); 
        }
     }
     
@@ -131,7 +130,7 @@ public class UserDao {
     public List<User> retrieveUsers() throws DatabaseException {
         Session session = sessionFactory.openSession();        
         try {
-        	List<User> users = session.createQuery("FROM User").list();
+            List<User> users = session.createQuery("FROM User").list();
             if (users.isEmpty()) {
                 throw new DatabaseException("The user list is empty");
             }            

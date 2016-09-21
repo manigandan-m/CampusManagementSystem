@@ -198,7 +198,7 @@ public class StudentController  {
     @RequestMapping(value = "/editStudent", method = RequestMethod.POST)
     public String editStudent(@ModelAttribute("Student") Student student, ModelMap message) {  
         try {
-        	User user = userService.getUserById(student.getUser().getUserId());
+            User user = userService.getUserById(student.getUser().getUserId());
             Standard standard = standardService.getStandardById(student.getStandard().getStandardId());
             student.setUser(user);
             student.setStandard(standard);

@@ -31,8 +31,8 @@ import com.i2i.service.UserService;
  */
 @Controller
 public class TeacherController {
-	TeacherService teacherService = new TeacherService();
-	UserService userService = new UserService();
+    TeacherService teacherService = new TeacherService();
+    UserService userService = new UserService();
     
     /**
      * Gets the teacher details from the JSP Page and passes it as a Teacher.
@@ -108,11 +108,10 @@ public class TeacherController {
      */
     @RequestMapping(value = "/displayTeachers", method=RequestMethod.GET) 
     public ModelAndView displayTeachers() {
-    	
-        try {                                                                         
+    	try {                                                                         
             return new ModelAndView("RetrieveTeachers","teachers", teacherService.getTeachers());                                           
         } catch (DatabaseException e) {
-        	return new ModelAndView("RetrieveTeachers","displayMessage", e.getMessage());              
+            return new ModelAndView("RetrieveTeachers","displayMessage", e.getMessage());              
         } 
     }
     
@@ -167,11 +166,11 @@ public class TeacherController {
     @RequestMapping(value = "/editTeacherById", method = RequestMethod.GET)
     public String editTeacherForm(@RequestParam("teacherId") String id, ModelMap model) throws ServletException, IOException {
     	 try {
-    		 model.addAttribute("Teacher", teacherService.getTeacherById(Integer.parseInt(id)));
+    	     model.addAttribute("Teacher", teacherService.getTeacherById(Integer.parseInt(id)));
              return "EditTeacher";
     	 } catch (DatabaseException e) {
-    		 model.addAttribute("Message", e.getMessage().toString());
-    		 return "EditTeacher";
+    	     model.addAttribute("Message", e.getMessage().toString());
+    	     return "EditTeacher";
     	 }
     }
     
@@ -195,14 +194,14 @@ public class TeacherController {
     @RequestMapping(value = "/editTeacher", method = RequestMethod.POST)
     public String editTeacher(@ModelAttribute("Teacher") Teacher teacher, ModelMap message) {  
         try {
-        	User user = userService.getUserById(teacher.getUser().getUserId()); 
-        	teacher.setUser(user);
-        	teacherService.editTeacher(teacher);      
+            User user = userService.getUserById(teacher.getUser().getUserId()); 
+            teacher.setUser(user);
+            teacherService.editTeacher(teacher);      
             message.addAttribute("Message", "Teacher Edited Successfully");
             return "EditTeacher";
     	} catch (DatabaseException e) {
-    		message.addAttribute("Message", (e.getMessage().toString()));
-    		return "EditTeacher";
+    	    message.addAttribute("Message", (e.getMessage().toString()));
+    	    return "EditTeacher";
     	}
     }
 }

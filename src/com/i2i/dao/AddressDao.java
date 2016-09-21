@@ -33,9 +33,9 @@ public class AddressDao {
      * @throws DatabaseException
      */
     public void insertAddress(Address address, User user) throws DatabaseException {
-       Session session = sessionFactory.openSession();
-       Transaction transaction = session.beginTransaction();
-       try {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
             address.setUser(user);
             session.save(address);           
             transaction.commit();
@@ -78,7 +78,7 @@ public class AddressDao {
      *     NumberFormatException, HibernateException
      */
     public void editAddress(Address address) throws DatabaseException {
-	    Session session = sessionFactory.openSession();
+	Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update(address);

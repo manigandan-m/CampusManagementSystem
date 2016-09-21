@@ -43,9 +43,8 @@ public class AddressService {
      *     if there is an error in getting the object like NullPointerException,
      *     NumberFormatException
      */
-    public void editAddress(Address address)
-            throws DatabaseException {
-	    addressDao.editAddress(address);
+    public void editAddress(Address address) throws DatabaseException {
+        addressDao.editAddress(address);
     }
     
     /**

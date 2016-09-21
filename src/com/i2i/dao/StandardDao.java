@@ -65,7 +65,7 @@ public class StandardDao {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
-        	Standard standard = (Standard) session.get(Standard.class, id); 
+            Standard standard = (Standard) session.get(Standard.class, id); 
             session.delete(standard);
             transaction.commit();            
         } catch (IllegalArgumentException e) {                       
@@ -119,9 +119,9 @@ public class StandardDao {
             session.update(standard);            
             transaction.commit();                                                                   
         } catch (HibernateException e) {
-        	throw new DatabaseException("Please check the data you have given..." , e); 
+            throw new DatabaseException("Please check the data you have given..." , e); 
        } finally {
-             session.close();
+            session.close();
        }
     }
     
